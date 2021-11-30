@@ -9,7 +9,8 @@ import kr.co.iotree.todolist.viewholder.CalendarViewHolder
 import kr.co.iotree.todolist.viewholder.TodoGroupViewHolder
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
-class MainAdapter(private val list: List<TodoGroupVo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val list: MutableList<TodoGroupVo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     override fun getItemViewType(position: Int): Int {
         return if (position == 0)
             CALENDER
@@ -21,7 +22,7 @@ class MainAdapter(private val list: List<TodoGroupVo>) : RecyclerView.Adapter<Re
         return when (viewType) {
             CALENDER -> {
                 val binding = ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                CalendarViewHolder(binding)
+                CalendarViewHolder(binding, this)
             }
             TODO -> {
                 val binding = ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -32,14 +33,17 @@ class MainAdapter(private val list: List<TodoGroupVo>) : RecyclerView.Adapter<Re
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == TODO)
-            (holder as TodoGroupViewHolder).bindData(list[position-1])
+        when (getItemViewType(position)) {
+            CALENDER -> (holder as CalendarViewHolder).bindData()
+            TODO -> (holder as TodoGroupViewHolder).bindData(list[position - 1])
+            else -> throw RuntimeException("Invalid ViewType")
+        }
     }
 
-    override fun getItemCount(): Int = list.size+1
+    override fun getItemCount(): Int = list.size + 1
 
     companion object {
-        private const val CALENDER = 1;
-        private const val TODO = 2;
+        private const val CALENDER = 1
+        private const val TODO = 2
     }
 }

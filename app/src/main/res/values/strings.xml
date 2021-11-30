@@ -3,5 +3,10 @@
     <string name="group">목록</string>
     <string name="group_setting">목록 관리</string>
 
+    <string-array name = "todoMore">
+        <item>"수정"</item>
+        <item>"삭제"</item>
+    </string-array>
+
     <string name="dummy">Lorem ipsum</string>
 </resources>

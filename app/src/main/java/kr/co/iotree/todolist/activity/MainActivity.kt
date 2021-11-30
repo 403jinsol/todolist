@@ -1,5 +1,6 @@
 package kr.co.iotree.todolist.activity
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,10 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
+import kr.co.iotree.todolist.adapter.TodoTestAdapter
+import kr.co.iotree.todolist.database.Todo
+import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.vo.TodoGroupVo
-import kr.co.iotree.todolist.vo.TodoItemVo
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -23,19 +29,26 @@ class MainActivity : AppCompatActivity() {
     lateinit var groupList: List<TodoGroupVo>
     private val groupTitleViews = arrayListOf<TextView>() // 정답 순서대로 TextView가 들어있다.
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val todoGroup1 = TodoGroupVo("일반", "#ff000000", mutableListOf())
-        val todoGroup2 = TodoGroupVo("일반2", "#ffff0000", mutableListOf())
 
-        groupList = listOf(todoGroup1, todoGroup2)
+        val now = System.currentTimeMillis()
+        val date = Date(now)
+        val sdf = SimpleDateFormat("yyyyMMdd")
+        val currentDate = sdf.format (date)
+
+        val todoGroup1 = TodoGroupVo("일반", "#ff0000ff")
+        val todoGroup2 = TodoGroupVo("일반2", "#ffff0000")
+
+        groupList = mutableListOf(todoGroup1, todoGroup2)
 
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.recyclerview.adapter = MainAdapter(groupList)
+        binding.recyclerview.adapter = MainAdapter(groupList as MutableList<TodoGroupVo>)
         (binding.recyclerview.adapter as MainAdapter).notifyItemInserted(groupList.size)
 
         setDrawerMenu()

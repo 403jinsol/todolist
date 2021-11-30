@@ -10,10 +10,16 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_hor_margin"
         android:layout_marginBottom="@dimen/default_ver_margin"
-        android:background="@color/todo_group_background"
+        android:background="@drawable/round"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/todo_small_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/todo_small_margin"
+            android:src="@drawable/ic_todo_group" />
 
         <TextView
             android:id="@+id/title"
