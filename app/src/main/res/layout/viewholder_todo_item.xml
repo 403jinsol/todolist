@@ -23,4 +23,15 @@
         android:text="@string/dummy"
         android:textSize="@dimen/todo_item_font_size" />
 
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_todo_more" />
+
 </LinearLayout>
