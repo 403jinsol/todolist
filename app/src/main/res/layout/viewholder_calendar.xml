@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/default_hor_margin"
-    android:layout_marginVertical="@dimen/default_ver_margin"
+    android:layout_marginTop="@dimen/default_ver_margin"
+    android:layout_marginBottom="@dimen/todo_small_margin"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,27 +18,31 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="@dimen/todo_small_margin"
-            android:src="@drawable/ic_user" />
+            android:src="@drawable/ic_user"
+            app:tint="@color/black" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="@dimen/todo_small_margin"
-            android:src="@drawable/ic_add" />
+            android:src="@drawable/ic_add"
+            app:tint="@color/black" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/me"
+        android:textColor="@color/black"
         android:textSize="@dimen/user_name_font_size"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/default_ver_margin"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -45,6 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dummy"
+            android:textColor="@color/black"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Space
@@ -53,20 +61,25 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_calender_prev" />
+            android:src="@drawable/ic_calender_prev"
+            app:tint="@color/black" />
 
         <ImageView
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_calender_next" />
+            android:src="@drawable/ic_calender_next"
+            app:tint="@color/black" />
 
         <LinearLayout
+            android:id="@+id/monthWeekContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="@dimen/todo_small_margin">
 
@@ -74,11 +87,15 @@
                 android:id="@+id/monthWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/month" />
+                android:layout_marginStart="@dimen/todo_small_margin"
+                android:text="@string/month"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/arrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_calender_up" />
 
         </LinearLayout>
@@ -89,6 +106,8 @@
         android:id="@+id/calendarContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
 
         <TextView
@@ -97,7 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/monday" />
+            android:text="@string/monday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day2"
@@ -105,7 +125,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/tuesday" />
+            android:text="@string/tuesday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day3"
@@ -113,7 +134,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/wednesday" />
+            android:text="@string/wednesday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day4"
@@ -121,7 +143,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/thursday" />
+            android:text="@string/thursday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day5"
@@ -129,7 +152,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/friday" />
+            android:text="@string/friday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day6"
@@ -137,7 +161,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/saturday" />
+            android:text="@string/saturday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
         <TextView
             android:id="@+id/day7"
@@ -145,572 +170,116 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/sunday" />
+            android:text="@string/sunday"
+            android:textSize="@dimen/calendar_date_font_size" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week1ImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week1TextContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week2ImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week2TextContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week3ImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week3TextContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week4ImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week4TextContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week5ImageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_clover" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/week5TextContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
+    <LinearLayout
+        android:id="@+id/week6ImageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/todo_small_margin"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/calendar_date_font_size"
-            android:text="@string/dummyNumber" />
+    <LinearLayout
+        android:id="@+id/week6TextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/calendar_date_ver_margin"
+        android:orientation="horizontal">
 
     </LinearLayout>
 

@@ -10,6 +10,7 @@ import kr.co.iotree.todolist.adapter.TodoGroupAdapter
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
+import kr.co.iotree.todolist.util.setImageViewColor
 
 class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
     private val db = TodoDatabase.getInstance(itemView.context)
@@ -18,18 +19,22 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding) : Recyc
         var isCompleted = item.complete
 
         if (isCompleted) {
-            binding.todoIcon.imageTintList = ColorStateList.valueOf(Color.parseColor(color))
+            binding.todoIcon.setColorFilter(Color.parseColor(color))
         } else {
-            binding.todoIcon.imageTintList = ColorStateList.valueOf(Color.parseColor("#FF434343"))
+            binding.todoIcon.apply {
+                setImageViewColor(this, itemView.context, R.color.todo_icon_default)
+            }
         }
 
         binding.todoIcon.setOnClickListener {
             if (!isCompleted) {
-                (it as ImageView).imageTintList = ColorStateList.valueOf(Color.parseColor(color))
+                (it as ImageView).setColorFilter(Color.parseColor(color))
                 isCompleted = !isCompleted
                 db!!.todoDao().updateComplete(true, item.id)
             } else {
-                (it as ImageView).imageTintList = ColorStateList.valueOf(Color.parseColor("#FF434343"))
+                (it as ImageView).apply {
+                    setImageViewColor(this, itemView.context, R.color.todo_icon_default)
+                }
                 isCompleted = !isCompleted
                 db!!.todoDao().updateComplete(false, item.id)
             }

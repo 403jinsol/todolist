@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/default_hor_margin"
-    android:layout_marginVertical="@dimen/default_ver_margin"
+    android:layout_marginTop="@dimen/todo_small_margin"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -12,8 +12,8 @@
         android:id="@+id/todoIcon"
         android:layout_width="@dimen/todo_item_size"
         android:layout_height="@dimen/todo_item_size"
-        android:layout_marginEnd="@dimen/todo_small_margin"
-        android:src="@drawable/ic_todo_icon"
+        android:layout_marginEnd="@dimen/default_ver_margin"
+        android:src="@drawable/ic_clover"
         app:tint="@color/todo_icon_default" />
 
     <TextView

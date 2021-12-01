@@ -2,21 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/default_ver_margin"
+    android:layout_marginBottom="@dimen/default_ver_margin"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_hor_margin"
-        android:layout_marginBottom="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
         android:background="@drawable/round"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/todo_small_margin">
+        android:paddingHorizontal="@dimen/todo_group_hor_padding"
+        android:paddingVertical="@dimen/todo_group_ver_padding">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/todo_group_icon_size"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/todo_small_margin"
             android:src="@drawable/ic_todo_group" />
@@ -31,7 +32,7 @@
 
         <ImageView
             android:id="@+id/add"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/todo_group_icon_size"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/todo_small_margin"
             android:src="@drawable/ic_todo_plus" />
@@ -42,6 +43,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp" />
 
 </LinearLayout>

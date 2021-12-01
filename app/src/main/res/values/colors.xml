@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- custom color -->
-    <color name="todo_group_background">#F1F1F1</color>
-    <color name="todo_icon_default">#FF434343</color>
-    <color name="text_defalut">#000000</color>
+    <color name="todo_group_background">#FFF0F0F0</color>
+    <color name="todo_group_stroke">#FFEAEAEA</color>
+    <color name="calendar_icon_default">#FFD9DDDF</color>
+    <color name="todo_icon_default">#FFD9DDDF</color>
+    <color name="text_default">#000000</color>
 </resources>

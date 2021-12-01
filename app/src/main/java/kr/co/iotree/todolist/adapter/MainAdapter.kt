@@ -9,7 +9,7 @@ import kr.co.iotree.todolist.viewholder.CalendarViewHolder
 import kr.co.iotree.todolist.viewholder.TodoGroupViewHolder
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
-class MainAdapter(private val list: MutableList<TodoGroupVo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val list: List<TodoGroupVo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0)
