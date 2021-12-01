@@ -22,7 +22,7 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>) : RecyclerView.Ada
         return when (viewType) {
             CALENDER -> {
                 val binding = ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                CalendarViewHolder(binding, this)
+                CalendarViewHolder(binding)
             }
             TODO -> {
                 val binding = ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)

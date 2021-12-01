@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">TodoList</string>
+    <string name="me">me</string>
+
+    <string name="month">월</string>
+    <string name="week">주</string>
+    <string name="monday">월</string>
+    <string name="tuesday">화</string>
+    <string name="wednesday">수</string>
+    <string name="thursday">목</string>
+    <string name="friday">금</string>
+    <string name="saturday">토</string>
+    <string name="sunday">일</string>
+
     <string name="group">목록</string>
     <string name="group_setting">목록 관리</string>
 
@@ -9,4 +21,5 @@
     </string-array>
 
     <string name="dummy">Lorem ipsum</string>
+    <string name="dummyNumber">0</string>
 </resources>
