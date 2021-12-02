@@ -50,10 +50,24 @@
             android:id="@+id/yearMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_ver_margin"
             android:text="@string/dummy"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_check"
+            android:layout_marginEnd="@dimen/todo_small_margin"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="12sp" />
 
         <Space
             android:layout_width="0dp"
@@ -64,6 +78,7 @@
             android:id="@+id/prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_hor_margin"
             android:src="@drawable/ic_calender_prev"
             app:tint="@color/black" />
 
