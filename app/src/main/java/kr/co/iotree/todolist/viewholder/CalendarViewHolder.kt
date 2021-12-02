@@ -34,7 +34,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     }
 
     /**
-     * 달력 세팅
+     * 월 달력 세팅
      */
     private fun setMonthCalendar(year: Int, month: Int) {
         val iconList = mutableListOf<ImageView>()
@@ -43,7 +43,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
         val calendarIconParam = LinearLayout.LayoutParams(dpToPx(itemView.context, 20F).toInt(), dpToPx(itemView.context, 20F).toInt(), 1F)
         val calendarDateParam = LinearLayout.LayoutParams(dpToPx(itemView.context, 20F).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT, 1F)
 
-        val dayOfWeek = getFirstDayOfTheWeek(year, month)
+        val firstDayOfWeek = getFirstDayOfTheWeek(year, month)
         var dateTag = 1
         val maxDate = getMaxDate(year, month)
         var selectedIndex = 0
@@ -59,12 +59,14 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             icon.apply {
                 setImageViewColor(this, itemView.context, R.color.calendar_icon_default)
             }
-            if (i < dayOfWeek || dateTag > maxDate) {
+            if (i < firstDayOfWeek || dateTag > maxDate) { //요일이 안맞거나 이미 다 나왔으면 안보이게
                 icon.visibility = View.INVISIBLE
                 icon.isEnabled = false
             } else {
                 icon.tag = dateTag
             }
+
+            //누르면 textView 색상 변경
             icon.setOnClickListener {
                 dateList[selectedIndex].setTextColor(Color.parseColor("#808080"))
                 dateList[selectedIndex].setTypeface(null, Typeface.NORMAL)
@@ -93,7 +95,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             date.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemView.context.resources.getDimension(R.dimen.calendar_date_font_size))
             date.gravity = Gravity.CENTER
 
-            if (i < dayOfWeek || dateTag > maxDate) {
+            if (i < firstDayOfWeek || dateTag > maxDate) {
                 date.visibility = View.INVISIBLE
                 date.isEnabled = false
             } else {
@@ -121,6 +123,9 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
         addView(iconList, dateList)
     }
 
+    /**
+     * 주 달력 세팅
+     */
     private fun setWeekCalendar(year: Int, month: Int, day: Int) {
         setBasicViewVisibility()
 
@@ -174,6 +179,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 }
             }
 
+            //클릭하면 textview 색상 변경
             date.setOnClickListener {
                 dateList[selectedIndex].setTextColor(Color.parseColor("#808080"))
                 dateList[selectedIndex].setTypeface(null, Typeface.NORMAL)
@@ -197,8 +203,9 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 setImageViewColor(this, itemView.context, R.color.calendar_icon_default)
             }
 
-            icon.tag = day
+            icon.tag = dateList[i].tag
 
+            //클릭하면 textview 색상 변경
             icon.setOnClickListener {
                 dateList[selectedIndex].setTextColor(Color.parseColor("#808080"))
                 dateList[selectedIndex].setTypeface(null, Typeface.NORMAL)
