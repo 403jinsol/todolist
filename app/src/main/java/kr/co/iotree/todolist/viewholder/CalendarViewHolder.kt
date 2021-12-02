@@ -149,7 +149,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
 
             //날짜 요일 맞춰서 표시
             when {
-                i == getDayOfTheWeek(year, month, day) -> { //현재 날짜와 같으면
+                diff == 0 -> { //현재 날짜와 같으면
                     date.text = day.toString()
                     date.tag = day
 
@@ -159,22 +159,23 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
 
                     selectedIndex = i
                 }
-                i < getDayOfTheWeek(year, month, day) -> { //현재 날짜보다 빠르면
+                diff < 0 -> { //현재 날짜보다 빠르면
                     if ((day + diff) < 1) { //이전달 나오면
-                        date.text = (getMaxDate(year, month - 1) + (day - (getDayOfTheWeek(year, month, day) - i))).toString()
-                        date.tag = (getMaxDate(year, month - 1) + (day - (getDayOfTheWeek(year, month, day) - i))).toString()
+                        //전달 마지막 날짜에서 차이만큼 빼기
+                        date.text = (getMaxDate(year, month - 1) + (day + diff)).toString()
+                        date.tag = (getMaxDate(year, month - 1) + (day + diff)).toString()
                     } else {
-                        date.text = (day - (getDayOfTheWeek(year, month, day) - i)).toString()
-                        date.tag = (day - (getDayOfTheWeek(year, month, day) - i)).toString()
+                        date.text = (day + diff).toString()
+                        date.tag = (day + diff).toString()
                     }
                 }
                 else -> { //현재 날짜보다 느리면
                     if ((day + diff) > getMaxDate(year, month)) { //다음달 나오면
-                        date.text = ((day + (i - (getDayOfTheWeek(year, month, day)))) - getMaxDate(year, month)).toString()
-                        date.tag = ((day + (i - (getDayOfTheWeek(year, month, day)))) - getMaxDate(year, month)).toString()
+                        date.text = ((day + diff) - getMaxDate(year, month)).toString()
+                        date.tag = ((day + diff) - getMaxDate(year, month)).toString()
                     } else {
-                        date.text = (day + (i - (getDayOfTheWeek(year, month, day)))).toString()
-                        date.tag = (day + (i - (getDayOfTheWeek(year, month, day)))).toString()
+                        date.text = (day + diff).toString()
+                        date.tag = (day + diff).toString()
                     }
                 }
             }
