@@ -1,28 +1,86 @@
 package kr.co.iotree.todolist.util
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
 import android.widget.ImageView
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 fun dpToPx(context: Context, dp: Float): Float = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
 
-fun pxToDp(context: Context, px: Float): Float = (px * DisplayMetrics.DENSITY_DEFAULT) / context.resources.displayMetrics.densityDpi
+/**
+ * 오늘 날짜 가져오기
+ */
+fun getToday(pattern: String): String = SimpleDateFormat(pattern, Locale.getDefault()).format(Date(System.currentTimeMillis()))
 
-fun getToday(pattern: String): String {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val format = DateTimeFormatter.ofPattern(pattern)
-        LocalDate.now().format(format)
+/**
+ * 지난달로 이동
+ * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
+ */
+fun getPrevMonth(year: Int, month: Int, date: Int): String {
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+
+    val cal = Calendar.getInstance()
+    cal.set(year, (month - 1) - 1, date)
+    return df.format(cal.time)
+}
+
+/**
+ * 다음달로 이동
+ * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
+ */
+fun getNextMonth(year: Int, month: Int, date: Int): String {
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+
+    val cal = Calendar.getInstance()
+    cal.set(year, (month - 1) + 1, date)
+    return df.format(cal.time)
+}
+
+/**
+ * 지난주로 이동
+ * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
+ */
+fun getPrevWeek(year: Int, month: Int, date: Int): String {
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+
+    val cal = Calendar.getInstance()
+    cal.set(year, month - 1, date)
+
+    if (date - getDayOfTheWeek(year, month, date) < 1) { //지난달로 넘어갈 때 달이 안바뀌어서 직접 바꿔줘야함
+        if (month - 1 < 0) {
+            cal.set(year - 1, 12, getMaxDate(year, month - 1) - date - 7) //작년으로 넘어가는 것도 직접 설정
+        } else {
+            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - date - 7)
+        }
     } else {
-        @SuppressLint("SimpleDateFormat")
-        val format = SimpleDateFormat(pattern)
-        format.format(Date(System.currentTimeMillis()))
+        cal.add(Calendar.DATE, -7)
+    }
+    return df.format(cal.time)
+}
+
+/**
+ * 다음주로 이동
+ * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
+ */
+fun getNextWeek(year: Int, month: Int, date: Int): String {
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+
+    val cal = Calendar.getInstance()
+    cal.set(year, month - 1, date)
+
+    cal.add(Calendar.DATE, 7)
+    return df.format(cal.time)
+}
+
+fun getYearMonthDate(time: String, type: String): Int {
+    return when (type) {
+        "year" -> time.substring(0, 4).toInt()
+        "month" -> time.substring(4, 6).toInt()
+        "date" -> time.substring(6).toInt()
+        else -> 0
     }
 }
 
@@ -43,21 +101,55 @@ fun getFirstDayOfTheWeek(year: Int, month: Int): Int {
  * 요일 계산
  * 월요일이 0, 일요일이 7
  */
-fun getDayOfTheWeek(year: Int, month: Int, day: Int): Int {
+fun getDayOfTheWeek(year: Int, month: Int, date: Int): Int {
     val cal = Calendar.getInstance()
-    cal.set(year, month - 1, day)
+    cal.set(year, month - 1, date)
     return if (cal[Calendar.DAY_OF_WEEK] == 1)
         6
     else
         cal[Calendar.DAY_OF_WEEK] - 2
 }
 
-fun setImageViewColor(imageView: ImageView, context: Context, color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        imageView.setColorFilter(context.getColor(color))
+/**
+ * 월요일 찾기
+ * 일자만 반환
+ */
+fun getMondayDate(year: Int, month: Int, date: Int): Int {
+    val df = SimpleDateFormat("d", Locale.getDefault())
+    val cal = Calendar.getInstance()
+    cal.set(year, month, date)
+
+    if (date - getDayOfTheWeek(year, month, date) < 1) {
+        if (month - 1 == 0) {
+            cal.set(year - 1, 12, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+        } else {
+            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+        }
     } else {
-        imageView.setColorFilter(context.resources.getColor(color))
+        cal.add(Calendar.DATE, -getDayOfTheWeek(year, month, date))
     }
+    return df.format(cal.time).toInt()
+}
+
+/**
+ * 월요일 찾기
+ * 일자만 반환
+ */
+fun getMondayMonth(year: Int, month: Int, date: Int): Int {
+    val df = SimpleDateFormat("MM", Locale.getDefault())
+    val cal = Calendar.getInstance()
+    cal.set(year, month - 1, date)
+
+    if (date - getDayOfTheWeek(year, month, date) < 1) {
+        if (month - 1 == 0) {
+            cal.set(year - 1, 12, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+        } else {
+            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+        }
+    } else {
+        cal.add(Calendar.DATE, -getDayOfTheWeek(year, month, date))
+    }
+    return df.format(cal.time).toInt()
 }
 
 /**
@@ -74,5 +166,13 @@ fun getMaxDate(year: Int, month: Int): Int {
                 28
         }
         else -> 0
+    }
+}
+
+fun setImageViewColor(imageView: ImageView, context: Context, color: Int) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        imageView.setColorFilter(context.getColor(color))
+    } else {
+        imageView.setColorFilter(context.resources.getColor(color))
     }
 }

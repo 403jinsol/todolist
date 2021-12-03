@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +14,6 @@ import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.dpToPx
-import kr.co.iotree.todolist.viewModel.TodoGroupViewModel
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: TodoGroupViewModel by viewModels()
         val todoGroup1 = TodoGroupVo("일반", "#ff0000ff")
         val todoGroup2 = TodoGroupVo("일반2", "#ffff0000")
 
