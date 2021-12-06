@@ -11,11 +11,11 @@ import kr.co.iotree.todolist.util.getMondayMonth
 import kr.co.iotree.todolist.viewholder.CalendarDateViewHolder
 import kr.co.iotree.todolist.viewholder.CalendarViewHolder
 
-class CalendarAdapter(private val host: CalendarViewHolder) : RecyclerView.Adapter<CalendarDateViewHolder>() {
+class CalendarAdapter(private val holder: CalendarViewHolder) : RecyclerView.Adapter<CalendarDateViewHolder>() {
     private var list: List<Int> = mutableListOf()
     private var dayOfWeek: Int = 0
     private var maxDate: Int = 0
-    private var isMonth = host.isMonth //TODO 이거 정리
+    private var isMonth = holder.isMonth
 
     fun setMonthList(year: Int, month: Int) {
         this.list = List(getMaxDate(year, month) + getFirstDayOfTheWeek(year, month)) { it }
@@ -35,7 +35,7 @@ class CalendarAdapter(private val host: CalendarViewHolder) : RecyclerView.Adapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarDateViewHolder {
         val binding = ViewholderCalendarDateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CalendarDateViewHolder(binding, host)
+        return CalendarDateViewHolder(binding, holder)
     }
 
     override fun onBindViewHolder(holder: CalendarDateViewHolder, position: Int) {

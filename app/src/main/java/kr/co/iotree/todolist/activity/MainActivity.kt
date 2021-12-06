@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             textView.setTextColor(Color.parseColor(group.color))
             textView.setPadding(dpToPx(this, 15.0f).toInt(), 0, dpToPx(this, 15.0f).toInt(), dpToPx(this, 1.0f).toInt())
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.todo_item_font_size))
-            textView.setBackgroundResource(R.color.todo_group_background)
+            textView.setBackgroundResource(R.drawable.round)
 
             groupTitleViews.add(textView)
         }
@@ -72,10 +72,10 @@ class MainActivity : AppCompatActivity() {
             val lp = view.layoutParams as FlexboxLayout.LayoutParams
             lp.height = dpToPx(this, 32.5f).toInt()
             lp.setMargins(
-                resources.getDimension(R.dimen.todo_small_margin).toInt(),
-                resources.getDimension(R.dimen.todo_small_margin).toInt(),
-                resources.getDimension(R.dimen.todo_small_margin).toInt(),
-                resources.getDimension(R.dimen.todo_small_margin).toInt(),
+                0,
+                resources.getDimension(R.dimen.menu_group_margin).toInt(),
+                resources.getDimension(R.dimen.menu_group_margin).toInt(),
+                resources.getDimension(R.dimen.menu_group_margin).toInt(),
             )
             view.layoutParams = lp
         }

@@ -2,16 +2,18 @@
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#C1C1C1</color>
+    <color name="purple_700">#512DA8</color>
     <color name="teal_200">#C1C1C1</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- custom color -->
+    <color name="default_color">#FFF0F0F0</color>
     <color name="todo_group_background">#FFF0F0F0</color>
     <color name="todo_group_stroke">#FFEAEAEA</color>
     <color name="calendar_icon_default">#FFD9DDDF</color>
+    <color name="calendar_font_default">#FFA5A5A5</color>
     <color name="todo_icon_default">#FFD9DDDF</color>
     <color name="text_default">#000000</color>
 </resources>

@@ -1,30 +1,38 @@
 package kr.co.iotree.todolist.viewholder
 
 import android.annotation.SuppressLint
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.CalendarAdapter
+import kr.co.iotree.todolist.adapter.TodoAdapter
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.util.*
+import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : RecyclerView.ViewHolder(binding.root) {
     var date = getToday("d").toInt()
     var year = getToday("yyyy").toInt()
     var month = getToday("MM").toInt()
     var isMonth = true
-    private lateinit var adapter: CalendarAdapter
+    lateinit var calendarAdapter: CalendarAdapter
+    lateinit var todoAdapter: TodoAdapter
 
-    fun bindData() {
+    fun bindData(list: MutableList<TodoGroupVo>) {
         setClickListener()
 
         binding.yearMonth.text = getToday("yyyy년 MM월")
 
-        adapter = CalendarAdapter(this) //처음엔 월별달력
-        adapter.setMonthList(year, month)
-        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
-        binding.recyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
-        binding.recyclerView.adapter = adapter
+        calendarAdapter = CalendarAdapter(this) //처음엔 월별달력
+        calendarAdapter.setMonthList(year, month)
+        binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
+        binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
+        binding.calendarRecyclerView.adapter = calendarAdapter
+
+        todoAdapter = TodoAdapter(list, this)
+        binding.todoRecyclerView.adapter = todoAdapter
+        binding.todoRecyclerView.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun setClickListener() {
@@ -33,14 +41,14 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 val time = getPrevMonth(year, month, date)
                 setTime(time)
 
-                adapter.setMonthList(year, month)
-                adapter.notifyDataSetChanged()
+                calendarAdapter.setMonthList(year, month)
+                calendarAdapter.notifyDataSetChanged()
             } else { //week
                 val time = getPrevWeek(year, month, date)
                 setTime(time)
 
-                adapter.setWeekList(year, month, date)
-                adapter.notifyItemRangeChanged(0, 7)
+                calendarAdapter.setWeekList(year, month, date)
+                calendarAdapter.notifyItemRangeChanged(0, 7)
             }
         }
 
@@ -49,14 +57,14 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 val time = getNextMonth(year, month, date)
                 setTime(time)
 
-                adapter.setMonthList(year, month)
-                adapter.notifyDataSetChanged()
+                calendarAdapter.setMonthList(year, month)
+                calendarAdapter.notifyDataSetChanged()
             } else {
                 val time = getNextWeek(year, month, date)
                 setTime(time)
 
-                adapter.setWeekList(year, month, date)
-                adapter.notifyItemRangeChanged(0, 7)
+                calendarAdapter.setWeekList(year, month, date)
+                calendarAdapter.notifyItemRangeChanged(0, 7)
             }
         }
 
@@ -66,15 +74,15 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 binding.monthWeek.text = "주"
                 isMonth = !isMonth
 
-                adapter.setWeekList(year, month, date)
-                adapter.notifyDataSetChanged()
+                calendarAdapter.setWeekList(year, month, date)
+                calendarAdapter.notifyDataSetChanged()
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
                 binding.monthWeek.text = "월"
                 isMonth = !isMonth
 
-                adapter.setMonthList(year, month)
-                adapter.notifyDataSetChanged()
+                calendarAdapter.setMonthList(year, month)
+                calendarAdapter.notifyDataSetChanged()
             }
         }
     }
