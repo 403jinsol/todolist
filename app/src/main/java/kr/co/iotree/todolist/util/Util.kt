@@ -51,9 +51,9 @@ fun getPrevWeek(year: Int, month: Int, date: Int): String {
 
     if (date - getDayOfTheWeek(year, month, date) < 1) { //지난달로 넘어갈 때 달이 안바뀌어서 직접 바꿔줘야함
         if (month - 1 < 0) {
-            cal.set(year - 1, 12, getMaxDate(year, month - 1) - date - 7) //작년으로 넘어가는 것도 직접 설정
+            cal.set(year - 1, 11, getMaxDate(year, 12) - date - 7) //작년으로 넘어가는 것도 직접 설정
         } else {
-            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - date - 7)
+            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 2) - date - 7)
         }
     } else {
         cal.add(Calendar.DATE, -7)
@@ -133,7 +133,7 @@ fun getMondayDate(year: Int, month: Int, date: Int): Int {
 
 /**
  * 월요일 찾기
- * 일자만 반환
+ * 월만 반환
  */
 fun getMondayMonth(year: Int, month: Int, date: Int): Int {
     val df = SimpleDateFormat("MM", Locale.getDefault())

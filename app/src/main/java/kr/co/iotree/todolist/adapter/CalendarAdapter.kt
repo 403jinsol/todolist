@@ -33,10 +33,6 @@ class CalendarAdapter(private val host: CalendarViewHolder) : RecyclerView.Adapt
         }
     }
 
-    fun changeType() {
-        isMonth = !isMonth
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarDateViewHolder {
         val binding = ViewholderCalendarDateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CalendarDateViewHolder(binding, host)

@@ -28,9 +28,12 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
 
     fun bindWeekData(date: Int, maxDate: Int) {
         itemView.setOnClickListener {
+            if (host.date > binding.icon.tag.toString().toInt()) {
+                host.month--
+            }
+
             host.date = binding.icon.tag.toString().toInt()
             binding.text.setTextColor(Color.parseColor("#FF000000"))
-            Log.d("☆☆☆☆☆☆☆☆☆☆☆☆☆☆", "bindMonthData: ${host.date}")
         }
 
         if (date > maxDate) { //다음달로 넘어갈때

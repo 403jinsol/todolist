@@ -26,15 +26,6 @@ class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : Rec
 
         binding.titleContainer.setOnClickListener {
             val editText = EditText(itemView.context)
-            val dlg = AlertDialog.Builder(itemView.context)
-            dlg.setTitle("일정 추가")
-            dlg.setView(editText)
-            dlg.setPositiveButton("추가") { _, _ ->
-                val todo = Todo(null, editText.text.toString(), group.title, "20211130", false)
-                db.todoDao().insert(todo)
-                adapter.addTodo(todo)
-            }
-            dlg.show()
         }
     }
 }

@@ -1,7 +1,6 @@
 package kr.co.iotree.todolist.viewholder
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kr.co.iotree.todolist.R
@@ -16,8 +15,6 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     var isMonth = true
     private lateinit var adapter: CalendarAdapter
 
-    private var list = List(getMaxDate(year, month) + getFirstDayOfTheWeek(year, month)) { it }
-
     fun bindData() {
         setClickListener()
 
@@ -30,23 +27,20 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
         binding.recyclerView.adapter = adapter
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setClickListener() {
         binding.prev.setOnClickListener {
             if (isMonth) {
                 val time = getPrevMonth(year, month, date)
                 setTime(time)
 
-                binding.yearMonth.text = "${year}년 ${month}월"
                 adapter.setMonthList(year, month)
                 adapter.notifyDataSetChanged()
             } else { //week
                 val time = getPrevWeek(year, month, date)
                 setTime(time)
 
-                binding.yearMonth.text = "${year}년 ${month}월"
                 adapter.setWeekList(year, month, date)
-                adapter.notifyItemRangeChanged(0, list.size)
+                adapter.notifyItemRangeChanged(0, 7)
             }
         }
 
@@ -55,19 +49,14 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 val time = getNextMonth(year, month, date)
                 setTime(time)
 
-                binding.yearMonth.text = "${year}년 ${month}월"
                 adapter.setMonthList(year, month)
                 adapter.notifyDataSetChanged()
             } else {
                 val time = getNextWeek(year, month, date)
                 setTime(time)
-                Log.d("☆☆☆☆☆☆☆☆☆☆☆☆☆☆", "setClickListener: $date")
 
-                binding.yearMonth.text = "${year}년 ${month}월"
-
-                Log.d("☆☆☆☆☆☆☆☆☆☆☆☆☆☆", "setClickListener: ${getMaxDate(year, getMondayMonth(year, month, date))}")
                 adapter.setWeekList(year, month, date)
-                adapter.notifyItemRangeChanged(0, list.size)
+                adapter.notifyItemRangeChanged(0, 7)
             }
         }
 
@@ -78,8 +67,6 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 isMonth = !isMonth
 
                 adapter.setWeekList(year, month, date)
-                adapter.changeType()
-                binding.yearMonth.text = "${year}년 ${month}월"
                 adapter.notifyDataSetChanged()
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
@@ -87,15 +74,16 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 isMonth = !isMonth
 
                 adapter.setMonthList(year, month)
-                adapter.changeType()
                 adapter.notifyDataSetChanged()
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setTime(time: String) {
         year = getYearMonthDate(time, "year")
         month = getYearMonthDate(time, "month")
         date = getYearMonthDate(time, "date")
+        binding.yearMonth.text = "${year}년 ${month}월"
     }
 }
