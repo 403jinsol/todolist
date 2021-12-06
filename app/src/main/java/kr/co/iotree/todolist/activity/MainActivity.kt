@@ -17,9 +17,9 @@ import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
-    lateinit var groupList: MutableList<TodoGroupVo>
+    private lateinit var groupList: MutableList<TodoGroupVo>
     private val groupTitleViews = arrayListOf<TextView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

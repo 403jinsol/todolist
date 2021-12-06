@@ -11,6 +11,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
         itemView.setOnClickListener {
             holder.date = binding.icon.tag.toString().toInt()
             holder.calendarAdapter.notifyDataSetChanged() //TODO 속도 느림 다른걸로 교체
+            holder.todoAdapter.notifyDataSetChanged()
         }
 
         if (adapterPosition < dayOfWeek) {

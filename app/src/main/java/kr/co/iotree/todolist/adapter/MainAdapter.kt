@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
-import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.viewholder.CalendarViewHolder
-import kr.co.iotree.todolist.viewholder.TodoGroupViewHolder
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class MainAdapter(private val list: MutableList<TodoGroupVo>) : RecyclerView.Adapter<CalendarViewHolder>() {

@@ -2,10 +2,8 @@ package kr.co.iotree.todolist.util
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.util.TypedValue
 import android.widget.ImageView
-import kr.co.iotree.todolist.viewholder.CalendarDateViewHolder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +19,7 @@ fun getToday(pattern: String): String = SimpleDateFormat(pattern, Locale.getDefa
  * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
  */
 fun getPrevMonth(year: Int, month: Int, date: Int): String {
-    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
 
     val cal = Calendar.getInstance()
     cal.set(year, (month - 1) - 1, date)
@@ -33,7 +31,7 @@ fun getPrevMonth(year: Int, month: Int, date: Int): String {
  * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
  */
 fun getNextMonth(year: Int, month: Int, date: Int): String {
-    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
 
     val cal = Calendar.getInstance()
     cal.set(year, (month - 1) + 1, date)
@@ -45,7 +43,7 @@ fun getNextMonth(year: Int, month: Int, date: Int): String {
  * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
  */
 fun getPrevWeek(year: Int, month: Int, date: Int): String {
-    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
 
     val cal = Calendar.getInstance()
     cal.set(year, month - 1, date)
@@ -67,7 +65,7 @@ fun getPrevWeek(year: Int, month: Int, date: Int): String {
  * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
  */
 fun getNextWeek(year: Int, month: Int, date: Int): String {
-    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault());
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
 
     val cal = Calendar.getInstance()
     cal.set(year, month - 1, date)
