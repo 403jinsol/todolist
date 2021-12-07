@@ -2,6 +2,7 @@
 <resources>
     <dimen name="default_hor_margin">15dp</dimen>
     <dimen name="default_ver_margin">8dp</dimen>
+    <dimen name="big_ver_margin">15dp</dimen>
     <dimen name="toolbar_icon_size">22dp</dimen>
     <dimen name="user_name_font_size">30sp</dimen>
     <dimen name="calendar_date_font_size">10sp</dimen>
@@ -15,7 +16,10 @@
     <dimen name="todo_small_margin">4dp</dimen>
     <dimen name="todo_item_size">18dp</dimen>
     <dimen name="todo_item_font_size">14sp</dimen>
-    <dimen name="menu_font_size">16sp</dimen>
+    <dimen name="menu_font_size">15sp</dimen>
+    <dimen name="menu_small_font_size">14sp</dimen>
     <dimen name="menu_setting_font_size">12sp</dimen>
+    <dimen name="menu_textview_size">40dp</dimen>
+    <dimen name="menu_group_font_size">12sp</dimen>
     <dimen name="menu_group_margin">6dp</dimen>
 </resources>

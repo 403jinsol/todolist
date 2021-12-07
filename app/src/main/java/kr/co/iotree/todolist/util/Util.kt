@@ -48,11 +48,11 @@ fun getPrevWeek(year: Int, month: Int, date: Int): String {
     val cal = Calendar.getInstance()
     cal.set(year, month - 1, date)
 
-    if (date - getDayOfTheWeek(year, month, date) < 1) { //지난달로 넘어갈 때 달이 안바뀌어서 직접 바꿔줘야함
-        if (month - 1 < 0) {
-            cal.set(year - 1, 11, getMaxDate(year, 12) - date - 7) //작년으로 넘어가는 것도 직접 설정
+    if (date - getDayOfTheWeek(year, month, date) < 1) { // 지난달로 넘어갈 때 달이 안바뀌어서 직접 바꿔줘야함
+        if ((month - 1) - 1 < 0) { // 작년으로 넘어가는 것도 직접 설정
+            cal.set(year - 1, 11, getMaxDate(year, 12) - 7 + date)
         } else {
-            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 2) - date - 7)
+            cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - 7 + date)
         }
     } else {
         cal.add(Calendar.DATE, -7)
@@ -110,17 +110,17 @@ fun getDayOfTheWeek(year: Int, month: Int, date: Int): Int {
 }
 
 /**
- * 월요일 찾기
+ * 해당 날짜가 들어있는 주의 월요일 찾기
  * 일자만 반환
  */
 fun getMondayDate(year: Int, month: Int, date: Int): Int {
     val df = SimpleDateFormat("d", Locale.getDefault())
     val cal = Calendar.getInstance()
-    cal.set(year, month, date)
+    cal.set(year, month - 1, date)
 
-    if (date - getDayOfTheWeek(year, month, date) < 1) {
-        if (month - 1 == 0) {
-            cal.set(year - 1, 12, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+    if (date - getDayOfTheWeek(year, month, date) < 1) { //지난달로 넘어가면
+        if ((month - 1) - 1 < 0) { //작년으로 넘어가면
+            cal.set(year - 1, 11, getMaxDate(year, 12) - (getDayOfTheWeek(year, month, date) - date))
         } else {
             cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
         }
@@ -140,8 +140,8 @@ fun getMondayMonth(year: Int, month: Int, date: Int): Int {
     cal.set(year, month - 1, date)
 
     if (date - getDayOfTheWeek(year, month, date) < 1) {
-        if (month - 1 == 0) {
-            cal.set(year - 1, 12, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
+        if ((month - 1) - 1 < 0) {
+            cal.set(year - 1, 11, getMaxDate(year, 12) - (getDayOfTheWeek(year, month, date) - date))
         } else {
             cal.set(year, (month - 1) - 1, getMaxDate(year, month - 1) - (getDayOfTheWeek(year, month, date) - date))
         }
@@ -153,6 +153,7 @@ fun getMondayMonth(year: Int, month: Int, date: Int): Int {
 
 /**
  * 달의 마지막날 숫자 가져옴
+ * 달은 -1 할 필요 없이 그대로 적으면 됨
  */
 fun getMaxDate(year: Int, month: Int): Int {
     return when (month) {

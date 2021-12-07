@@ -4,7 +4,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/default_hor_margin"
+    android:layout_marginVertical="@dimen/default_ver_margin"
     android:orientation="vertical">
 
     <LinearLayout
@@ -70,9 +70,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/input"
-            android:inputType="textShortMessage"
+            android:importantForAutofill="no"
             android:includeFontPadding="false"
-            android:textSize="@dimen/todo_item_font_size" />
+            android:inputType="text"
+            android:textSize="@dimen/todo_item_font_size"/>
 
         <ImageView
             android:id="@+id/moreIcon"

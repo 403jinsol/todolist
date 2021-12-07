@@ -9,15 +9,6 @@
     android:layout_marginBottom="@dimen/todo_small_margin"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_ver_margin"
-        android:text="@string/me"
-        android:textColor="@color/black"
-        android:textSize="@dimen/user_name_font_size"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -169,12 +160,12 @@
 
     </LinearLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/todo_small_margin" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/todoRecyclerView"

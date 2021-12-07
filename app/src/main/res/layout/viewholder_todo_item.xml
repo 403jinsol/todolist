@@ -17,15 +17,11 @@
 
     <TextView
         android:id="@+id/todoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dummy"
-        android:textSize="@dimen/todo_item_font_size" />
-
-    <Space
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="@string/dummy"
+        android:textSize="@dimen/todo_item_font_size" />
 
     <ImageView
         android:id="@+id/moreIcon"

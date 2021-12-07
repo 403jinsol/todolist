@@ -1,6 +1,7 @@
 package kr.co.iotree.todolist.viewholder
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -40,15 +41,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getPrevMonth(year, month, date)
                 setTime(time)
-
-                calendarAdapter.setMonthList(year, month)
-                calendarAdapter.notifyDataSetChanged()
+                setList(isMonth)
             } else { //week
                 val time = getPrevWeek(year, month, date)
                 setTime(time)
-
-                calendarAdapter.setWeekList(year, month, date)
-                calendarAdapter.notifyItemRangeChanged(0, 7)
+                setList(isMonth)
             }
         }
 
@@ -56,15 +53,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getNextMonth(year, month, date)
                 setTime(time)
-
-                calendarAdapter.setMonthList(year, month)
-                calendarAdapter.notifyDataSetChanged()
+                setList(isMonth)
             } else {
                 val time = getNextWeek(year, month, date)
                 setTime(time)
-
-                calendarAdapter.setWeekList(year, month, date)
-                calendarAdapter.notifyItemRangeChanged(0, 7)
+                setList(isMonth)
             }
         }
 
@@ -73,25 +66,32 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 binding.arrow.setImageResource(R.drawable.ic_calender_down)
                 binding.monthWeek.text = "주"
                 isMonth = !isMonth
-
-                calendarAdapter.setWeekList(year, month, date)
-                calendarAdapter.notifyDataSetChanged()
+                setList(isMonth)
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
                 binding.monthWeek.text = "월"
                 isMonth = !isMonth
-
-                calendarAdapter.setMonthList(year, month)
-                calendarAdapter.notifyDataSetChanged()
+                setList(isMonth)
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setTime(time: String) {
+    private fun setTime(time: String) { //년월일 바뀐 날짜로 재지정
         year = getYearMonthDate(time, "year")
         month = getYearMonthDate(time, "month")
         date = getYearMonthDate(time, "date")
-        binding.yearMonth.text = "${year}년 ${month}월"
+        binding.yearMonth.text = "${year}년 ${month}월" //textView 변경
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setList(isMonth: Boolean) {
+        if (isMonth) {
+            calendarAdapter.setMonthList(year, month)
+            calendarAdapter.notifyDataSetChanged()
+        } else {
+            calendarAdapter.setWeekList(year, month, date)
+            calendarAdapter.notifyDataSetChanged()
+        }
     }
 }

@@ -1,6 +1,7 @@
 package kr.co.iotree.todolist.activity
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
@@ -55,8 +56,9 @@ class MainActivity : AppCompatActivity() {
             textView.text = group.title
             textView.gravity = Gravity.CENTER
             textView.setTextColor(Color.parseColor(group.color))
-            textView.setPadding(dpToPx(this, 15.0f).toInt(), 0, dpToPx(this, 15.0f).toInt(), dpToPx(this, 1.0f).toInt())
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.todo_item_font_size))
+            textView.setPadding(dpToPx(this, 10.0f).toInt(), 0, dpToPx(this, 10.0f).toInt(), dpToPx(this, 1.0f).toInt())
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.menu_group_font_size))
+            textView.setTypeface(null, Typeface.BOLD)
             textView.setBackgroundResource(R.drawable.round)
 
             groupTitleViews.add(textView)
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             binding.flexBox.addView(view) //textView 레이아웃에 추가
 
             val lp = view.layoutParams as FlexboxLayout.LayoutParams
-            lp.height = dpToPx(this, 32.5f).toInt()
+            lp.height = dpToPx(this, 30.0f).toInt()
             lp.setMargins(
                 0,
                 resources.getDimension(R.dimen.menu_group_margin).toInt(),

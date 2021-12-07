@@ -14,11 +14,22 @@
 
     <string name="certification">인증하기</string>
     <string name="group">목표</string>
-    <string name="setting">관리</string>
+    <string name="time">시간 알림</string>
+    <string name="more">더보기</string>
+    <string name="simple">간편 입력</string>
+    <string name="notice">공지사항</string>
+    <string name="question">문의하기</string>
+    <string name="setting">설정</string>
+    <string name="termsOfUse">이용약관</string>
+    <string name="privacyPolicy">개인정보 정책</string>
+    <string name="openSource">오픈소스</string>
+    <string name="version">버전</string>
+    <string name="logout">로그아웃</string>
+    <string name="management">관리</string>
 
     <string name="input">입력</string>
 
-    <string-array name = "todoMore">
+    <string-array name="todoMore">
         <item>"수정"</item>
         <item>"삭제"</item>
     </string-array>

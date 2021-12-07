@@ -1,8 +1,10 @@
 package kr.co.iotree.todolist.viewholder
 
+import android.content.Context
 import android.graphics.Color
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.adapter.TodoGroupAdapter
@@ -12,6 +14,8 @@ import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : RecyclerView.ViewHolder(binding.root) {
+    private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
     fun bindData(group: TodoGroupVo, holder: CalendarViewHolder) {
         val date = "${holder.year}_${holder.month}+${holder.date}"
 
@@ -25,26 +29,42 @@ class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : Rec
         binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = adapter
 
-        binding.todoEdit.imeOptions = EditorInfo.IME_ACTION_DONE
-        binding.todoEdit.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val item = Todo(null, v.text.toString(), group.title, date, false)
+        binding.container.setOnClickListener { // 빈 공간 클릭
+            if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
+                val item = Todo(null, binding.todoEdit.text.toString(), group.title, date, false)
                 db.todoDao().insert(item)
                 adapter.addTodo(item)
-                binding.editContainer.visibility = View.GONE
-                return@setOnEditorActionListener true
+                hideTodo()
             }
-            return@setOnEditorActionListener true
         }
 
-        binding.titleContainer.setOnClickListener {
-            binding.editContainer.visibility = View.VISIBLE
+        binding.titleContainer.setOnClickListener { // 그룹 제목 클릭
+            binding.editContainer.visibility = View.VISIBLE //입력창 보이게
+            binding.todoEdit.isFocusableInTouchMode = true
+            binding.todoEdit.requestFocus() //editText 포커스
+            imm.showSoftInput(binding.todoEdit, 0) //키보드 보이게
         }
 
-        binding.container.setOnClickListener {
-            val item = Todo(null, binding.todoEdit.text.toString(), group.title, date, false)
-            db.todoDao().insert(item)
-            adapter.addTodo(item)
+        binding.todoEdit.imeOptions = EditorInfo.IME_ACTION_DONE // 버튼 완료로 나오게
+        binding.todoEdit.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) { // 완료 버튼 클릭하면
+                if (binding.todoEdit.text.isNotEmpty()) {
+                    val item = Todo(null, v.text.toString(), group.title, date, false)
+                    db.todoDao().insert(item)
+                    adapter.addTodo(item)
+                    binding.todoEdit.text = null
+                    return@setOnEditorActionListener true
+                } else {
+                    hideTodo()
+                }
+            }
+            return@setOnEditorActionListener false
         }
+    }
+
+    private fun hideTodo() {
+        imm.hideSoftInputFromWindow(binding.todoEdit.windowToken, 0) //키보드 안보이게
+        binding.todoEdit.text = null // 텍스트 초기화
+        binding.editContainer.visibility = View.GONE //editText 안보이게
     }
 }

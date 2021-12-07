@@ -26,7 +26,7 @@ class CalendarAdapter(private val holder: CalendarViewHolder) : RecyclerView.Ada
     }
 
     fun setWeekList(year: Int, month: Int, date: Int) {
-        list = List(7) { it + getMondayDate(year, month, date) }
+        list = List(7) { it + getMondayDate(year, month, date) } //해당 날짜가 속한 주의 월요일 구해서 월요일부터 +1
         maxDate = getMaxDate(year, getMondayMonth(year, month, date))
         if (isMonth) {
             isMonth = false
