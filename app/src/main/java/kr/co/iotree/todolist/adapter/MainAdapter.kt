@@ -18,11 +18,13 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     var date = getToday("d").toInt()
     var year = getToday("yyyy").toInt()
     var month = getToday("MM").toInt()
+    var isMonth = true
 
-    fun setDate(year: Int, month: Int, date: Int) {
+    fun setDate(year: Int, month: Int, date: Int, isMonth: Boolean) {
         this.year = year
         this.month = month
         this.date = date
+        this.isMonth = isMonth
         notifyDataSetChanged()
     }
 
@@ -46,7 +48,7 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             USER_NAME -> (holder as UserNameViewHolder).bindData()
-            CALENDAR -> (holder as CalendarViewHolder).bindData(listener)
+            CALENDAR -> (holder as CalendarViewHolder).bindData(listener, isMonth)
             TODO -> (holder as TodoGroupViewHolder).bindData(list[position - 2], year, month, date)
         }
     }

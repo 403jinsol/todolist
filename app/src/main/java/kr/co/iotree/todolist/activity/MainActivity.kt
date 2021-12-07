@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         groupList = mutableListOf(todoGroup1, todoGroup2)
 
         adapter = MainAdapter(groupList, object : OnItemClick {
-            override fun onCalendarClick(year: Int, month: Int, date: Int) {
-                this@MainActivity.adapter.setDate(year, month, date)
+            override fun onCalendarClick(year: Int, month: Int, date: Int, isMonth: Boolean) {
+                this@MainActivity.adapter.setDate(year, month, date, isMonth)
             }
         })
 

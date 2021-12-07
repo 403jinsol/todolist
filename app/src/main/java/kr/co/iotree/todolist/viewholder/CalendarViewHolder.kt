@@ -15,13 +15,16 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     var isMonth = true
     private lateinit var calendarAdapter: CalendarAdapter
 
-    fun bindData(listener: OnItemClick) {
+    fun bindData(listener: OnItemClick, isMonth: Boolean) {
         setClickListener(listener)
 
         binding.yearMonth.text = getToday("yyyy년 MM월")
 
         calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
-        calendarAdapter.setMonthList(year, month)
+        if (isMonth)
+            calendarAdapter.setMonthList(year, month)
+        else
+            calendarAdapter.setWeekList(year, month, date)
         binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
         binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
         binding.calendarRecyclerView.adapter = calendarAdapter
@@ -32,11 +35,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getPrevMonth(year, month, date)
                 setTime(time)
-                setList(isMonth)
+                setList(listener, isMonth)
             } else { //week
                 val time = getPrevWeek(year, month, date)
                 setTime(time)
-                setList(isMonth)
+                setList(listener, isMonth)
             }
         }
 
@@ -44,11 +47,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getNextMonth(year, month, date)
                 setTime(time)
-                setList(isMonth)
+                setList(listener, isMonth)
             } else {
                 val time = getNextWeek(year, month, date)
                 setTime(time)
-                setList(isMonth)
+                setList(listener, isMonth)
             }
         }
 
@@ -57,12 +60,12 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 binding.arrow.setImageResource(R.drawable.ic_calender_down)
                 binding.monthWeek.text = "주"
                 isMonth = !isMonth
-                setList(isMonth)
+                setList(listener, isMonth)
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
                 binding.monthWeek.text = "월"
                 isMonth = !isMonth
-                setList(isMonth)
+                setList(listener, isMonth)
             }
         }
     }
@@ -76,12 +79,12 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setList(isMonth: Boolean) {
+    private fun setList(listener: OnItemClick, isMonth: Boolean) {
         if (isMonth) {
             calendarAdapter.setMonthList(year, month)
         } else {
             calendarAdapter.setWeekList(year, month, date)
         }
-        calendarAdapter.notifyDataSetChanged()
+        listener.onCalendarClick(year, month, date, isMonth)
     }
 }

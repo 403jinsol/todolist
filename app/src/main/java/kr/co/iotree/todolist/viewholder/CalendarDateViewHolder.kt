@@ -13,7 +13,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
     fun bindMonthData(dayOfWeek: Int, listener: OnItemClick) {
         itemView.setOnClickListener {
             holder.date = binding.icon.tag.toString().toInt()
-            listener.onCalendarClick(holder.year, holder.month, holder.date)
+            listener.onCalendarClick(holder.year, holder.month, holder.date, true)
         }
 
         if (adapterPosition < dayOfWeek) { // 1일 시작하기 전이면 안보이게
@@ -50,7 +50,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
             }
 
             holder.date = binding.icon.tag.toString().toInt()
-            listener.onCalendarClick(holder.year, holder.month, holder.date)
+            listener.onCalendarClick(holder.year, holder.month, holder.date, false)
         }
 
         if (date > maxDate) { //다음달로 넘어갈때
