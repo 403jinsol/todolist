@@ -18,13 +18,11 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     var date = getToday("d").toInt()
     var year = getToday("yyyy").toInt()
     var month = getToday("MM").toInt()
-    var isMonth = true
 
-    fun setDate(year: Int, month: Int, date: Int, isMonth: Boolean) {
+    fun setDate(year: Int, month: Int, date: Int) {
         this.year = year
         this.month = month
         this.date = date
-        this.isMonth = isMonth
         notifyDataSetChanged()
     }
 
