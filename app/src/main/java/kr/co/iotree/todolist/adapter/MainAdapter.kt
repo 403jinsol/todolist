@@ -14,15 +14,17 @@ import kr.co.iotree.todolist.viewholder.UserNameViewHolder
 import kr.co.iotree.todolist.vo.TodoGroupVo
 import java.lang.RuntimeException
 
-class MainAdapter(private val list: MutableList<TodoGroupVo>, val listener: OnItemClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listener: OnItemClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var date = getToday("d").toInt()
     var year = getToday("yyyy").toInt()
     var month = getToday("MM").toInt()
+    var isMonth = true
 
-    fun setDate(year: Int, month: Int, date: Int) {
+    fun setDate(year: Int, month: Int, date: Int, isMonth: Boolean) {
         this.year = year
         this.month = month
         this.date = date
+        this.isMonth = isMonth
         notifyDataSetChanged()
     }
 

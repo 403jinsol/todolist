@@ -32,11 +32,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getPrevMonth(year, month, date)
                 setTime(time)
-                setList(isMonth, listener)
+                setList(isMonth)
             } else { //week
                 val time = getPrevWeek(year, month, date)
                 setTime(time)
-                setList(isMonth, listener)
+                setList(isMonth)
             }
         }
 
@@ -44,11 +44,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 val time = getNextMonth(year, month, date)
                 setTime(time)
-                setList(isMonth, listener)
+                setList(isMonth)
             } else {
                 val time = getNextWeek(year, month, date)
                 setTime(time)
-                setList(isMonth, listener)
+                setList(isMonth)
             }
         }
 
@@ -57,12 +57,12 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
                 binding.arrow.setImageResource(R.drawable.ic_calender_down)
                 binding.monthWeek.text = "주"
                 isMonth = !isMonth
-                setList(isMonth, listener)
+                setList(isMonth)
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
                 binding.monthWeek.text = "월"
                 isMonth = !isMonth
-                setList(isMonth, listener)
+                setList(isMonth)
             }
         }
     }
@@ -76,12 +76,12 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setList(isMonth: Boolean, listener: OnItemClick) {
+    private fun setList(isMonth: Boolean) {
         if (isMonth) {
             calendarAdapter.setMonthList(year, month)
         } else {
             calendarAdapter.setWeekList(year, month, date)
         }
-        listener.onCalendarClick(year, month, date)
+        calendarAdapter.notifyDataSetChanged()
     }
 }
