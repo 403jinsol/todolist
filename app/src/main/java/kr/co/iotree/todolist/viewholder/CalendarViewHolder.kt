@@ -13,14 +13,14 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     var year = getToday("yyyy").toInt()
     var month = getToday("MM").toInt()
     var isMonth = true
-    lateinit var calendarAdapter: CalendarAdapter
+    private lateinit var calendarAdapter: CalendarAdapter
 
     fun bindData(listener: OnItemClick) {
         setClickListener(listener)
 
         binding.yearMonth.text = getToday("yyyy년 MM월")
 
-        calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
+        val calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
         calendarAdapter.setMonthList(year, month)
         binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
         binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
