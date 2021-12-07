@@ -2,19 +2,18 @@ package kr.co.iotree.todolist.viewholder
 
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.databinding.ViewholderCalendarDateBinding
+import kr.co.iotree.todolist.util.OnItemClick
 
 class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding, private val holder: CalendarViewHolder) : RecyclerView.ViewHolder(binding.root) {
-    fun bindMonthData(dayOfWeek: Int) {
+    fun bindMonthData(dayOfWeek: Int, listener: OnItemClick) {
         itemView.setOnClickListener {
             holder.date = binding.icon.tag.toString().toInt()
-            holder.calendarAdapter.notifyDataSetChanged()
-            holder.todoAdapter.notifyDataSetChanged()
+            listener.onCalendarClick(holder.year, holder.month, holder.date)
         }
 
         if (adapterPosition < dayOfWeek) { // 1일 시작하기 전이면 안보이게
@@ -34,7 +33,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
         }
     }
 
-    fun bindWeekData(date: Int, maxDate: Int) {
+    fun bindWeekData(date: Int, maxDate: Int, listener: OnItemClick) {
         itemView.setOnClickListener {
             if (holder.date < binding.icon.tag.toString().toInt() - 10) { //현재 날짜보다 선택한 날짜가 10일 이상 더 크면 지난달
                 holder.month--
@@ -51,9 +50,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
             }
 
             holder.date = binding.icon.tag.toString().toInt()
-
-            holder.calendarAdapter.notifyDataSetChanged()
-            holder.todoAdapter.notifyDataSetChanged()
+            listener.onCalendarClick(holder.year, holder.month, holder.date)
         }
 
         if (date > maxDate) { //다음달로 넘어갈때

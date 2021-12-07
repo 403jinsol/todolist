@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderCalendarDateBinding
-import kr.co.iotree.todolist.util.getFirstDayOfTheWeek
-import kr.co.iotree.todolist.util.getMaxDate
-import kr.co.iotree.todolist.util.getMondayDate
-import kr.co.iotree.todolist.util.getMondayMonth
+import kr.co.iotree.todolist.util.*
 import kr.co.iotree.todolist.viewholder.CalendarDateViewHolder
 import kr.co.iotree.todolist.viewholder.CalendarViewHolder
 
-class CalendarAdapter(private val holder: CalendarViewHolder) : RecyclerView.Adapter<CalendarDateViewHolder>() {
+class CalendarAdapter(private val holder: CalendarViewHolder, private val listener: OnItemClick) : RecyclerView.Adapter<CalendarDateViewHolder>() {
     private var list: List<Int> = mutableListOf()
     private var dayOfWeek: Int = 0
     private var maxDate: Int = 0
@@ -40,9 +37,9 @@ class CalendarAdapter(private val holder: CalendarViewHolder) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: CalendarDateViewHolder, position: Int) {
         if (isMonth)
-            holder.bindMonthData(dayOfWeek)
+            holder.bindMonthData(dayOfWeek, listener)
         else
-            holder.bindWeekData(list[position], maxDate)
+            holder.bindWeekData(list[position], maxDate, listener)
     }
 
     override fun getItemCount(): Int = list.size

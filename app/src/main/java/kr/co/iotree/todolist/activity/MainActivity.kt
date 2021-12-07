@@ -14,10 +14,14 @@ import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
+import kr.co.iotree.todolist.util.OnItemClick
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var adapter: MainAdapter
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var groupList: MutableList<TodoGroupVo>
@@ -34,9 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         groupList = mutableListOf(todoGroup1, todoGroup2)
 
+        adapter = MainAdapter(groupList, object : OnItemClick {
+            override fun onCalendarClick(year: Int, month: Int, date: Int) {
+                this@MainActivity.adapter.setDate(year, month, date)
+            }
+        })
+
         //recyclerview setting
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.recyclerview.adapter = MainAdapter(groupList)
+        binding.recyclerview.adapter = adapter
         (binding.recyclerview.adapter as MainAdapter).notifyItemInserted(groupList.size)
 
         setDrawerMenu()

@@ -167,11 +167,4 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/todo_small_margin" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todoRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="@dimen/todo_small_margin" />
-
 </LinearLayout>
