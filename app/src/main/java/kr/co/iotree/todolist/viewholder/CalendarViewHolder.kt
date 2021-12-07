@@ -15,22 +15,24 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
     var isMonth = true
     private lateinit var calendarAdapter: CalendarAdapter
 
-    fun bindData(listener: OnItemClick, isMonth: Boolean) {
-        setClickListener(listener)
+    @SuppressLint("SetTextI18n")
+    fun bindData(listener: OnItemClick, year: Int, month: Int, isMonth: Boolean) {
+        setClickListener(listener, year, month)
 
-        binding.yearMonth.text = getToday("yyyy년 MM월")
+        binding.yearMonth.text = "${year}년 ${month}월"
+        calendarAdapter = CalendarAdapter(this, listener)
 
-        calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
         if (isMonth)
             calendarAdapter.setMonthList(year, month)
         else
             calendarAdapter.setWeekList(year, month, date)
+
         binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
         binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
         binding.calendarRecyclerView.adapter = calendarAdapter
     }
 
-    private fun setClickListener(listener: OnItemClick) {
+    private fun setClickListener(listener: OnItemClick, year: Int, month: Int) {
         binding.prev.setOnClickListener {
             if (isMonth) {
                 val time = getPrevMonth(year, month, date)

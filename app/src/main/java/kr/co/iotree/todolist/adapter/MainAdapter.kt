@@ -48,7 +48,7 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             USER_NAME -> (holder as UserNameViewHolder).bindData()
-            CALENDAR -> (holder as CalendarViewHolder).bindData(listener, isMonth)
+            CALENDAR -> (holder as CalendarViewHolder).bindData(listener, year, month, isMonth)
             TODO -> (holder as TodoGroupViewHolder).bindData(list[position - 2], year, month, date)
         }
     }
