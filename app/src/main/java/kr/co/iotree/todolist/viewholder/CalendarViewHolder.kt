@@ -20,7 +20,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
 
         binding.yearMonth.text = getToday("yyyy년 MM월")
 
-        val calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
+        calendarAdapter = CalendarAdapter(this, listener) //처음엔 월별달력
         calendarAdapter.setMonthList(year, month)
         binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
         binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
