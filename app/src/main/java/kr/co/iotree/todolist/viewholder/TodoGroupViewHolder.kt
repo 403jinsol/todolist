@@ -10,28 +10,28 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.adapter.TodoGroupAdapter
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
+import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
-import kr.co.iotree.todolist.vo.TodoGroupVo
 
 class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : RecyclerView.ViewHolder(binding.root) {
     private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-    fun bindData(group: TodoGroupVo, year:Int, month:Int, date:Int) {
+    fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
         val todoDate = "$year$month$date"
 
         val db = TodoDatabase.getInstance(itemView.context)
-        val todoList = db?.todoDao()?.getTodo(group.title, todoDate)
+        val todoList = db!!.todoDao().getTodo(group.groupId, todoDate)
 
-        val adapter = TodoGroupAdapter(todoList!!, group.color)
+        val adapter = TodoGroupAdapter(todoList, group.color)
 
         binding.title.text = group.title
-        binding.title.setTextColor(Color.parseColor(group.color))
+        binding.title.setTextColor(group.color)
         binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = adapter
 
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
-                val item = Todo(null, binding.todoEdit.text.toString(), group.title, todoDate, false)
+                val item = Todo(null, binding.todoEdit.text.toString(), todoDate, false, group.groupId)
                 db.todoDao().insert(item)
                 adapter.addTodo(item)
                 hideTodo()
@@ -51,7 +51,7 @@ class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : Rec
         binding.todoEdit.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) { // 완료 버튼 클릭하면
                 if (binding.todoEdit.text.isNotEmpty()) {
-                    val item = Todo(null, v.text.toString(), group.title, todoDate, false)
+                    val item = Todo(null, v.text.toString(), todoDate, false, group.groupId)
                     db.todoDao().insert(item)
                     adapter.addTodo(item)
                     binding.todoEdit.text = null

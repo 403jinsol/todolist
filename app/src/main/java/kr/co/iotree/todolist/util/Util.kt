@@ -12,7 +12,7 @@ fun dpToPx(context: Context, dp: Float): Float = TypedValue.applyDimension(Typed
 /**
  * 오늘 날짜 가져오기
  */
-fun getToday(pattern: String): String = SimpleDateFormat(pattern, Locale.getDefault()).format(Date(System.currentTimeMillis()))
+fun getToday(pattern: String): Int = SimpleDateFormat(pattern, Locale.getDefault()).format(Date(System.currentTimeMillis())).toInt()
 
 /**
  * 지난달로 이동

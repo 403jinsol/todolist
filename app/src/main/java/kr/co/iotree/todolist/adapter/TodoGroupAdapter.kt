@@ -7,7 +7,7 @@ import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
 import kr.co.iotree.todolist.viewholder.TodoItemViewHolder
 
-class TodoGroupAdapter(private val list: MutableList<Todo>, private val color: String) : RecyclerView.Adapter<TodoItemViewHolder>() {
+class TodoGroupAdapter(private val list: MutableList<Todo>, private val color: Int) : RecyclerView.Adapter<TodoItemViewHolder>() {
     fun addTodo(todo: Todo) {
         list.add(todo)
         notifyItemInserted(itemCount)

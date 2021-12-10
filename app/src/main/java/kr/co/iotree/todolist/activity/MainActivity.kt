@@ -1,11 +1,13 @@
 package kr.co.iotree.todolist.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,19 +15,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
+import kr.co.iotree.todolist.database.TodoDatabase
+import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
-import kr.co.iotree.todolist.util.OnItemClick
 import kr.co.iotree.todolist.util.dpToPx
-import kr.co.iotree.todolist.vo.TodoGroupVo
+import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var adapter: MainAdapter
-
+    val viewModel: CalendarViewModel by viewModels()
+    var db: TodoDatabase? = null
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var groupList: MutableList<TodoGroupVo>
-    private val groupTitleViews = arrayListOf<TextView>()
+    lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,39 +33,56 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val todoGroup1 = TodoGroupVo("일반", "#ff0000ff")
-        val todoGroup2 = TodoGroupVo("일반2", "#ffff0000")
-
-        groupList = mutableListOf(todoGroup1, todoGroup2)
-
-        adapter = MainAdapter(groupList, object : OnItemClick {
-            override fun onCalendarClick(year: Int, month: Int, date: Int, isMonth: Boolean) {
-                this@MainActivity.adapter.setDate(year, month, date, isMonth)
-            }
-        })
+        db = TodoDatabase.getInstance(this)
+        viewModel.groups.value = db!!.groupDao().getAllTodoGroup()
 
         //recyclerview setting
+        adapter = MainAdapter(viewModel)
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        binding.recyclerview.itemAnimator = null //애니메이션 지우기
         binding.recyclerview.adapter = adapter
-        (binding.recyclerview.adapter as MainAdapter).notifyItemInserted(groupList.size)
-
-        setDrawerMenu()
-    }
-
-    private fun setDrawerMenu() {
-        binding.menu.setOnClickListener {
-            if (!binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                binding.drawerLayout.openDrawer(GravityCompat.END)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.END)
-            }
+        //뷰모델 설정
+        viewModel.date.observe(this) {
+            (binding.recyclerview.adapter as MainAdapter).setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
         }
 
-        for (group in groupList) {
+        viewModel.isMonth.observe(this) {
+            (binding.recyclerview.adapter as MainAdapter).setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
+        }
+
+        setDrawerMenu(viewModel.groups.value)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
+            binding.drawerLayout.closeDrawer(GravityCompat.END)
+
+        viewModel.groups.value = db!!.groupDao().getAllTodoGroup()
+        viewModel.groups.observe(this) {
+            adapter.notifyItemRangeChanged(0, it.size + 2)
+        }
+    }
+
+    private fun setDrawerMenu(list: MutableList<TodoGroup>?) {
+        val groupTitleViews = arrayListOf<TextView>()
+
+        binding.menu.setOnClickListener {
+            if (!binding.drawerLayout.isDrawerOpen(GravityCompat.END))
+                binding.drawerLayout.openDrawer(GravityCompat.END)
+        }
+
+        binding.groupManage.setOnClickListener {
+            val intent = Intent(this@MainActivity, GroupManageActivity::class.java)
+            startActivity(intent)
+        }
+
+        //flexbox 그룹 추가
+        for (group in list.orEmpty()) {
             val textView = TextView(this)
             textView.text = group.title
             textView.gravity = Gravity.CENTER
-            textView.setTextColor(Color.parseColor(group.color))
+            textView.setTextColor(group.color)
             textView.setPadding(dpToPx(this, 10.0f).toInt(), 0, dpToPx(this, 10.0f).toInt(), dpToPx(this, 1.0f).toInt())
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.menu_group_font_size))
             textView.setTypeface(null, Typeface.BOLD)

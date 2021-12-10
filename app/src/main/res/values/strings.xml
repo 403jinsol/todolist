@@ -26,6 +26,22 @@
     <string name="version">버전</string>
     <string name="logout">로그아웃</string>
     <string name="management">관리</string>
+    <string name="check">확인</string>
+
+    <string name="title">제목</string>
+    <string name="publicSetting">공개설정</string>
+    <string name="public_str">전체공개</string>
+    <string name="internal">일부공개</string>
+    <string name="private_str">나만보기</string>
+    <string name="hidden">숨기기</string>
+    <string name="color">색상</string>
+    <string name="normal">일반</string>
+    <string name="delete">삭제</string>
+    <string name="progress">진행 상황</string>
+    <string name="quit">종료하기</string>
+    <string name="quit1">목표를 달성했어요!</string>
+    <string name="quit2">기간이 종료됐어요!</string>
+    <string name="quit3">아쉽지만 그만할래요</string>
 
     <string name="input">입력</string>
 

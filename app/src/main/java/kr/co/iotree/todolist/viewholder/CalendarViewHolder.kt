@@ -7,53 +7,47 @@ import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.CalendarAdapter
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.util.*
+import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
-class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : RecyclerView.ViewHolder(binding.root) {
-    var date = getToday("d").toInt()
-    var year = getToday("yyyy").toInt()
-    var month = getToday("MM").toInt()
-    var isMonth = true
+class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
     private lateinit var calendarAdapter: CalendarAdapter
+    var month = viewModel.month.value!!
+    var year = viewModel.year.value!!
+    var date = viewModel.date.value!!
+    var isMonth = viewModel.isMonth.value!!
 
     @SuppressLint("SetTextI18n")
-    fun bindData(listener: OnItemClick, year: Int, month: Int, isMonth: Boolean) {
-        setClickListener(listener, year, month)
+    fun bindData(viewModel: CalendarViewModel, isMonth: Boolean) {
 
-        binding.yearMonth.text = "${year}년 ${month}월"
-        calendarAdapter = CalendarAdapter(this, listener)
+        binding.yearMonth.text = "${viewModel.year.value}년 ${viewModel.month.value}월"
+        calendarAdapter = CalendarAdapter(viewModel)
 
         if (isMonth)
-            calendarAdapter.setMonthList(year, month)
+            calendarAdapter.setMonthList(viewModel.year.value!!, viewModel.month.value!!)
         else
-            calendarAdapter.setWeekList(year, month, date)
+            calendarAdapter.setWeekList(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!)
 
         binding.calendarRecyclerView.layoutManager = StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL)
         binding.calendarRecyclerView.itemAnimator!!.changeDuration = 0 //애니메이션 삭제
         binding.calendarRecyclerView.adapter = calendarAdapter
+
+        setClickListener(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
     }
 
-    private fun setClickListener(listener: OnItemClick, year: Int, month: Int) {
+    private fun setClickListener(year: Int, month: Int, date: Int, isMonth: Boolean) {
         binding.prev.setOnClickListener {
             if (isMonth) {
-                val time = getPrevMonth(year, month, date)
-                setTime(time)
-                setList(listener, isMonth)
+                setTime(getPrevMonth(year, month, date))
             } else { //week
-                val time = getPrevWeek(year, month, date)
-                setTime(time)
-                setList(listener, isMonth)
+                setTime(getPrevWeek(year, month, date))
             }
         }
 
         binding.next.setOnClickListener {
             if (isMonth) {
-                val time = getNextMonth(year, month, date)
-                setTime(time)
-                setList(listener, isMonth)
+                setTime(getNextMonth(year, month, date))
             } else {
-                val time = getNextWeek(year, month, date)
-                setTime(time)
-                setList(listener, isMonth)
+                setTime(getNextWeek(year, month, date))
             }
         }
 
@@ -61,32 +55,19 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding) : Recyc
             if (isMonth) {
                 binding.arrow.setImageResource(R.drawable.ic_calender_down)
                 binding.monthWeek.text = "주"
-                isMonth = !isMonth
-                setList(listener, isMonth)
+                viewModel.isMonth.value = !isMonth
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
                 binding.monthWeek.text = "월"
-                isMonth = !isMonth
-                setList(listener, isMonth)
+                viewModel.isMonth.value = !isMonth
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun setTime(time: String) { //년월일 바뀐 날짜로 재지정
-        year = getYearMonthDate(time, "year")
-        month = getYearMonthDate(time, "month")
-        date = getYearMonthDate(time, "date")
-        binding.yearMonth.text = "${year}년 ${month}월" //textView 변경
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun setList(listener: OnItemClick, isMonth: Boolean) {
-        if (isMonth) {
-            calendarAdapter.setMonthList(year, month)
-        } else {
-            calendarAdapter.setWeekList(year, month, date)
-        }
-        listener.onCalendarClick(year, month, date, isMonth)
+        viewModel.year.value = getYearMonthDate(time, "year")
+        viewModel.month.value = getYearMonthDate(time, "month")
+        viewModel.date.value = getYearMonthDate(time, "date")
     }
 }

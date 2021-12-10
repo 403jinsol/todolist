@@ -3,12 +3,16 @@
     <dimen name="default_hor_margin">15dp</dimen>
     <dimen name="default_ver_margin">8dp</dimen>
     <dimen name="big_ver_margin">15dp</dimen>
+
     <dimen name="toolbar_icon_size">22dp</dimen>
+    <dimen name="toolbar_font_size">16sp</dimen>
     <dimen name="user_name_font_size">30sp</dimen>
+
     <dimen name="calendar_date_font_size">10sp</dimen>
     <dimen name="calendar_date_today_font_size">11sp</dimen>
     <dimen name="calendar_icon__size">22dp</dimen>
     <dimen name="calendar_date_ver_margin">12dp</dimen>
+
     <dimen name="todo_group_ver_padding">6dp</dimen>
     <dimen name="todo_group_hor_padding">11dp</dimen>
     <dimen name="todo_group_font_size">12sp</dimen>
@@ -16,10 +20,19 @@
     <dimen name="todo_small_margin">4dp</dimen>
     <dimen name="todo_item_size">18dp</dimen>
     <dimen name="todo_item_font_size">14sp</dimen>
+
     <dimen name="menu_font_size">15sp</dimen>
     <dimen name="menu_small_font_size">14sp</dimen>
     <dimen name="menu_setting_font_size">12sp</dimen>
     <dimen name="menu_textview_size">40dp</dimen>
     <dimen name="menu_group_font_size">12sp</dimen>
     <dimen name="menu_group_margin">6dp</dimen>
+
+    <!-- 그룹 추가 부분 -->
+    <dimen name="group_add_title_font_size">13sp</dimen>
+    <dimen name="radio_button_drawable_margin">8dp</dimen>
+    <dimen name="group_title_font_size">15sp</dimen>
+    <dimen name="group_title_bottom_padding">20dp</dimen>
+    <dimen name="color_icon_size">35dp</dimen>
+    <dimen name="color_icon_outline_size">40dp</dimen>
 </resources>

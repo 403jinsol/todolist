@@ -14,11 +14,11 @@ import kr.co.iotree.todolist.util.setImageViewColor
 class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
     private val db = TodoDatabase.getInstance(itemView.context)
 
-    fun bindData(item: Todo, color: String, host: TodoGroupAdapter) {
+    fun bindData(item: Todo, color: Int, host: TodoGroupAdapter) {
         var isCompleted = item.complete
 
         if (isCompleted) {
-            binding.todoIcon.setColorFilter(Color.parseColor(color))
+            binding.todoIcon.setColorFilter(color)
         } else {
             binding.todoIcon.apply {
                 setImageViewColor(this, itemView.context, R.color.todo_icon_default)
@@ -27,15 +27,15 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding) : Recyc
 
         binding.todoIcon.setOnClickListener {
             if (!isCompleted) {
-                (it as ImageView).setColorFilter(Color.parseColor(color))
+                (it as ImageView).setColorFilter(color)
                 isCompleted = !isCompleted
-                db!!.todoDao().updateComplete(true, item.id)
+                db!!.todoDao().updateComplete(true, item.todoId)
             } else {
                 (it as ImageView).apply {
                     setImageViewColor(this, itemView.context, R.color.todo_icon_default)
                 }
                 isCompleted = !isCompleted
-                db!!.todoDao().updateComplete(false, item.id)
+                db!!.todoDao().updateComplete(false, item.todoId)
             }
         }
 

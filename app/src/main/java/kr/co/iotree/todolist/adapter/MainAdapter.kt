@@ -6,18 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.databinding.ViewholderUserNameBinding
-import kr.co.iotree.todolist.util.OnItemClick
-import kr.co.iotree.todolist.util.getToday
+import kr.co.iotree.todolist.viewModel.CalendarViewModel
 import kr.co.iotree.todolist.viewholder.CalendarViewHolder
 import kr.co.iotree.todolist.viewholder.TodoGroupViewHolder
 import kr.co.iotree.todolist.viewholder.UserNameViewHolder
-import kr.co.iotree.todolist.vo.TodoGroupVo
-import java.lang.RuntimeException
 
-class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listener: OnItemClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var date = getToday("d").toInt()
-    var year = getToday("yyyy").toInt()
-    var month = getToday("MM").toInt()
+class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var year = viewModel.year.value
+    var month = viewModel.month.value
+    var date = viewModel.date.value
     var isMonth = true
 
     fun setDate(year: Int, month: Int, date: Int, isMonth: Boolean) {
@@ -25,7 +22,7 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
         this.month = month
         this.date = date
         this.isMonth = isMonth
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, itemCount)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -39,7 +36,7 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             USER_NAME -> return UserNameViewHolder(ViewholderUserNameBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            CALENDAR -> return CalendarViewHolder(ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            CALENDAR -> return CalendarViewHolder(ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
             TODO -> return TodoGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         }
         throw RuntimeException("Invalid ViewType")
@@ -48,12 +45,12 @@ class MainAdapter(private val list: MutableList<TodoGroupVo>, private val listen
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             USER_NAME -> (holder as UserNameViewHolder).bindData()
-            CALENDAR -> (holder as CalendarViewHolder).bindData(listener, year, month, isMonth)
-            TODO -> (holder as TodoGroupViewHolder).bindData(list[position - 2], year, month, date)
+            CALENDAR -> (holder as CalendarViewHolder).bindData(viewModel, isMonth)
+            TODO -> (holder as TodoGroupViewHolder).bindData(viewModel.groups.value!![position - 2], year!!, month!!, date!!)
         }
     }
 
-    override fun getItemCount(): Int = 2 + list.size
+    override fun getItemCount(): Int = (viewModel.groups.value?.size ?: 0) + 2
 
     companion object {
         const val USER_NAME = 1

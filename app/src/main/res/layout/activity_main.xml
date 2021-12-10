@@ -121,10 +121,12 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/groupManage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:paddingHorizontal="@dimen/todo_small_margin"
                         android:text="@string/management"
                         android:textColor="#0288D1"
                         android:textSize="@dimen/menu_setting_font_size" />
@@ -141,7 +143,8 @@
                     android:id="@+id/flexBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/big_ver_margin" />
+                    android:layout_marginBottom="@dimen/big_ver_margin"
+                    app:flexWrap="wrap" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,6 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:paddingHorizontal="@dimen/todo_small_margin"
                         android:text="@string/management"
                         android:textColor="#0288D1"
                         android:textSize="@dimen/menu_setting_font_size" />
@@ -177,7 +181,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/default_ver_margin"
                     android:orientation="horizontal">
 
                     <TextView
@@ -194,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:paddingHorizontal="@dimen/todo_small_margin"
                         android:text="@string/management"
                         android:textColor="#0288D1"
                         android:textSize="@dimen/menu_setting_font_size" />
