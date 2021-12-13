@@ -9,13 +9,28 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="@dimen/calendar_icon__size"
-        android:layout_height="@dimen/calendar_icon__size"
-        android:layout_marginBottom="@dimen/todo_small_margin"
-        android:src="@drawable/ic_clover"
-        app:tint="@color/calendar_icon_default" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/todo_small_margin">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/calendar_icon__size"
+            android:layout_height="@dimen/calendar_icon__size"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_clover"
+            app:tint="@color/calendar_icon_default" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/dummyNumber"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/text"

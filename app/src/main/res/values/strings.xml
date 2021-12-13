@@ -42,6 +42,7 @@
     <string name="quit1">목표를 달성했어요!</string>
     <string name="quit2">기간이 종료됐어요!</string>
     <string name="quit3">아쉽지만 그만할래요</string>
+    <string name="quit_toast">목표를 공유하기 위해선 \n 회원 가입을 해야 합니다.</string>
 
     <string name="input">입력</string>
 

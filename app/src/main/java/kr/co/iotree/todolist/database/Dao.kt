@@ -34,6 +34,6 @@ interface GroupDao {
     @Query("SELECT * FROM TodoGroup WHERE group_id = :groupId")
     fun getGroup(groupId: Long?): TodoGroup
 
-    @Query("UPDATE TodoGroup SET title = :title, color = :color WHERE group_id = :groupId")
-    fun update(groupId: Long?, title: String, color: String)
+    @Query("UPDATE TodoGroup SET title = :title, groupPublic = :groupPublic, color = :color WHERE group_id = :groupId")
+    fun update(groupId: Long?, title: String, groupPublic: Int, color: String)
 }

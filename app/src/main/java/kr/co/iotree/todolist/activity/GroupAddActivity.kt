@@ -1,32 +1,32 @@
 package kr.co.iotree.todolist.activity
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.ColorAdapter
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityGroupAddBinding
-import kr.co.iotree.todolist.util.GroupColor
-import kr.co.iotree.todolist.viewModel.AddGroupViewModel
+import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 
 class GroupAddActivity : AppCompatActivity() {
+    val viewModel: GroupInfoViewModel by viewModels()
+    lateinit var binding: ActivityGroupAddBinding
     lateinit var adapter: ColorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding = ActivityGroupAddBinding.inflate(layoutInflater)
+        binding = ActivityGroupAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: AddGroupViewModel by viewModels()
         val db = TodoDatabase.getInstance(this)
-
         adapter = ColorAdapter(viewModel)
 
         binding.groupTitle.addTextChangedListener(object : TextWatcher {
@@ -43,23 +43,40 @@ class GroupAddActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.color.observe(this) {
-            binding.groupTitle.setTextColor(it)
-            binding.groupTitle.backgroundTintList = ColorStateList.valueOf(it)
-        }
-
-        viewModel.index.observe(this) {
-            adapter.setIndex(viewModel.index.value!!)
-        }
-
         binding.colorRecyclerView.layoutManager = GridLayoutManager(this, 6)
         binding.colorRecyclerView.itemAnimator = null
         binding.colorRecyclerView.adapter = adapter
 
+        viewModel.color.observe(this) {
+            binding.groupTitle.setTextColor(it)
+            binding.groupTitle.backgroundTintList = ColorStateList.valueOf(it)
+            adapter.setColor(viewModel.color.value!!)
+        }
+
+        setRadioGroupEvent()
+        setOnClickListener(db!!)
+    }
+
+    private fun setRadioGroupEvent() {
+        binding.publicSetting.setOnCheckedChangeListener { _, checkId ->
+            when (checkId) {
+                binding.public1.id, binding.public2.id -> {
+                    val toast = Toast(this).apply {
+                        view = View.inflate(this@GroupAddActivity, R.layout.toast, null)
+                    }
+                    toast.show()
+                }
+                R.id.public3 -> viewModel.groupPublic.value = 3
+                R.id.public4 -> viewModel.groupPublic.value = 4
+            }
+        }
+    }
+
+    private fun setOnClickListener(db: TodoDatabase) {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addGroup.setOnClickListener {
-            db!!.groupDao().insert(TodoGroup(null, viewModel.title.value!!, viewModel.color.value!!))
+            db.groupDao().insert(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!))
             onBackPressed()
         }
     }

@@ -35,4 +35,5 @@
     <dimen name="group_title_bottom_padding">20dp</dimen>
     <dimen name="color_icon_size">35dp</dimen>
     <dimen name="color_icon_outline_size">40dp</dimen>
+    <dimen name="toast_hor_padding">70dp</dimen>
 </resources>

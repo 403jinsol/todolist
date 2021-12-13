@@ -167,6 +167,7 @@
                 android:textSize="@dimen/group_add_title_font_size" />
 
             <RadioButton
+                android:id="@+id/quitBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFFFF"
@@ -180,38 +181,43 @@
                 android:background="@color/todo_group_background" />
 
             <RadioGroup
+                android:id="@+id/quitGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <RadioButton
+                    android:id="@+id/quit1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
                     android:button="@null"
-                    android:drawableStart="@drawable/ic_storage"
-                    android:drawableEnd="@drawable/btn_radio_custom"
+                    android:drawableStart="@drawable/ic_quit1"
+                    android:drawableEnd="@drawable/btn_radio_custom2"
                     android:drawablePadding="@dimen/radio_button_drawable_margin"
-                    android:text="@string/hidden" />
+                    android:text="@string/quit1" />
 
                 <RadioButton
+                    android:id="@+id/quit2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
                     android:button="@null"
-                    android:drawableStart="@drawable/ic_storage"
-                    android:drawableEnd="@drawable/btn_radio_custom"
+                    android:drawableStart="@drawable/ic_quit2"
+                    android:drawableEnd="@drawable/btn_radio_custom2"
                     android:drawablePadding="@dimen/radio_button_drawable_margin"
-                    android:text="@string/hidden" />
+                    android:text="@string/quit2" />
 
                 <RadioButton
+                    android:id="@+id/quit3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
                     android:button="@null"
-                    android:drawableStart="@drawable/ic_storage"
-                    android:drawableEnd="@drawable/btn_radio_custom"
+                    android:drawableStart="@drawable/ic_quit3"
+                    android:drawableEnd="@drawable/btn_radio_custom2"
                     android:drawablePadding="@dimen/radio_button_drawable_margin"
-                    android:text="@string/hidden" />
+                    android:text="@string/quit3" />
 
             </RadioGroup>
 

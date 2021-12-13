@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class TodoGroup(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "group_id") val groupId: Long?,
     val title: String,
+    val groupPublic: Int,
     val color: Int
 )

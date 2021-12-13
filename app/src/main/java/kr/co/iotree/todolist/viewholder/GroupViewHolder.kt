@@ -12,7 +12,7 @@ class GroupViewHolder(private val binding: ViewholderGroupBinding) : RecyclerVie
         binding.groupTitle.text = group.title
         binding.groupTitle.setTextColor(group.color)
 
-        binding.moreBtn.setOnClickListener {
+        binding.groupContainer.setOnClickListener {
             val intent = Intent(itemView.context, GroupEditActivity::class.java)
             intent.putExtra("groupId", group.groupId)
             itemView.context.startActivity(intent)

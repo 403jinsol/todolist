@@ -4,13 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_check.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle_check.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle_line.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_quit2.xml" value="0.3380208333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_quit3.xml" value="0.3380208333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_radio_checked.xml" value="0.3411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_todo_icon.xml" value="0.5572916666666666" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_user.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33697916666666666" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/btn_radio.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/btn_radio_custom.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/btn_radio_custom2.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/round.xml" value="0.3411458333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/round_toast.xml" value="0.284375" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group.xml" value="0.3255208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group_add.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group_edit.xml" value="0.28802083333333334" />
@@ -18,8 +26,9 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_main.xml" value="0.3476027397260274" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_test.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/dialog_input_text.xml" value="0.3234375" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/toast.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_calendar.xml" value="0.6044487427466151" />
-        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_calendar_date.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_calendar_date.xml" value="0.75" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_color.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_group.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_todo.xml" value="0.31296296296296294" />

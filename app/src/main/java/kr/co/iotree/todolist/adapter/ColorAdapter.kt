@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderColorBinding
 import kr.co.iotree.todolist.util.GroupColor
-import kr.co.iotree.todolist.viewModel.AddGroupViewModel
+import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 import kr.co.iotree.todolist.viewholder.ColorViewHolder
 
-class ColorAdapter(private val viewModel: AddGroupViewModel) : RecyclerView.Adapter<ColorViewHolder>() {
+class ColorAdapter(private val viewModel: GroupInfoViewModel) : RecyclerView.Adapter<ColorViewHolder>() {
     private val list = GroupColor.values()
-    private var colorIndex = viewModel.index.value!!
+    private var color = viewModel.color.value
 
-    fun setIndex(colorIndex: Int) {
-        this.colorIndex = colorIndex
+    fun setColor(color: Int) {
+        this.color = color
         notifyItemRangeChanged(0, itemCount)
     }
 

@@ -4,16 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.adapter.GroupAdapter
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.databinding.ActivityGroupManageBinding
-import kr.co.iotree.todolist.viewModel.GroupViewModel
+import kr.co.iotree.todolist.viewModel.GroupListViewModel
 
 class GroupManageActivity : AppCompatActivity() {
-    val viewModel: GroupViewModel by viewModels()
+    val viewModel: GroupListViewModel by viewModels()
     private var db: TodoDatabase? = null
     lateinit var adapter: GroupAdapter
 
@@ -23,7 +21,7 @@ class GroupManageActivity : AppCompatActivity() {
         val binding = ActivityGroupManageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: GroupViewModel by viewModels()
+        val viewModel: GroupListViewModel by viewModels()
         db = TodoDatabase.getInstance(this)
         viewModel.groups.value = db!!.groupDao().getAllTodoGroup()
 
