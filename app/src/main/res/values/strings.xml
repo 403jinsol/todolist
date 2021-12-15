@@ -44,12 +44,12 @@
     <string name="quit1">목표를 달성했어요!</string>
     <string name="quit2">기간이 종료됐어요!</string>
     <string name="quit3">아쉽지만 그만할래요</string>
-    <string name="toast_public">목표를 공유하기 위해선 \n 회원 가입을 해야 합니다.</string>
+    <string name="toast_public">목표를 공유하기 위해선\n회원 가입을 해야 합니다.</string>
     <string name="toast_reason">종료 사유를 선택해 주세요</string>
     <string name="complete_group">종료된 목표</string>
-    <string name="complete_dialog_content1">목표달성을 진심으로 축하드려요. \n 다른 목표에서 또 만나요.</string>
-    <string name="complete_dialog_content2">수고하셨습니다. \n 다른 목표에서 또 만나요.</string>
-    <string name="complete_dialog_content3">여기까지라 아쉽지만? \n 다른 목표로 또 만날 수 있겠죠?</string>
+    <string name="complete_dialog_content1">목표달성을 진심으로 축하드려요.\n다른 목표에서 또 만나요.</string>
+    <string name="complete_dialog_content2">수고하셨습니다.\n다른 목표에서 또 만나요.</string>
+    <string name="complete_dialog_content3">여기까지라 아쉽지만?\n다른 목표로 또 만날 수 있겠죠?</string>
 
     <string name="input">입력</string>
 

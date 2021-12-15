@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         //뷰모델 설정
         viewModel.date.observe(this) {
             adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
+            viewModel.completeCount.value =
+                db!!.todoDao().getAllCompleteTodo("${viewModel.year.value!!}${viewModel.month.value!!}1".toInt(), "${viewModel.year.value!!}${viewModel.month.value!!}31".toInt(), true).size
         }
 
         viewModel.isMonth.observe(this) {
