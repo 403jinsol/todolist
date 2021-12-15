@@ -1,28 +1,29 @@
-package kr.co.iotree.todolist.viewholder
+package kr.co.iotree.todolist.adapter.viewholder
 
 import android.content.Context
-import android.graphics.Color
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.iotree.todolist.adapter.TodoGroupAdapter
+import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
+import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
-class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : RecyclerView.ViewHolder(binding.root) {
+class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
     private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    lateinit var adapter: CalendarGroupAdapter
 
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
-        val todoDate = "$year$month$date"
+        val todoDate = "$year$month$date".toInt()
 
         val db = TodoDatabase.getInstance(itemView.context)
         val todoList = db!!.todoDao().getTodo(group.groupId, todoDate)
 
-        val adapter = TodoGroupAdapter(todoList, group.color)
+        adapter = CalendarGroupAdapter(todoList, group.color, viewModel)
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
@@ -31,12 +32,11 @@ class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : Rec
 
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
-                val item = Todo(null, binding.todoEdit.text.toString(), todoDate, false, group.groupId)
-                db.todoDao().insert(item)
-                adapter.addTodo(item)
-                hideTodo()
+                val todo = Todo(null, binding.todoEdit.text.toString(), todoDate, false, group.groupId)
+                insertTodo(db, todo)
+                hideTodoEditText()
             } else {
-                hideTodo()
+                hideTodoEditText()
             }
         }
 
@@ -51,20 +51,25 @@ class TodoGroupViewHolder(private val binding: ViewholderTodoGroupBinding) : Rec
         binding.todoEdit.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) { // 완료 버튼 클릭하면
                 if (binding.todoEdit.text.isNotEmpty()) {
-                    val item = Todo(null, v.text.toString(), todoDate, false, group.groupId)
-                    db.todoDao().insert(item)
-                    adapter.addTodo(item)
-                    binding.todoEdit.text = null
+                    val todo = Todo(null, v.text.toString(), todoDate, false, group.groupId)
+                    insertTodo(db, todo)
                     return@setOnEditorActionListener true
                 } else {
-                    hideTodo()
+                    hideTodoEditText()
                 }
             }
             return@setOnEditorActionListener false
         }
     }
 
-    private fun hideTodo() {
+    private fun insertTodo(db: TodoDatabase, todo: Todo) {
+        db.todoDao().insert(todo)
+        adapter.addTodo(todo)
+        binding.todoEdit.text = null
+        viewModel.completeCount.value = viewModel.completeCount.value!! + 1
+    }
+
+    private fun hideTodoEditText() {
         imm.hideSoftInputFromWindow(binding.todoEdit.windowToken, 0) //키보드 안보이게
         binding.todoEdit.text = null // 텍스트 초기화
         binding.editContainer.visibility = View.GONE //editText 안보이게

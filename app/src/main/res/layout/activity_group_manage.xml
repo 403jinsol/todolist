@@ -32,7 +32,6 @@
             android:textSize="@dimen/toolbar_font_size"
             android:textStyle="bold" />
 
-
         <ImageView
             android:id="@+id/addGroup"
             android:layout_width="@dimen/toolbar_icon_size"
@@ -52,6 +51,15 @@
         android:orientation="vertical">
 
         <TextView
+            android:visibility="invisible"
+            android:id="@+id/noGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_group"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/normalTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/normal"
@@ -60,7 +68,22 @@
             android:textSize="@dimen/group_add_title_font_size" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/groupRecyclerView"
+            android:id="@+id/proceedGroupRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/big_ver_margin" />
+
+        <TextView
+            android:id="@+id/completeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_group"
+            android:textStyle="bold"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/group_add_title_font_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/completeGroupRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/big_ver_margin" />

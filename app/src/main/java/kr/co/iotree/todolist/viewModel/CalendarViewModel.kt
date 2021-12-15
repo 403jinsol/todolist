@@ -24,4 +24,8 @@ class CalendarViewModel : ViewModel() {
     val isMonth = MutableLiveData<Boolean>().also {
         it.value = true
     }
+
+    val completeCount = MutableLiveData<Int>().also {
+        it.value = 0
+    }
 }

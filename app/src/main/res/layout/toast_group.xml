@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/default_ver_margin"
         android:gravity="center"
-        android:text="@string/quit_toast"
+        android:text="@string/toast_public"
         android:textColor="@color/white" />
 
 </LinearLayout>

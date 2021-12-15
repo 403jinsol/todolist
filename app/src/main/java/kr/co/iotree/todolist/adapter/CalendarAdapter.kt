@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderCalendarDateBinding
 import kr.co.iotree.todolist.util.*
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
-import kr.co.iotree.todolist.viewholder.CalendarDateViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.CalendarDateViewHolder
 
 class CalendarAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapter<CalendarDateViewHolder>() {
     private var list: List<Int> = mutableListOf()

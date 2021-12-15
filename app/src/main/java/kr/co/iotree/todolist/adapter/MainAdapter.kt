@@ -7,22 +7,22 @@ import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.databinding.ViewholderUserNameBinding
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
-import kr.co.iotree.todolist.viewholder.CalendarViewHolder
-import kr.co.iotree.todolist.viewholder.TodoGroupViewHolder
-import kr.co.iotree.todolist.viewholder.UserNameViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.CalendarViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.CalendarGroupViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.UserNameViewHolder
 
 class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var year = viewModel.year.value
+    private var year = viewModel.year.value
     var month = viewModel.month.value
     var date = viewModel.date.value
-    var isMonth = true
+    private var isMonth = true
 
     fun setDate(year: Int, month: Int, date: Int, isMonth: Boolean) {
         this.year = year
         this.month = month
         this.date = date
         this.isMonth = isMonth
-        notifyItemRangeChanged(0, itemCount)
+        notifyItemRangeChanged(1, itemCount)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -37,7 +37,7 @@ class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapt
         when (viewType) {
             USER_NAME -> return UserNameViewHolder(ViewholderUserNameBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             CALENDAR -> return CalendarViewHolder(ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
-            TODO -> return TodoGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            TODO -> return CalendarGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
         }
         throw RuntimeException("Invalid ViewType")
     }
@@ -46,7 +46,7 @@ class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapt
         when (getItemViewType(position)) {
             USER_NAME -> (holder as UserNameViewHolder).bindData()
             CALENDAR -> (holder as CalendarViewHolder).bindData(viewModel, isMonth)
-            TODO -> (holder as TodoGroupViewHolder).bindData(viewModel.groups.value!![position - 2], year!!, month!!, date!!)
+            TODO -> (holder as CalendarGroupViewHolder).bindData(viewModel.groups.value!![position - 2], year!!, month!!, date!!)
         }
     }
 

@@ -55,6 +55,8 @@ class GroupAddActivity : AppCompatActivity() {
 
         setRadioGroupEvent()
         setOnClickListener(db!!)
+
+        binding.public3.isChecked = true
     }
 
     private fun setRadioGroupEvent() {
@@ -62,9 +64,10 @@ class GroupAddActivity : AppCompatActivity() {
             when (checkId) {
                 binding.public1.id, binding.public2.id -> {
                     val toast = Toast(this).apply {
-                        view = View.inflate(this@GroupAddActivity, R.layout.toast, null)
+                        view = View.inflate(this@GroupAddActivity, R.layout.toast_group, null)
                     }
                     toast.show()
+                    binding.publicSetting.clearCheck()
                 }
                 R.id.public3 -> viewModel.groupPublic.value = 3
                 R.id.public4 -> viewModel.groupPublic.value = 4
@@ -76,7 +79,7 @@ class GroupAddActivity : AppCompatActivity() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addGroup.setOnClickListener {
-            db.groupDao().insert(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!))
+            db.groupDao().insert(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!, false, 0))
             onBackPressed()
         }
     }

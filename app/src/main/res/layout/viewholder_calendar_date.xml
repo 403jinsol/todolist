@@ -15,12 +15,20 @@
         android:layout_marginBottom="@dimen/todo_small_margin">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/dateIcon"
             android:layout_width="@dimen/calendar_icon__size"
             android:layout_height="@dimen/calendar_icon__size"
             android:layout_gravity="center"
             android:src="@drawable/ic_clover"
             app:tint="@color/calendar_icon_default" />
+
+        <ImageView
+            android:id="@+id/checkIcon"
+            android:layout_width="@dimen/calendar_icon__size"
+            android:layout_height="@dimen/calendar_icon__size"
+            android:src="@drawable/ic_check_checked"
+            android:visibility="invisible"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/number"
@@ -28,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/dummyNumber"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </FrameLayout>
 

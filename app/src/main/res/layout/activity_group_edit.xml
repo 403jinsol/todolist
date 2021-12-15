@@ -96,7 +96,7 @@
                 android:layout_marginHorizontal="@dimen/todo_small_margin">
 
                 <RadioButton
-                    android:id="@+id/radioPublic"
+                    android:id="@+id/public1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
@@ -112,6 +112,7 @@
                     android:background="@color/todo_group_background" />
 
                 <RadioButton
+                    android:id="@+id/public2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
@@ -127,6 +128,7 @@
                     android:background="@color/todo_group_background" />
 
                 <RadioButton
+                    android:id="@+id/public3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
@@ -142,6 +144,7 @@
                     android:background="@color/todo_group_background" />
 
                 <RadioButton
+                    android:id="@+id/public4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFFFF"
@@ -166,14 +169,30 @@
                 android:textColor="@color/teal_200"
                 android:textSize="@dimen/group_add_title_font_size" />
 
-            <RadioButton
-                android:id="@+id/quitBtn"
+            <LinearLayout
+                android:id="@+id/quitContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFFFF"
-                android:button="@null"
-                android:drawableEnd="@drawable/btn_radio_custom"
-                android:text="@string/quit" />
+                android:layout_marginHorizontal="@dimen/todo_small_margin"
+                android:layout_marginBottom="@dimen/default_ver_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/quit"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/quitBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_radio_uncheck" />
+
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"

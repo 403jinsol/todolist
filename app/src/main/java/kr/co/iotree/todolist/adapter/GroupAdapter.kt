@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderGroupBinding
-import kr.co.iotree.todolist.viewholder.GroupViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.GroupViewHolder
 
 class GroupAdapter(private var list: MutableList<TodoGroup>) : RecyclerView.Adapter<GroupViewHolder>() {
 
@@ -15,8 +15,7 @@ class GroupAdapter(private var list: MutableList<TodoGroup>) : RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
-        val binding = ViewholderGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GroupViewHolder(binding)
+        return GroupViewHolder(ViewholderGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {

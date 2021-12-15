@@ -1,4 +1,4 @@
-package kr.co.iotree.todolist.viewholder
+package kr.co.iotree.todolist.adapter.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

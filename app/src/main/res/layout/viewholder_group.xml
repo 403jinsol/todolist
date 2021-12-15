@@ -21,6 +21,13 @@
             android:text="@string/dummy"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/quitIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/default_ver_margin" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"

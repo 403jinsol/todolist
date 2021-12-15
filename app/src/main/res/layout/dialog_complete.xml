@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/round_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/dialog_hor_padding"
+    android:paddingVertical="@dimen/big_ver_margin">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_quit1" />
+
+    <TextView
+        android:id="@+id/dlgTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/default_ver_margin"
+        android:gravity="center"
+        android:text="@string/quit1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/complete_dialog_title_font_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dlgContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/complete_dialog_content1"
+        android:textSize="@dimen/complete_dialog_content_font_size" />
+
+    <Button
+        android:id="@+id/checkBtn"
+        android:layout_width="@dimen/dialog_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_ver_margin"
+        android:background="@drawable/round"
+        android:stateListAnimator="@null"
+        android:text="@string/check" />
+
+</LinearLayout>

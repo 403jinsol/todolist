@@ -1,7 +1,6 @@
 package kr.co.iotree.todolist.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
@@ -34,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         db = TodoDatabase.getInstance(this)
-        viewModel.groups.value = db!!.groupDao().getAllTodoGroup()
+        viewModel.groups.value = db!!.groupDao().getCalenderGroup(false)
+        viewModel.completeCount.value =
+            db!!.todoDao().getAllCompleteTodo("${viewModel.year.value!!}${viewModel.month.value!!}1".toInt(), "${viewModel.year.value!!}${viewModel.month.value!!}31".toInt(), true).size
 
         //recyclerview setting
         adapter = MainAdapter(viewModel)
@@ -43,11 +44,15 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.adapter = adapter
         //뷰모델 설정
         viewModel.date.observe(this) {
-            (binding.recyclerview.adapter as MainAdapter).setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
+            adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
         }
 
         viewModel.isMonth.observe(this) {
-            (binding.recyclerview.adapter as MainAdapter).setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
+            adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
+        }
+
+        viewModel.completeCount.observe(this) {
+            adapter.notifyItemChanged(1)
         }
 
         setDrawerMenu(viewModel.groups.value)
@@ -58,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
             binding.drawerLayout.closeDrawer(GravityCompat.END)
 
-        viewModel.groups.value = db!!.groupDao().getAllTodoGroup()
+        viewModel.groups.value = db!!.groupDao().getCalenderGroup(false)
         viewModel.groups.observe(this) {
             adapter.notifyItemRangeChanged(0, it.size + 2)
         }

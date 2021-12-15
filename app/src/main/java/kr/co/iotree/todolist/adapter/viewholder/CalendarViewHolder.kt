@@ -1,4 +1,4 @@
-package kr.co.iotree.todolist.viewholder
+package kr.co.iotree.todolist.adapter.viewholder
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +11,14 @@ import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
     private lateinit var calendarAdapter: CalendarAdapter
-    var month = viewModel.month.value!!
-    var year = viewModel.year.value!!
-    var date = viewModel.date.value!!
-    var isMonth = viewModel.isMonth.value!!
 
     @SuppressLint("SetTextI18n")
     fun bindData(viewModel: CalendarViewModel, isMonth: Boolean) {
 
         binding.yearMonth.text = "${viewModel.year.value}년 ${viewModel.month.value}월"
         calendarAdapter = CalendarAdapter(viewModel)
+
+        binding.completeCount.text = viewModel.completeCount.value.toString()
 
         if (isMonth)
             calendarAdapter.setMonthList(viewModel.year.value!!, viewModel.month.value!!)

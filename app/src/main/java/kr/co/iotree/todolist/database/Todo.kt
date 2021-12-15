@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 data class Todo(
     @PrimaryKey(autoGenerate = true) val todoId: Long?,
     val content: String,
-    val date: String,
+    val date: Int,
     val complete: Boolean,
     @ColumnInfo(name = "group_id") val groupId: Long?
 )

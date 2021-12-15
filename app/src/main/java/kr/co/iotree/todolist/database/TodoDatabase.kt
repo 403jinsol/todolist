@@ -26,7 +26,7 @@ abstract class TodoDatabase : RoomDatabase() {
                     ).addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             AsyncTask.execute {
-                                getInstance(context)!!.groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color))
+                                getInstance(context)!!.groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color, false, 0))
                             }
                         }
                     })

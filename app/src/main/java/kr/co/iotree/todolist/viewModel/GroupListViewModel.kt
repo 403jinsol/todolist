@@ -4,7 +4,11 @@ import androidx.lifecycle.*
 import kr.co.iotree.todolist.database.TodoGroup
 
 class GroupListViewModel : ViewModel() {
-    val groups: MutableLiveData<MutableList<TodoGroup>> by lazy {
+    val proceedGroups: MutableLiveData<MutableList<TodoGroup>> by lazy {
+        MutableLiveData<MutableList<TodoGroup>>()
+    }
+
+    val completeGroups: MutableLiveData<MutableList<TodoGroup>> by lazy {
         MutableLiveData<MutableList<TodoGroup>>()
     }
 }

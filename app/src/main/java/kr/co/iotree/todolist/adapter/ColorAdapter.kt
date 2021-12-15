@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderColorBinding
 import kr.co.iotree.todolist.util.GroupColor
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
-import kr.co.iotree.todolist.viewholder.ColorViewHolder
+import kr.co.iotree.todolist.adapter.viewholder.ColorViewHolder
 
 class ColorAdapter(private val viewModel: GroupInfoViewModel) : RecyclerView.Adapter<ColorViewHolder>() {
     private val list = GroupColor.values()

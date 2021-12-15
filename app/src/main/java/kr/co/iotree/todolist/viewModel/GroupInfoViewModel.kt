@@ -18,4 +18,16 @@ class GroupInfoViewModel : ViewModel() {
     init {
         groupPublic.value = 3
     }
+
+    var complete = MutableLiveData<Boolean>()
+
+    init {
+        complete.value = true
+    }
+
+    var reason = MutableLiveData<Int>()
+
+    init {
+        reason.value = 0
+    }
 }
