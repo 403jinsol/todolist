@@ -14,15 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
-import kr.co.iotree.todolist.database.TodoDatabase
-import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class MainActivity : AppCompatActivity() {
     val viewModel: CalendarViewModel by viewModels()
-    var db: TodoDatabase? = null
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: MainAdapter
 
@@ -32,21 +29,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = TodoDatabase.getInstance(this)
-        viewModel.groups.value = db!!.groupDao().getCalenderGroup(false)
-        viewModel.completeCount.value =
-            db!!.todoDao().getAllCompleteTodo("${viewModel.year.value!!}${viewModel.month.value!!}1".toInt(), "${viewModel.year.value!!}${viewModel.month.value!!}31".toInt(), true).size
-
         //recyclerview setting
         adapter = MainAdapter(viewModel)
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.recyclerview.itemAnimator = null //애니메이션 지우기
         binding.recyclerview.adapter = adapter
+
         //뷰모델 설정
         viewModel.date.observe(this) {
             adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
-            viewModel.completeCount.value =
-                db!!.todoDao().getAllCompleteTodo("${viewModel.year.value!!}${viewModel.month.value!!}1".toInt(), "${viewModel.year.value!!}${viewModel.month.value!!}31".toInt(), true).size
+            viewModel.changeCompleteCount(viewModel.year.value!!, viewModel.month.value!!)
         }
 
         viewModel.isMonth.observe(this) {
@@ -57,7 +49,14 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyItemChanged(1)
         }
 
-        setDrawerMenu(viewModel.groups.value)
+        viewModel.allTodo.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+        }
+
+        viewModel.allCalendarGroup.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+            setDrawerMenu()
+        }
     }
 
     override fun onResume() {
@@ -65,13 +64,17 @@ class MainActivity : AppCompatActivity() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
             binding.drawerLayout.closeDrawer(GravityCompat.END)
 
-        viewModel.groups.value = db!!.groupDao().getCalenderGroup(false)
-        viewModel.groups.observe(this) {
-            adapter.notifyItemRangeChanged(0, it.size + 2)
+        viewModel.allTodo.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+        }
+
+        viewModel.allCalendarGroup.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
         }
     }
 
-    private fun setDrawerMenu(list: MutableList<TodoGroup>?) {
+    private fun setDrawerMenu() {
+        val list = viewModel.allCalendarGroup.value
         val groupTitleViews = arrayListOf<TextView>()
 
         binding.menu.setOnClickListener {

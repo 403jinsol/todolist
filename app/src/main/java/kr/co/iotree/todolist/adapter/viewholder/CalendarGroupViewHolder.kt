@@ -20,10 +20,12 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
         val todoDate = "$year$month$date".toInt()
 
-        val db = TodoDatabase.getInstance(itemView.context)
-        val todoList = db!!.todoDao().getTodo(group.groupId, todoDate)
+        //FIXME
+        val db = TodoDatabase.getInstance(itemView.context, null)
+        val list = db.todoDao().getTodo(group.groupId, todoDate)
 
-        adapter = CalendarGroupAdapter(todoList, group.color, viewModel)
+//        adapter = CalendarGroupAdapter(viewModel, group.color)
+        adapter = CalendarGroupAdapter(viewModel, list, group.color)
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
@@ -33,7 +35,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
                 val todo = Todo(null, binding.todoEdit.text.toString(), todoDate, false, group.groupId)
-                insertTodo(db, todo)
+                insertTodo(todo)
                 hideTodoEditText()
             } else {
                 hideTodoEditText()
@@ -52,7 +54,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
             if (actionId == EditorInfo.IME_ACTION_DONE) { // 완료 버튼 클릭하면
                 if (binding.todoEdit.text.isNotEmpty()) {
                     val todo = Todo(null, v.text.toString(), todoDate, false, group.groupId)
-                    insertTodo(db, todo)
+                    insertTodo(todo)
                     return@setOnEditorActionListener true
                 } else {
                     hideTodoEditText()
@@ -62,9 +64,8 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
         }
     }
 
-    private fun insertTodo(db: TodoDatabase, todo: Todo) {
-        db.todoDao().insert(todo)
-        adapter.addTodo(todo)
+    private fun insertTodo(todo: Todo) {
+        viewModel.addTodo(todo)
         binding.todoEdit.text = null
         viewModel.completeCount.value = viewModel.completeCount.value!! + 1
     }

@@ -24,6 +24,7 @@
                 android:layout_height="@dimen/toolbar_icon_size"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/default_hor_margin"
+                android:scaleType="center"
                 android:src="@drawable/ic_menu"
                 app:tint="@color/black" />
 
@@ -31,7 +32,8 @@
                 android:layout_width="@dimen/toolbar_icon_size"
                 android:layout_height="@dimen/toolbar_icon_size"
                 android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/default_ver_margin"
+                android:scaleType="center"
                 android:src="@drawable/ic_storage"
                 app:tint="@color/black" />
 
@@ -67,8 +69,7 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
@@ -77,214 +78,210 @@
         android:paddingHorizontal="@dimen/default_hor_margin"
         android:paddingTop="30dp">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:text="@string/me"
+                android:textColor="@color/black"
+                android:textSize="@dimen/user_name_font_size"
+                android:textStyle="bold" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:background="@drawable/round"
+                android:minHeight="0dp"
+                android:text="@string/certification"
+                android:textSize="@dimen/todo_item_font_size" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/big_ver_margin"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/default_ver_margin"
-                    android:text="@string/me"
+                    android:layout_weight="1"
+                    android:text="@string/group"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/user_name_font_size"
+                    android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/big_ver_margin"
-                    android:background="@drawable/round"
-                    android:minHeight="0dp"
-                    android:text="@string/certification"
-                    android:textSize="@dimen/todo_item_font_size" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/big_ver_margin"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/group"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/menu_font_size"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/groupManage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:paddingHorizontal="@dimen/todo_small_margin"
-                        android:text="@string/management"
-                        android:textColor="#0288D1"
-                        android:textSize="@dimen/menu_setting_font_size" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/big_ver_margin"
-                    android:background="@color/todo_group_background" />
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flexBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/big_ver_margin"
-                    app:flexWrap="wrap" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/time"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/menu_font_size"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:paddingHorizontal="@dimen/todo_small_margin"
-                        android:text="@string/management"
-                        android:textColor="#0288D1"
-                        android:textSize="@dimen/menu_setting_font_size" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/big_ver_margin"
-                    android:background="@color/todo_group_background" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/simple"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/menu_font_size"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:paddingHorizontal="@dimen/todo_small_margin"
-                        android:text="@string/management"
-                        android:textColor="#0288D1"
-                        android:textSize="@dimen/menu_setting_font_size" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/big_ver_margin"
-                    android:background="@color/todo_group_background" />
-
                 <TextView
+                    android:id="@+id/groupManage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/more"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/big_ver_margin"
-                    android:background="@color/todo_group_background" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/notice"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/question"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/setting"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/termsOfUse"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/privacyPolicy"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/openSource"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:text="@string/version"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_textview_size"
-                    android:layout_marginBottom="@dimen/big_ver_margin"
-                    android:text="@string/logout"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/menu_small_font_size" />
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingHorizontal="@dimen/todo_small_margin"
+                    android:text="@string/management"
+                    android:textColor="#0288D1"
+                    android:textSize="@dimen/menu_setting_font_size" />
 
             </LinearLayout>
 
-        </ScrollView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:background="@color/todo_group_background" />
 
-    </LinearLayout>
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/big_ver_margin"
+                app:flexWrap="wrap" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/default_ver_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/time"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/menu_font_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingHorizontal="@dimen/todo_small_margin"
+                    android:text="@string/management"
+                    android:textColor="#0288D1"
+                    android:textSize="@dimen/menu_setting_font_size" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:background="@color/todo_group_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_ver_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/simple"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/menu_font_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingHorizontal="@dimen/todo_small_margin"
+                    android:text="@string/management"
+                    android:textColor="#0288D1"
+                    android:textSize="@dimen/menu_setting_font_size" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:background="@color/todo_group_background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/big_ver_margin"
+                android:background="@color/todo_group_background" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/notice"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/question"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/setting"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/termsOfUse"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/privacyPolicy"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/openSource"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:text="@string/version"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_textview_size"
+                android:layout_marginBottom="@dimen/big_ver_margin"
+                android:text="@string/logout"
+                android:textColor="@color/black"
+                android:textSize="@dimen/menu_small_font_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

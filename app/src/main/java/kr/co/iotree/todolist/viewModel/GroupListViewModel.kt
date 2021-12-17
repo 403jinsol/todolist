@@ -1,14 +1,13 @@
 package kr.co.iotree.todolist.viewModel
 
+import android.app.Application
 import androidx.lifecycle.*
+import kr.co.iotree.todolist.database.Repository
+import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 
-class GroupListViewModel : ViewModel() {
-    val proceedGroups: MutableLiveData<MutableList<TodoGroup>> by lazy {
-        MutableLiveData<MutableList<TodoGroup>>()
-    }
-
-    val completeGroups: MutableLiveData<MutableList<TodoGroup>> by lazy {
-        MutableLiveData<MutableList<TodoGroup>>()
-    }
+class GroupListViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = Repository(TodoDatabase.getInstance(application, viewModelScope))
+    val proceedGroups = repository.readProceedGroup
+    val completeGroups = repository.readCompleteGroup
 }

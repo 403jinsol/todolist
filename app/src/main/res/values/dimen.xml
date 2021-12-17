@@ -4,7 +4,7 @@
     <dimen name="default_ver_margin">8dp</dimen>
     <dimen name="big_ver_margin">15dp</dimen>
 
-    <dimen name="toolbar_icon_size">22dp</dimen>
+    <dimen name="toolbar_icon_size">40dp</dimen>
     <dimen name="toolbar_font_size">16sp</dimen>
     <dimen name="user_name_font_size">30sp</dimen>
 

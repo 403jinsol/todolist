@@ -17,7 +17,9 @@ import kr.co.iotree.todolist.databinding.ActivityGroupAddBinding
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 
 class GroupAddActivity : AppCompatActivity() {
-    val viewModel: GroupInfoViewModel by viewModels()
+    val viewModel by viewModels<GroupInfoViewModel> {
+        GroupInfoViewModel.Factory(application, intent.getLongExtra("groupId", -1))
+    }
     lateinit var binding: ActivityGroupAddBinding
     lateinit var adapter: ColorAdapter
 
@@ -26,7 +28,6 @@ class GroupAddActivity : AppCompatActivity() {
         binding = ActivityGroupAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = TodoDatabase.getInstance(this)
         adapter = ColorAdapter(viewModel)
 
         binding.groupTitle.addTextChangedListener(object : TextWatcher {
@@ -54,7 +55,7 @@ class GroupAddActivity : AppCompatActivity() {
         }
 
         setRadioGroupEvent()
-        setOnClickListener(db!!)
+        setOnClickListener()
 
         binding.public3.isChecked = true
     }
@@ -68,6 +69,10 @@ class GroupAddActivity : AppCompatActivity() {
                     }
                     toast.show()
                     binding.publicSetting.clearCheck()
+                    if (viewModel.groupPublic.value == 3)
+                        binding.public3.isChecked = true
+                    if (viewModel.groupPublic.value == 4)
+                        binding.public4.isChecked = true
                 }
                 R.id.public3 -> viewModel.groupPublic.value = 3
                 R.id.public4 -> viewModel.groupPublic.value = 4
@@ -75,11 +80,11 @@ class GroupAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun setOnClickListener(db: TodoDatabase) {
+    private fun setOnClickListener() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addGroup.setOnClickListener {
-            db.groupDao().insert(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!, false, 0))
+            viewModel.addGroup(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!, false, 0))
             onBackPressed()
         }
     }

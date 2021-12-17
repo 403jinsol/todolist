@@ -46,11 +46,11 @@ class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapt
         when (getItemViewType(position)) {
             USER_NAME -> (holder as UserNameViewHolder).bindData()
             CALENDAR -> (holder as CalendarViewHolder).bindData(viewModel, isMonth)
-            TODO -> (holder as CalendarGroupViewHolder).bindData(viewModel.groups.value!![position - 2], year!!, month!!, date!!)
+            TODO -> (holder as CalendarGroupViewHolder).bindData(viewModel.allCalendarGroup.value!![position - 2], year!!, month!!, date!!)
         }
     }
 
-    override fun getItemCount(): Int = (viewModel.groups.value?.size ?: 0) + 2
+    override fun getItemCount(): Int = (viewModel.allCalendarGroup.value?.size ?: 0) + 2
 
     companion object {
         const val USER_NAME = 1

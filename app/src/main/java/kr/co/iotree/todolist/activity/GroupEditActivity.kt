@@ -1,6 +1,5 @@
 package kr.co.iotree.todolist.activity
 
-import android.app.Dialog
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -10,22 +9,19 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.activity.dialog.CompleteDialog
 import kr.co.iotree.todolist.adapter.ColorAdapter
-import kr.co.iotree.todolist.database.TodoDatabase
-import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityGroupEditBinding
-import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 
 class GroupEditActivity : AppCompatActivity() {
     lateinit var binding: ActivityGroupEditBinding
     lateinit var adapter: ColorAdapter
-    val viewModel: GroupInfoViewModel by viewModels()
+    val viewModel by viewModels<GroupInfoViewModel> {
+        GroupInfoViewModel.Factory(application, intent.getLongExtra("groupId", -1))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +29,11 @@ class GroupEditActivity : AppCompatActivity() {
         binding = ActivityGroupEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = TodoDatabase.getInstance(this)
-        val group = db!!.groupDao().getGroup(intent.getLongExtra("groupId", 0))
-        val preComplete = group.complete
+        val preComplete = viewModel.complete
 
-        setViewModel(group)
+        setViewModel()
 
-        binding.groupTitle.setText(group.title)
+        binding.groupTitle.setText(viewModel.group!!.title)
         binding.groupTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 viewModel.title.value = binding.groupTitle.text.toString()
@@ -71,17 +65,11 @@ class GroupEditActivity : AppCompatActivity() {
         binding.colorRecyclerView.itemAnimator = null
         binding.colorRecyclerView.adapter = adapter
 
-        setOnclickListener(db, group, preComplete)
-        setRadioGroupEvent(group)
+        setOnclickListener(preComplete.value!!)
+        setRadioGroupEvent()
     }
 
-    private fun setViewModel(group: TodoGroup) {
-        viewModel.title.value = group.title
-        viewModel.groupPublic.value = group.groupPublic
-        viewModel.complete.value = group.complete
-        viewModel.color.value = group.color
-        viewModel.reason.value = group.reason
-
+    private fun setViewModel() {
         viewModel.color.observe(this) {
             binding.groupTitle.setTextColor(it)
             binding.groupTitle.backgroundTintList = ColorStateList.valueOf(it)
@@ -89,10 +77,10 @@ class GroupEditActivity : AppCompatActivity() {
         }
     }
 
-    private fun setRadioGroupEvent(group: TodoGroup) {
-        if (group.groupPublic == 3)
+    private fun setRadioGroupEvent() {
+        if (viewModel.groupPublic.value == 3)
             binding.public3.isChecked = true
-        if (group.groupPublic == 4)
+        if (viewModel.groupPublic.value == 4)
             binding.public4.isChecked = true
 
         binding.publicSetting.setOnCheckedChangeListener { _, checkId ->
@@ -103,6 +91,10 @@ class GroupEditActivity : AppCompatActivity() {
                     }
                     toast.show()
                     binding.publicSetting.clearCheck()
+                    if (viewModel.groupPublic.value == 3)
+                        binding.public3.isChecked = true
+                    if (viewModel.groupPublic.value == 4)
+                        binding.public4.isChecked = true
                 }
                 R.id.public3 -> viewModel.groupPublic.value = 3
                 R.id.public4 -> viewModel.groupPublic.value = 4
@@ -118,7 +110,7 @@ class GroupEditActivity : AppCompatActivity() {
         }
     }
 
-    private fun setOnclickListener(db: TodoDatabase, group: TodoGroup, preComplete: Boolean) {
+    private fun setOnclickListener(preComplete: Boolean) {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.quitContainer.setOnClickListener {
@@ -134,16 +126,33 @@ class GroupEditActivity : AppCompatActivity() {
             }
         }
 
-        binding.checkGroup.setOnClickListener {
-            db.groupDao().update(group.groupId, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!, viewModel.complete.value!!, viewModel.reason.value!!)
-            Log.d("sdfsgsdfgsdgdgdgsdgasdf", "setOnclickListener: ${viewModel.reason.value!!}")
-            Log.d("sdfsgsdfgsdgdgdgsdgasdf", "setOnclickListener: ${viewModel.complete.value!!}")
+        binding.checkGroup.setOnClickListener { //확인 버튼
+            if (binding.groupTitle.text.isEmpty()) { //이름 입력 안했을때
+                val toast = Toast(this).apply {
+                    view = View.inflate(this@GroupEditActivity, R.layout.toast_no_name, null)
+                }
+                toast.show()
+                return@setOnClickListener
+            }
+
             if (viewModel.complete.value!! && viewModel.reason.value!! == 0) { //종료 이유 선택 안했을때
                 val toast = Toast(this).apply {
                     view = View.inflate(this@GroupEditActivity, R.layout.toast_reason, null)
                 }
                 toast.show()
-            } else if (!preComplete && viewModel.complete.value!!) { //목표 종료하면 메인으로
+                return@setOnClickListener
+            }
+
+            viewModel.updateGroup(
+                intent.getLongExtra("groupId", -1),
+                viewModel.title.value!!,
+                viewModel.groupPublic.value!!,
+                viewModel.color.value!!,
+                viewModel.complete.value!!,
+                viewModel.reason.value!!
+            )
+
+            if (!preComplete && viewModel.complete.value!!) { //목표 종료하면 메인으로
                 val intent = Intent(this, MainActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 }
@@ -154,7 +163,7 @@ class GroupEditActivity : AppCompatActivity() {
         }
 
         binding.deleteBtn.setOnClickListener {
-            db.groupDao().delete(group)
+            viewModel.deleteGroup(viewModel.group!!)
             onBackPressed()
         }
     }
