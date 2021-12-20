@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //recyclerview setting
-        adapter = MainAdapter(viewModel)
-        binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        adapter = MainAdapter(viewModel, supportFragmentManager)
+        binding.recyclerview.layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
         binding.recyclerview.itemAnimator = null //애니메이션 지우기
         binding.recyclerview.adapter = adapter
 
@@ -50,12 +50,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.allTodo.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+            adapter.notifyItemRangeChanged(1, viewModel.allCalendarGroup.value?.size ?: 0)
         }
 
         viewModel.allCalendarGroup.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
             setDrawerMenu()
+        }
+
+        binding.storage.setOnClickListener {
+            startActivity(Intent(this, StorageActivity::class.java))
         }
     }
 
@@ -65,11 +69,11 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.closeDrawer(GravityCompat.END)
 
         viewModel.allTodo.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
         }
 
         viewModel.allCalendarGroup.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size?:0)
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
         }
     }
 

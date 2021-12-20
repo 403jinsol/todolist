@@ -1,17 +1,16 @@
 package kr.co.iotree.todolist.activity
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.dialog.CompleteDialog
 import kr.co.iotree.todolist.adapter.ColorAdapter
 import kr.co.iotree.todolist.databinding.ActivityGroupEditBinding
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
@@ -153,10 +152,13 @@ class GroupEditActivity : AppCompatActivity() {
             )
 
             if (!preComplete && viewModel.complete.value!!) { //목표 종료하면 메인으로
-                val intent = Intent(this, MainActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                val bundle = Bundle().apply {
+                    putInt("reason", viewModel.reason.value!!)
                 }
-                startActivity(intent)
+                val dlg = CompleteDialog().apply {
+                    arguments = bundle
+                }
+                dlg.show(supportFragmentManager, "completeDialog")
             } else {
                 onBackPressed()
             }

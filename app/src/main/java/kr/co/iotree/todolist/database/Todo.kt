@@ -20,5 +20,6 @@ data class Todo(
     val content: String,
     val date: Int,
     val complete: Boolean,
+    val storage: Boolean,
     @ColumnInfo(name = "group_id") val groupId: Long?
 )

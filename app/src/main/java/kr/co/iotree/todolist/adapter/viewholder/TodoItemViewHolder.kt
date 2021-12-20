@@ -1,16 +1,18 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
-import android.app.AlertDialog
+import android.os.Bundle
 import android.widget.ImageView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.dialog.TodoDialog
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
 import kr.co.iotree.todolist.util.setImageViewColor
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
-    fun bindData(item: Todo, color: Int) {
+    fun bindData(item: Todo, color: Int, supportFragmentManager: FragmentManager) {
         var isCompleted = item.complete
 
         if (isCompleted) {
@@ -39,15 +41,15 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
         }
 
         binding.moreIcon.setOnClickListener {
-            val dlg = AlertDialog.Builder(itemView.context)
-            dlg.setTitle("일정 변경")
-            dlg.setItems(R.array.todoMore) { _, pos ->
-                if (pos == 1) {
-                    viewModel.deleteTodo(item)
-                    viewModel.completeCount.value = viewModel.completeCount.value!! - 1
-                }
+            val bundle = Bundle().apply {
+                putLong("todoId", item.todoId!!)
             }
-            dlg.show()
+
+            val dlg = TodoDialog().apply {
+                arguments = bundle
+            }
+
+            dlg.show(supportFragmentManager, "todoDialog")
         }
 
         binding.todoText.text = item.content

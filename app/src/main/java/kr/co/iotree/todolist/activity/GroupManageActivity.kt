@@ -14,8 +14,8 @@ import kr.co.iotree.todolist.viewModel.GroupListViewModel
 class GroupManageActivity : AppCompatActivity() {
     val viewModel: GroupListViewModel by viewModels()
     lateinit var binding: ActivityGroupManageBinding
-    lateinit var proceedAdapter: GroupAdapter
-    lateinit var completeAdapter: GroupAdapter
+    private lateinit var proceedAdapter: GroupAdapter
+    private lateinit var completeAdapter: GroupAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +33,9 @@ class GroupManageActivity : AppCompatActivity() {
         }
 
         proceedAdapter = GroupAdapter(viewModel, 1)
-        binding.proceedGroupRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@GroupManageActivity, RecyclerView.VERTICAL, false)
-            itemAnimator = null
-            adapter = proceedAdapter
-        }
+        binding.proceedGroupRecyclerView.layoutManager = LinearLayoutManager(this@GroupManageActivity, RecyclerView.VERTICAL, false)
+        binding.proceedGroupRecyclerView.itemAnimator = null
+        binding.proceedGroupRecyclerView.adapter = proceedAdapter
 
         completeAdapter = GroupAdapter(viewModel, 2)
         binding.completeGroupRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)

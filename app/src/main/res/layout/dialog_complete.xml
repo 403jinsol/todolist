@@ -10,7 +10,7 @@
     android:paddingVertical="@dimen/big_ver_margin">
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/completeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
 
     <Button
         android:id="@+id/checkBtn"
-        android:layout_width="@dimen/dialog_btn_size"
+        android:layout_width="@dimen/complete_dialog_btn_size"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/big_ver_margin"
         android:background="@drawable/round"

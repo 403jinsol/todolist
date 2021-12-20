@@ -2,6 +2,7 @@ package kr.co.iotree.todolist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
@@ -11,7 +12,7 @@ import kr.co.iotree.todolist.adapter.viewholder.CalendarViewHolder
 import kr.co.iotree.todolist.adapter.viewholder.CalendarGroupViewHolder
 import kr.co.iotree.todolist.adapter.viewholder.UserNameViewHolder
 
-class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val viewModel: CalendarViewModel, private var supportFragmentManager: FragmentManager) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var year = viewModel.year.value
     var month = viewModel.month.value
     var date = viewModel.date.value
@@ -37,7 +38,7 @@ class MainAdapter(private val viewModel: CalendarViewModel) : RecyclerView.Adapt
         when (viewType) {
             USER_NAME -> return UserNameViewHolder(ViewholderUserNameBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             CALENDAR -> return CalendarViewHolder(ViewholderCalendarBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
-            TODO -> return CalendarGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
+            TODO -> return CalendarGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel, supportFragmentManager)
         }
         throw RuntimeException("Invalid ViewType")
     }

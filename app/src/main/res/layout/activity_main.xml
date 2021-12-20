@@ -29,6 +29,7 @@
                 app:tint="@color/black" />
 
             <ImageView
+                android:id="@+id/storage"
                 android:layout_width="@dimen/toolbar_icon_size"
                 android:layout_height="@dimen/toolbar_icon_size"
                 android:layout_gravity="end"

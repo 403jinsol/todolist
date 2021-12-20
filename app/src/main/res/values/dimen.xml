@@ -37,8 +37,13 @@
     <dimen name="color_icon_outline_size">40dp</dimen>
     <dimen name="toast_hor_padding">70dp</dimen>
 
+    <!-- 다이얼로그 -->
     <dimen name="dialog_hor_padding">20dp</dimen>
-    <dimen name="dialog_btn_size">250dp</dimen>
+    <dimen name="complete_dialog_btn_size">250dp</dimen>
     <dimen name="complete_dialog_title_font_size">17sp</dimen>
     <dimen name="complete_dialog_content_font_size">12sp</dimen>
+    <dimen name="todo_dialog_content_font_size">10sp</dimen>
+    <dimen name="todo_dialog_btn_size">50dp</dimen>
+    <dimen name="todo_dialog_icon_size">35dp</dimen>
+    <dimen name="todo_dialog_icon_padding">7dp</dimen>
 </resources>

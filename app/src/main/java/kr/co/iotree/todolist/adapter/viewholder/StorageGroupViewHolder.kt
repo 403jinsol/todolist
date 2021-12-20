@@ -7,34 +7,33 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
+import kr.co.iotree.todolist.adapter.StorageTodoAdapter
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
-import kr.co.iotree.todolist.viewModel.CalendarViewModel
+import kr.co.iotree.todolist.viewModel.StorageViewModel
 
-class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, private val viewModel: CalendarViewModel, private var supportFragmentManager: FragmentManager) :
+class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, private val viewModel: StorageViewModel) :
     RecyclerView.ViewHolder(binding.root) {
     private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    lateinit var adapter: CalendarGroupAdapter
+    lateinit var adapter: StorageTodoAdapter
 
-    fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
-        val todoDate = "$year$month$date".toInt()
+    fun bindData(group: TodoGroup, supportFragmentManager: FragmentManager) {
 
         val db = TodoDatabase.getInstance(itemView.context, null)
-        val list = db.todoDao().getCalendarTodo(group.groupId, todoDate, false)
+        val list = db.todoDao().getGroupStorageTodo(group.groupId, true)
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
 
-        adapter = CalendarGroupAdapter(viewModel, list, group.color, supportFragmentManager)
+        adapter = StorageTodoAdapter(list, supportFragmentManager)
         binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = adapter
 
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
-                val todo = Todo(null, binding.todoEdit.text.toString(), todoDate, complete = false, storage = false, group.groupId)
+                val todo = Todo(null, binding.todoEdit.text.toString(), 0, complete = false, storage = true, group.groupId)
                 insertTodo(todo)
                 hideTodoEditText()
             } else {
@@ -53,7 +52,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
         binding.todoEdit.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) { // 완료 버튼 클릭하면
                 if (binding.todoEdit.text.isNotEmpty()) {
-                    val todo = Todo(null, v.text.toString(), todoDate, complete = false, storage = false, group.groupId)
+                    val todo = Todo(null, v.text.toString(), 0, complete = false, storage = true, group.groupId)
                     insertTodo(todo)
                     return@setOnEditorActionListener true
                 } else {
@@ -67,7 +66,6 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     private fun insertTodo(todo: Todo) {
         viewModel.addTodo(todo)
         binding.todoEdit.text = null
-        viewModel.completeCount.value = viewModel.completeCount.value!! + 1
     }
 
     private fun hideTodoEditText() {

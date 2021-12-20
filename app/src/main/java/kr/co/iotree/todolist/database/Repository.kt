@@ -9,6 +9,7 @@ class Repository(database: TodoDatabase) {
     val readProceedGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(false)
     val readCompleteGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(true)
     val readAllTodo: LiveData<MutableList<Todo>> = todoDao.getAllTodo()
+    val readAllStorageTodo: LiveData<MutableList<Todo>> = todoDao.getAllStorageTodo(true)
 
     companion object {
         private var sInstance: Repository? = null
@@ -45,7 +46,7 @@ class Repository(database: TodoDatabase) {
         todoDao.updateComplete(complete, todoId)
     }
 
-    suspend fun getGroupTodo(groupId: Long, date: Int) {
-        todoDao.getTodo(groupId, date)
+    suspend fun getStorageTodo(groupId: Long, storage: Boolean) {
+        todoDao.getGroupStorageTodo(groupId, storage)
     }
 }

@@ -74,6 +74,24 @@ fun getNextWeek(year: Int, month: Int, date: Int): String {
     return df.format(cal.time)
 }
 
+/**
+ * 내일로 이동
+ * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
+ */
+fun getNextDay(time:Int): String {
+    val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
+
+    val year = time.toString().substring(0,4).toInt()
+    val month = time.toString().substring(4,6).toInt()
+    val date = time.toString().substring(6).toInt()
+
+    val cal = Calendar.getInstance()
+    cal.set(year, month - 1, date)
+
+    cal.add(Calendar.DATE, 1)
+    return df.format(cal.time)
+}
+
 fun getYearMonthDate(time: String, type: String): Int {
     return when (type) {
         "year" -> time.substring(0, 4).toInt()

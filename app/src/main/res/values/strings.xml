@@ -28,7 +28,16 @@
     <string name="management">관리</string>
     <string name="check">확인</string>
 
+    <string name="edit">수정</string>
+    <string name="time_alarm">시간 알림</string>
+    <string name="tomorrow">내일 하기</string>
+    <string name="replay_tomorrow">내일 또 하기</string>
+    <string name="change_date">날짜 바꾸기</string>
+    <string name="change_order">순서 변경</string>
+    <string name="move_storage">보관함으로 이동</string>
+
     <string name="no_group">목표를 추가하여 할 일을 그룹별로 관리할 수 있습니다.</string>
+    <string name="no_time">알림을 설정하면 오늘의 할 일에 대한 알림을 받아보실 수 있습니다.</string>
 
     <string name="title">제목</string>
     <string name="publicSetting">공개설정</string>
@@ -54,10 +63,8 @@
 
     <string name="input">입력</string>
 
-    <string-array name="todoMore">
-        <item>"수정"</item>
-        <item>"삭제"</item>
-    </string-array>
+    <string name="storage">보관함</string>
+    <string name="toast_storage_complete">보관함에서는 완료할 수 없습니다</string>
 
     <string name="dummy">Lorem ipsum</string>
     <string name="dummyNumber">0</string>
