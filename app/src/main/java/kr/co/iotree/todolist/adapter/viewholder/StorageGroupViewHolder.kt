@@ -5,11 +5,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.adapter.StorageTodoAdapter
 import kr.co.iotree.todolist.database.Todo
-import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.viewModel.StorageViewModel
@@ -20,9 +21,7 @@ class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, pr
     lateinit var adapter: StorageTodoAdapter
 
     fun bindData(group: TodoGroup, supportFragmentManager: FragmentManager) {
-
-        val db = TodoDatabase.getInstance(itemView.context)
-        val list = db.todoDao().getGroupStorageTodo(group.groupId, true)
+        val list = viewModel.getGroupStorageTodo(group.groupId!!)
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
@@ -64,7 +63,7 @@ class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, pr
     }
 
     private fun insertTodo(todo: Todo) {
-        viewModel.addTodo(todo)
+        viewModel.viewModelScope.launch { viewModel.addTodo(todo) }
         binding.todoEdit.text = null
     }
 

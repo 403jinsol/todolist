@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         //뷰모델 설정
         viewModel.date.observe(this) {
-            adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
             viewModel.changeCompleteCount(viewModel.year.value!!, viewModel.month.value!!)
         }
 
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.completeCount.observe(this) {
+            adapter.setDate(viewModel.year.value!!, viewModel.month.value!!, viewModel.date.value!!, viewModel.isMonth.value!!)
             adapter.notifyItemChanged(1)
         }
 

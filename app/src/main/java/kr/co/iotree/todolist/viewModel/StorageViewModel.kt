@@ -17,4 +17,8 @@ class StorageViewModel(application: Application) : AndroidViewModel(application)
     fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
         repository.addTodo(todo)
     }
+
+    fun getGroupStorageTodo(groupID: Long): MutableList<Todo> {
+        return repository.getGroupStorageTodo(groupID)
+    }
 }

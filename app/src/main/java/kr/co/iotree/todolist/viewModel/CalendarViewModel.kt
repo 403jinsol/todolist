@@ -36,6 +36,12 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
         it.value = repository.todoDao.getAllCompleteTodo("${year.value!!}${month.value!!}1".toInt(), "${year.value!!}${month.value!!}31".toInt(), true).size
     }
 
+    val groupTodo = MutableLiveData<MutableList<Todo>>()
+
+    fun getGroupTodo(groupId: Long?) {
+        groupTodo.value = repository.todoDao.getCalendarTodo(groupId, "${year.value!!}${month.value!!}${date.value}".toInt(), false)
+    }
+
     fun changeCompleteCount(year: Int, month: Int) {
         completeCount.value = repository.todoDao.getAllCompleteTodo("$year${month}1".toInt(), "$year${month}31".toInt(), true).size
     }
@@ -46,5 +52,17 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
         repository.addTodo(todo)
+    }
+
+    fun getAllDayTodo(date: Int): MutableList<Todo> {
+        return repository.getAllDayTodo(date)
+    }
+
+    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
+        return repository.getAllDayCompleteTodo(date)
+    }
+
+    fun getGroup(groupId: Long): TodoGroup {
+        return repository.getGroup(groupId)
     }
 }

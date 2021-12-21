@@ -29,11 +29,23 @@ class Repository(val todoDao: TodoDao, val groupDao: GroupDao) {
         todoDao.delete(todo)
     }
 
+    fun getGroup(groupId: Long): TodoGroup {
+        return groupDao.getGroup(groupId)!!
+    }
+
     suspend fun updateComplete(complete: Boolean, todoId: Long?) {
         todoDao.updateComplete(complete, todoId)
     }
 
-    suspend fun getStorageTodo(groupId: Long, storage: Boolean) {
-        todoDao.getGroupStorageTodo(groupId, storage)
+    fun getAllDayTodo(date: Int): MutableList<Todo> {
+        return todoDao.getAllDayTodo(date)
+    }
+
+    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
+        return todoDao.getCompleteTodo(date, true)
+    }
+
+    fun getGroupStorageTodo(groupId: Long): MutableList<Todo> {
+        return todoDao.getGroupStorageTodo(groupId, true)
     }
 }

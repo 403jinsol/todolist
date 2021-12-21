@@ -5,8 +5,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
@@ -22,11 +24,11 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
         val todoDate = "$year$month$date".toInt()
 
-        val db = TodoDatabase.getInstance(itemView.context)
-        val list = db.todoDao().getCalendarTodo(group.groupId, todoDate, false)
-
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
+
+        viewModel.getGroupTodo(group.groupId)
+        val list = viewModel.groupTodo.value!!
 
         adapter = CalendarGroupAdapter(viewModel, list, group.color, supportFragmentManager)
         binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
@@ -65,7 +67,9 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     }
 
     private fun insertTodo(todo: Todo) {
-        viewModel.addTodo(todo)
+        viewModel.viewModelScope.launch {
+            viewModel.addTodo(todo)
+        }
         binding.todoEdit.text = null
         viewModel.completeCount.value = viewModel.completeCount.value!! + 1
     }

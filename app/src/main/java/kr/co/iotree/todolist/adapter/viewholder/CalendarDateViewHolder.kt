@@ -1,12 +1,10 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.databinding.ViewholderCalendarDateBinding
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
@@ -71,14 +69,12 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
             binding.text.setTextColor(Color.parseColor("#FF000000"))
             binding.underline.visibility = View.VISIBLE
         }
-
         setIconNumber()
     }
 
     private fun setIconNumber() {
-        val db = TodoDatabase.getInstance(itemView.context)
-        val allTodo = db.todoDao().getAllDayTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
-        val allCompleteTodo = db.todoDao().getCompleteTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt(), true)
+        val allTodo = viewModel.getAllDayTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
+        val allCompleteTodo = viewModel.getAllDayCompleteTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
 
         binding.number.text = ((allTodo.size) - (allCompleteTodo.size)).toString()
 
@@ -87,7 +83,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
         }
 
         if (allTodo.size != 0 && (allTodo.size - allCompleteTodo.size) == 0) {
-            binding.dateIcon.setColorFilter(db.groupDao().getGroup(allTodo[0].groupId)!!.color)
+            binding.dateIcon.setColorFilter(viewModel.getGroup(allTodo[0].groupId!!).color)
             binding.number.visibility = View.INVISIBLE
             binding.checkIcon.visibility = View.VISIBLE
         }
