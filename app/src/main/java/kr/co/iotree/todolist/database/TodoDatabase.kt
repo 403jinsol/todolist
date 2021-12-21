@@ -22,20 +22,19 @@ abstract class TodoDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): TodoDatabase {
             return INSTANCE ?: synchronized(this) {
-                Room.databaseBuilder(
-                    context.applicationContext,
-                    TodoDatabase::class.java,
-                    "database"
-                ).addCallback(object : Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            getInstance(context).groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color, false, 0))
+                val instance = Room.databaseBuilder(context.applicationContext, TodoDatabase::class.java, "database")
+                    .addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            CoroutineScope(Dispatchers.IO).launch {
+                                getInstance(context).groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color, false, 0))
+                            }
                         }
-                    }
-                }).allowMainThreadQueries()
+                    }).allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()
-            }.also { INSTANCE = it }
+                INSTANCE = instance
+                instance
+            }
         }
     }
 }
