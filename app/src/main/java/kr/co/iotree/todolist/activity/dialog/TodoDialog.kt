@@ -20,7 +20,7 @@ class TodoDialog : DialogFragment() {
         super.onCreate(savedInstanceState)
 
         if (!requireArguments().isEmpty) {
-            db = TodoDatabase.getInstance(requireContext(), null)
+            db = TodoDatabase.getInstance(requireContext())
             todo = db.todoDao().getTodo(requireArguments().getLong("todoId", 0))
         }
     }

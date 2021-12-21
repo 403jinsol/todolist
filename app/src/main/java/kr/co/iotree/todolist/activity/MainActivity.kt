@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.MainAdapter
+import kr.co.iotree.todolist.database.Repository
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
@@ -55,12 +56,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.allCalendarGroup.observe(this) {
             adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
-            setDrawerMenu()
+            setFlexbox()
         }
 
         binding.storage.setOnClickListener {
             startActivity(Intent(this, StorageActivity::class.java))
         }
+
+        setDrawerMenu()
     }
 
     override fun onResume() {
@@ -78,18 +81,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDrawerMenu() {
-        val list = viewModel.allCalendarGroup.value
-        val groupTitleViews = arrayListOf<TextView>()
-
         binding.menu.setOnClickListener {
             if (!binding.drawerLayout.isDrawerOpen(GravityCompat.END))
                 binding.drawerLayout.openDrawer(GravityCompat.END)
         }
 
         binding.groupManage.setOnClickListener {
-            val intent = Intent(this@MainActivity, GroupManageActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity, GroupManageActivity::class.java))
         }
+
+        binding.timeManage.setOnClickListener { startActivity(Intent(this, TimeManageActivity::class.java)) }
+
+        setFlexbox()
+    }
+
+    private fun setFlexbox() {
+        val list = viewModel.allCalendarGroup.value
+        val groupTitleViews = arrayListOf<TextView>()
+
+        binding.flexBox.removeAllViews()
 
         //flexbox 그룹 추가
         for (group in list.orEmpty()) {

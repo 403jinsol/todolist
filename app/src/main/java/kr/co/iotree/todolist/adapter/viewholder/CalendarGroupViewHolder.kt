@@ -22,7 +22,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
         val todoDate = "$year$month$date".toInt()
 
-        val db = TodoDatabase.getInstance(itemView.context, null)
+        val db = TodoDatabase.getInstance(itemView.context)
         val list = db.todoDao().getCalendarTodo(group.groupId, todoDate, false)
 
         binding.title.text = group.title

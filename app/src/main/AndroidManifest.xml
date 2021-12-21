@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoList">
+        <receiver
+            android:name=".util.MyReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
@@ -23,6 +28,7 @@
         <activity android:name=".activity.GroupAddActivity" />
         <activity android:name=".activity.GroupEditActivity" />
         <activity android:name=".activity.StorageActivity" />
+        <activity android:name=".activity.TimeManageActivity" />
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.util.GroupColor
 
 @Database(entities = [Todo::class, TodoGroup::class], version = 1)
@@ -17,27 +19,25 @@ abstract class TodoDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: TodoDatabase? = null
+
         fun getInstance(
-                context: Context,
-                scope: CoroutineScope?
+            context: Context,
         ): TodoDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        TodoDatabase::class.java,
-                        "database"
-                ).fallbackToDestructiveMigration()
-                        .addCallback(object : Callback() {
-                            override fun onCreate(db: SupportSQLiteDatabase) {
-                                AsyncTask.execute {
-                                    getInstance(context, scope).groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color, false, 0))
-                                }
-                            }
-                        }).allowMainThreadQueries() // FIXME : 일반적으로 mainThread 에서 사용하지 않음
-                        .build()
-                INSTANCE = instance
-                instance
-            }
+                Room.databaseBuilder(
+                    context.applicationContext,
+                    TodoDatabase::class.java,
+                    "database"
+                ).addCallback(object : Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            getInstance(context).groupDao().insert(TodoGroup(null, "일반", 3, GroupColor.BLACK.color, false, 0))
+                        }
+                    }
+                }).allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .build()
+            }.also { INSTANCE = it }
         }
     }
 }

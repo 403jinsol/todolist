@@ -10,7 +10,7 @@ import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 
 class StorageViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = Repository(TodoDatabase.getInstance(application, viewModelScope))
+    private val repository = Repository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
     val storageGroup = repository.readCalendarGroup
     val storageTodo = repository.readAllStorageTodo
 

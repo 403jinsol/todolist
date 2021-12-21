@@ -138,31 +138,6 @@
         android:weightSum="4">
 
         <LinearLayout
-            android:id="@+id/changeOrder"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/todo_dialog_icon_size"
-                android:layout_height="@dimen/todo_dialog_icon_size"
-                android:layout_marginBottom="@dimen/todo_small_margin"
-                android:background="@drawable/background_circle"
-                android:padding="@dimen/todo_dialog_icon_padding"
-                android:src="@drawable/ic_replay_tomorrow" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/change_order"
-                android:textColor="@color/black"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/moveStorage"
             android:layout_width="0dp"
             android:layout_height="match_parent"

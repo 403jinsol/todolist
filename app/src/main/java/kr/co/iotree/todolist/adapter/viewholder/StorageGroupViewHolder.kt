@@ -21,7 +21,7 @@ class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, pr
 
     fun bindData(group: TodoGroup, supportFragmentManager: FragmentManager) {
 
-        val db = TodoDatabase.getInstance(itemView.context, null)
+        val db = TodoDatabase.getInstance(itemView.context)
         val list = db.todoDao().getGroupStorageTodo(group.groupId, true)
 
         binding.title.text = group.title

@@ -11,7 +11,7 @@ import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.getToday
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = Repository(TodoDatabase.getInstance(application, viewModelScope))
+    private val repository = Repository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
 
     val allCalendarGroup: LiveData<MutableList<TodoGroup>> = repository.readCalendarGroup
     val allTodo: LiveData<MutableList<Todo>> = repository.readAllTodo
@@ -46,9 +46,5 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
         repository.addTodo(todo)
-    }
-
-    fun deleteTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteTodo(todo)
     }
 }

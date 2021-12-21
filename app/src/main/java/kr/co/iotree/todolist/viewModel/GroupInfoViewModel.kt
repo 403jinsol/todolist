@@ -10,8 +10,9 @@ import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.GroupColor
 
 class GroupInfoViewModel(application: Application, groupId: Long?) : AndroidViewModel(application) {
-    private val repository = Repository(TodoDatabase.getInstance(application, viewModelScope))
+    private val repository = Repository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(private val application: Application, private val groupId: Long?) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return GroupInfoViewModel(application, groupId) as T

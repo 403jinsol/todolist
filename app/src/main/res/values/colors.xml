@@ -10,8 +10,9 @@
 
     <!-- custom color -->
     <color name="default_color">#FFF0F0F0</color>
-    <color name="todo_group_background">#FFF0F0F0</color>
+    <color name="todo_group_background">#FFF5F5F5</color>
     <color name="todo_group_stroke">#FFEAEAEA</color>
+    <color name="dialog_button_background">#FFF9F9F9</color>
     <color name="calendar_icon_default">#FFD9DDDF</color>
     <color name="calendar_font_default">#FFA5A5A5</color>
     <color name="todo_icon_default">#FFD9DDDF</color>

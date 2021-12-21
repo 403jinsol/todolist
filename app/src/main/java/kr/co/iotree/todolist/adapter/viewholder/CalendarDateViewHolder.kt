@@ -76,7 +76,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
     }
 
     private fun setIconNumber() {
-        val db = TodoDatabase.getInstance(itemView.context, null)
+        val db = TodoDatabase.getInstance(itemView.context)
         val allTodo = db.todoDao().getAllDayTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
         val allCompleteTodo = db.todoDao().getCompleteTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt(), true)
 
