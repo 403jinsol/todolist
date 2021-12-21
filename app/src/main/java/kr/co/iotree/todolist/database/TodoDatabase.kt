@@ -20,9 +20,7 @@ abstract class TodoDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TodoDatabase? = null
 
-        fun getInstance(
-            context: Context,
-        ): TodoDatabase {
+        fun getInstance(context: Context): TodoDatabase {
             return INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
                     context.applicationContext,
