@@ -2,11 +2,15 @@ package kr.co.iotree.todolist.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import androidx.core.app.NotificationCompat
+import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.MainActivity
 
 class MyReceiver : BroadcastReceiver() {
 
@@ -16,6 +20,7 @@ class MyReceiver : BroadcastReceiver() {
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         createNotificationChannel()
+        deliverNotification(context)
     }
 
     private fun createNotificationChannel() {
@@ -34,16 +39,42 @@ class MyReceiver : BroadcastReceiver() {
             notificationChannel.enableLights(true) // 불빛
             notificationChannel.lightColor = Color.RED // 색상
             notificationChannel.enableVibration(true) // 진동 여부
-            notificationChannel.description = "채널의 상세정보입니다." // 채널 정보
-            notificationManager.createNotificationChannel(
-                notificationChannel
-            )
+            notificationChannel.description = CHANNEL_DESCRIPTION // 채널 정보
+            notificationManager.createNotificationChannel(notificationChannel)
         }
+    }
+
+    private fun deliverNotification(context: Context) {
+        val contentIntent = Intent(context, MainActivity::class.java)
+        val contentPendingIntent = PendingIntent.getActivity(
+            context,
+            NOTIFICATION_ID, // requestCode
+            contentIntent, // 알림 클릭 시 이동할 인텐트
+            PendingIntent.FLAG_UPDATE_CURRENT
+            /*
+            1. FLAG_UPDATE_CURRENT : 현재 PendingIntent를 유지하고, 대신 인텐트의 extra data는 새로 전달된 Intent로 교체
+            2. FLAG_CANCEL_CURRENT : 현재 인텐트가 이미 등록되어있다면 삭제, 다시 등록
+            3. FLAG_NO_CREATE : 이미 등록된 인텐트가 있다면, null
+            4. FLAG_ONE_SHOT : 한번 사용되면, 그 다음에 다시 사용하지 않음
+             */
+        )
+
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_clover) // 아이콘
+            .setContentTitle("타이틀 입니다.") // 제목
+            .setContentText("내용 입니다.") // 내용
+            .setContentIntent(contentPendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+
+        notificationManager.notify(NOTIFICATION_ID, builder.build())
     }
 
     companion object {
         const val NOTIFICATION_ID = 0
         const val CHANNEL_ID = "notification_channel"
+        const val CHANNEL_DESCRIPTION = "notification_channel"
         const val CHANNEL_NAME = "기본 채널"
     }
 }
