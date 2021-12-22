@@ -46,10 +46,4 @@
             android:src="@drawable/ic_remove_time" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginVertical="@dimen/big_ver_margin"
-        android:background="@color/todo_group_background" />
 </LinearLayout>
