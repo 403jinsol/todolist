@@ -6,11 +6,13 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.dialog.StorageDialog
 import kr.co.iotree.todolist.activity.dialog.TodoDialog
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
+import kr.co.iotree.todolist.viewModel.StorageViewModel
 
-class StorageTodoViewHolder(private val binding: ViewholderTodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class StorageTodoViewHolder(private val binding: ViewholderTodoItemBinding, private val viewModel: StorageViewModel) : RecyclerView.ViewHolder(binding.root) {
     fun bindData(item: Todo, supportFragmentManager: FragmentManager) {
 
         binding.todoIcon.setOnClickListener {
@@ -25,12 +27,12 @@ class StorageTodoViewHolder(private val binding: ViewholderTodoItemBinding) : Re
                 putLong("todoId", item.todoId!!)
             }
 
-            val dlg = TodoDialog().apply {
+            val dlg = StorageDialog(viewModel).apply {
                 arguments = bundle
             }
             dlg.show(supportFragmentManager, "todoDialog")
         }
 
-        binding.todoText.text = item.content
+        binding.todoText.setText(item.content)
     }
 }

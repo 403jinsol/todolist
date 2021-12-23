@@ -62,6 +62,7 @@
     <string name="complete_dialog_content3">여기까지라 아쉽지만?\n다른 목표로 또 만날 수 있겠죠?</string>
 
     <string name="input">입력</string>
+    <string name="complete">완료</string>
 
     <string name="storage">보관함</string>
     <string name="toast_storage_complete">보관함에서는 완료할 수 없습니다</string>

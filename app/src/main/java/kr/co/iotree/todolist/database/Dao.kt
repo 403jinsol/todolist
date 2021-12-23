@@ -23,6 +23,9 @@ interface TodoDao {
     @Query("UPDATE Todo SET date = :date WHERE todoId = :todoId")
     fun updateDate(date: Int, todoId: Long?)
 
+    @Query("UPDATE Todo SET content = :content WHERE todoId = :todoId")
+    fun updateContent(content:String, todoId: Long?)
+
     @Query("SELECT * FROM Todo WHERE todoId = :todoId")
     fun getTodo(todoId: Long?): Todo
 
@@ -67,4 +70,16 @@ interface GroupDao {
 
     @Query("SELECT * FROM TodoGroup WHERE complete = :complete AND (groupPublic = 3)")
     fun getCalenderGroup(complete: Boolean): LiveData<MutableList<TodoGroup>>
+}
+
+@Dao
+interface TimeAlarmDao {
+    @Insert
+    fun insert(timeAlarm: TimeAlarm)
+
+    @Delete
+    fun delete(timeAlarm: TimeAlarm)
+
+    @Query("SELECT * FROM TimeAlarm ORDER BY allTime ASC")
+    fun getAllTimeAlarm(): LiveData<MutableList<TimeAlarm>>
 }

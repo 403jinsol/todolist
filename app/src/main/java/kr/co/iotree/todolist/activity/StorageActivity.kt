@@ -1,5 +1,6 @@
 package kr.co.iotree.todolist.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class StorageActivity : AppCompatActivity() {
     lateinit var binding: ActivityStorageBinding
     lateinit var adapter: StorageGroupAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

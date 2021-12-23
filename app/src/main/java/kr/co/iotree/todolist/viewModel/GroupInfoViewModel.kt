@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.database.Repository
+import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.GroupColor
 
 class GroupInfoViewModel(application: Application, groupId: Long?) : AndroidViewModel(application) {
-    private val repository = Repository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
+    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
 
     @Suppress("UNCHECKED_CAST")
     class Factory(private val application: Application, private val groupId: Long?) : ViewModelProvider.Factory {

@@ -35,7 +35,29 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.itemAnimator = null //애니메이션 지우기
         binding.recyclerview.adapter = adapter
 
-        //뷰모델 설정
+        binding.storage.setOnClickListener {
+            startActivity(Intent(this, StorageActivity::class.java))
+        }
+
+        setViewModel()
+        setDrawerMenu()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
+            binding.drawerLayout.closeDrawer(GravityCompat.END)
+
+        viewModel.allTodo.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
+        }
+
+        viewModel.allCalendarGroup.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
+        }
+    }
+
+    private fun setViewModel(){
         viewModel.date.observe(this) {
             viewModel.changeCompleteCount(viewModel.year.value!!, viewModel.month.value!!)
         }
@@ -56,26 +78,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.allCalendarGroup.observe(this) {
             adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
             setFlexbox()
-        }
-
-        binding.storage.setOnClickListener {
-            startActivity(Intent(this, StorageActivity::class.java))
-        }
-
-        setDrawerMenu()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
-            binding.drawerLayout.closeDrawer(GravityCompat.END)
-
-        viewModel.allTodo.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
-        }
-
-        viewModel.allCalendarGroup.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
         }
     }
 

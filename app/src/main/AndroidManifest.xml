@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoList">
         <receiver
-            android:name=".util.MyReceiver"
+            android:name=".util.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 

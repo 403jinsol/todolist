@@ -15,11 +15,13 @@
         android:src="@drawable/ic_clover"
         app:tint="@color/todo_icon_default" />
 
-    <TextView
+    <EditText
         android:id="@+id/todoText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@null"
+        android:enabled="false"
         android:text="@string/dummy"
         android:textColor="@color/black"
         android:textSize="@dimen/todo_item_font_size" />

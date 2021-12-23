@@ -1,6 +1,5 @@
 package kr.co.iotree.todolist.activity.dialog
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,11 @@ import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.DialogTodoBinding
 import kr.co.iotree.todolist.util.getNextDay
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
+import kr.co.iotree.todolist.viewModel.StorageViewModel
 
-class TodoDialog(val viewModel: CalendarViewModel) : DialogFragment() {
+class StorageDialog(val viewModel: StorageViewModel) : DialogFragment() {
     lateinit var binding: DialogTodoBinding
     lateinit var todo: Todo
-    private var clickListener: DialogInterface.OnClickListener? = null
-
-    private var which = Int.MIN_VALUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +49,8 @@ class TodoDialog(val viewModel: CalendarViewModel) : DialogFragment() {
         return binding.root
     }
 
-    fun set(clickListener: DialogInterface.OnClickListener?): TodoDialog {
-        this.clickListener = clickListener
-        return this
-    }
-
     fun setOnClickListener() {
-        binding.edit.setOnClickListener {
-            which = EDIT
-            dismiss()
-        }
+        binding.edit.setOnClickListener { }
 
         binding.moveStorage.setOnClickListener {
             viewModel.updateStorageTodo(true, todo.todoId!!)
@@ -72,17 +61,5 @@ class TodoDialog(val viewModel: CalendarViewModel) : DialogFragment() {
             viewModel.deleteTodo(todo)
             dismiss()
         }
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-
-        // 창 닫히면 which 넣어서 onClick
-        if (which != Integer.MIN_VALUE)
-            clickListener?.onClick(dialog, which)
-    }
-
-    companion object {
-        const val EDIT = 1
     }
 }

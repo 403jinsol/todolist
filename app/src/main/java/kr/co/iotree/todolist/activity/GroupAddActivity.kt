@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.ColorAdapter
-import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityGroupAddBinding
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
@@ -84,6 +83,14 @@ class GroupAddActivity : AppCompatActivity() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addGroup.setOnClickListener {
+            if (binding.groupTitle.text.isEmpty()) { //이름 입력 안했을때
+                val toast = Toast(this).apply {
+                    view = View.inflate(this@GroupAddActivity, R.layout.toast_no_name, null)
+                }
+                toast.show()
+                return@setOnClickListener
+            }
+
             viewModel.addGroup(TodoGroup(null, viewModel.title.value!!, viewModel.groupPublic.value!!, viewModel.color.value!!, false, 0))
             onBackPressed()
         }

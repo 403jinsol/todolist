@@ -4,14 +4,14 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.database.Repository
+import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.getToday
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = Repository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
+    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
 
     val allCalendarGroup: LiveData<MutableList<TodoGroup>> = repository.readCalendarGroup
     val allTodo: LiveData<MutableList<Todo>> = repository.readAllTodo
@@ -54,6 +54,10 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
         repository.addTodo(todo)
     }
 
+    fun deleteTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteTodo(todo)
+    }
+
     fun getAllDayTodo(date: Int): MutableList<Todo> {
         return repository.getAllDayTodo(date)
     }
@@ -65,4 +69,21 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     fun getGroup(groupId: Long): TodoGroup {
         return repository.getGroup(groupId)
     }
+
+    fun getTodo(todoID: Long): Todo {
+        return repository.getTodo(todoID)
+    }
+
+    fun updateDateTodo(date: Int, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateDateTodo(date, todoID)
+    }
+
+    fun updateStorageTodo(storage: Boolean, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateStorageTodo(storage, todoID)
+    }
+
+    fun updateContentTodo(content: String, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateContentTodo(content, todoID)
+    }
+
 }

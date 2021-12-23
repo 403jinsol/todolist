@@ -2,7 +2,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -17,9 +16,9 @@
         <ImageView
             android:id="@+id/back"
             android:layout_width="@dimen/toolbar_icon_size"
-            android:scaleType="center"
             android:layout_height="@dimen/toolbar_icon_size"
             android:layout_marginEnd="20dp"
+            android:scaleType="center"
             android:src="@drawable/ic_calender_prev"
             app:tint="@color/black" />
 
@@ -53,12 +52,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/noTimeAlarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_time"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/timeRecyclerView"

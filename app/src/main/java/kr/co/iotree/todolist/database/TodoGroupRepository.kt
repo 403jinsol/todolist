@@ -2,7 +2,7 @@ package kr.co.iotree.todolist.database
 
 import androidx.lifecycle.LiveData
 
-class Repository(val todoDao: TodoDao, val groupDao: GroupDao) {
+class TodoGroupRepository(val todoDao: TodoDao, val groupDao: GroupDao) {
     val readCalendarGroup: LiveData<MutableList<TodoGroup>> = groupDao.getCalenderGroup(false)
     val readProceedGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(false)
     val readCompleteGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(true)
@@ -31,6 +31,22 @@ class Repository(val todoDao: TodoDao, val groupDao: GroupDao) {
 
     fun getGroup(groupId: Long): TodoGroup {
         return groupDao.getGroup(groupId)!!
+    }
+
+    fun getTodo(todoId: Long): Todo {
+        return todoDao.getTodo(todoId)
+    }
+
+    suspend fun updateDateTodo(date: Int, todoId: Long) {
+        todoDao.updateDate(date, todoId)
+    }
+
+    suspend fun updateStorageTodo(storage: Boolean, todoId: Long) {
+        todoDao.updateStorage(storage, todoId)
+    }
+
+    suspend fun updateContentTodo(content: String, todoId: Long) {
+        todoDao.updateContent(content, todoId)
     }
 
     suspend fun updateComplete(complete: Boolean, todoId: Long?) {
