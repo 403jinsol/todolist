@@ -96,14 +96,9 @@ class TimePickerDialog(val viewModel: TimeListViewModel) : BottomSheetDialogFrag
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val repeatInterval = 3000L
-        val triggerTime = (SystemClock.elapsedRealtime()    // 1
-                + repeatInterval)
-        alarmManager.setInexactRepeating(     // 2
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            triggerTime, repeatInterval,
-            pendingIntent
-        )
+        val repeatInterval = AlarmManager.INTERVAL_DAY
+        val triggerTime = (SystemClock.elapsedRealtime() + repeatInterval)
+        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, repeatInterval, pendingIntent)
     }
 
     companion object {
