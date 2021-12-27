@@ -2,6 +2,7 @@ package kr.co.iotree.todolist.adapter.viewholder
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -46,6 +47,7 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
         }
 
         binding.moreIcon.setOnClickListener {
+            Log.d("☆☆☆☆☆☆☆☆", "${item.date}")
             val bundle = Bundle().apply {
                 putLong("todoId", item.todoId!!)
             }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/round_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/default_hor_margin"
+    android:paddingVertical="@dimen/big_ver_margin">
+
+    <TextView
+        android:id="@+id/dlg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/big_ver_margin"
+        android:text="@string/dummy"
+        android:textColor="@color/black"
+        android:textSize="@dimen/complete_dialog_title_font_size"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/big_ver_margin"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/todo_dialog_icon_size"
+                android:layout_height="@dimen/todo_dialog_icon_size"
+                android:layout_marginBottom="@dimen/todo_small_margin"
+                android:background="@drawable/background_circle"
+                android:padding="@dimen/todo_dialog_icon_padding"
+                android:src="@drawable/ic_edit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:textColor="@color/black"
+                android:textSize="@dimen/todo_dialog_content_font_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/doToday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/todo_dialog_icon_size"
+                android:layout_height="@dimen/todo_dialog_icon_size"
+                android:layout_marginBottom="@dimen/todo_small_margin"
+                android:background="@drawable/background_circle"
+                android:padding="@dimen/todo_dialog_icon_padding"
+                android:src="@drawable/ic_do_today" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_alarm"
+                android:textColor="@color/black"
+                android:textSize="@dimen/todo_dialog_content_font_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/changeDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/todo_dialog_icon_size"
+                android:layout_height="@dimen/todo_dialog_icon_size"
+                android:layout_marginBottom="@dimen/todo_small_margin"
+                android:background="@drawable/background_circle"
+                android:padding="@dimen/todo_dialog_icon_padding"
+                android:src="@drawable/ic_change_date" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/todo_dialog_content_font_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/todo_dialog_icon_size"
+                android:layout_height="@dimen/todo_dialog_icon_size"
+                android:layout_marginBottom="@dimen/todo_small_margin"
+                android:background="@drawable/background_circle"
+                android:padding="@dimen/todo_dialog_icon_padding"
+                android:src="@drawable/ic_delete" />
+
+            <TextView
+                android:id="@+id/tomorrowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:textColor="@color/black"
+                android:textSize="@dimen/todo_dialog_content_font_size" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

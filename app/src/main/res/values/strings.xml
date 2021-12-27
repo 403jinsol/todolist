@@ -35,6 +35,7 @@
     <string name="change_date">날짜 바꾸기</string>
     <string name="change_order">순서 변경</string>
     <string name="move_storage">보관함으로 이동</string>
+    <string name="do_today">오늘 하기</string>
 
     <string name="no_group">목표를 추가하여 할 일을 그룹별로 관리할 수 있습니다.</string>
     <string name="no_time">알림을 설정하면 오늘의 할 일에 대한 알림을 받아보실 수 있습니다.</string>

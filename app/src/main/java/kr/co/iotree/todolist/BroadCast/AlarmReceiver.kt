@@ -1,11 +1,11 @@
-package kr.co.iotree.todolist.util
+package kr.co.iotree.todolist.BroadCast
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -26,6 +26,7 @@ class AlarmReceiver : BroadcastReceiver() {
         deliverNotification(context)
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun deliverNotification(context: Context) {
         val contentIntent = Intent(context, MainActivity::class.java)
         val contentPendingIntent = PendingIntent.getActivity(

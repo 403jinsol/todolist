@@ -1,30 +1,27 @@
 package kr.co.iotree.todolist.activity.dialog
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kr.co.iotree.todolist.activity.TimeManageActivity
 import kr.co.iotree.todolist.database.TimeAlarm
 import kr.co.iotree.todolist.databinding.DialogTimePickerBinding
-import kr.co.iotree.todolist.util.AlarmReceiver
+import kr.co.iotree.todolist.BroadCast.AlarmReceiver
 import kr.co.iotree.todolist.viewModel.TimeListViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
-class TimePickerDialog(val viewModel: TimeListViewModel) : BottomSheetDialogFragment() {
+class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManager: AlarmManager) : BottomSheetDialogFragment() {
     lateinit var binding: DialogTimePickerBinding
 
     private fun TimePicker.setTimeInterval(
@@ -48,11 +45,7 @@ class TimePickerDialog(val viewModel: TimeListViewModel) : BottomSheetDialogFrag
     private fun TimePicker.getDisplayedMinute(
         @IntRange(from = 0, to = 30)
         timeInterval: Int = DEFAULT_INTERVAL
-    ): Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        minute * timeInterval
-    } else {
-        currentMinute * timeInterval
-    }
+    ): Int = minute * timeInterval
 
     private fun getDisplayedValue(
         @IntRange(from = 0, to = 30)
@@ -72,33 +65,36 @@ class TimePickerDialog(val viewModel: TimeListViewModel) : BottomSheetDialogFrag
         binding.timePicker.setTimeInterval()
 
         binding.complete.setOnClickListener {
-            val hour = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                binding.timePicker.hour
-            } else {
-                binding.timePicker.currentHour
-            }
+            val hour = binding.timePicker.hour
             val minute = binding.timePicker.getDisplayedMinute()
+            var stringMinute = minute.toString()
+            if (minute < 10) {
+                stringMinute = "0$minute"
+            }
 
-            viewModel.addTime(TimeAlarm(null, "$hour$minute".toInt(), hour, minute))
+            viewModel.addTime(TimeAlarm(null, "$hour$stringMinute".toInt(), hour, stringMinute))
 
-            setAlarm()
+            setAlarm(hour, minute, stringMinute)
             dismiss()
         }
         return binding.root
     }
 
-    private fun setAlarm() {
-        val alarmManager = getSystemService(requireContext(), ALAME) as AlarmManager
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun setAlarm(hour: Int, minute: Int, stringMinute: String) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
 
         val intent = Intent(requireContext(), AlarmReceiver::class.java)  // 1
         val pendingIntent = PendingIntent.getBroadcast(     // 2
-            requireContext(), AlarmReceiver.NOTIFICATION_ID, intent,
+            requireContext(), "$hour$stringMinute".toInt(), intent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val repeatInterval = AlarmManager.INTERVAL_DAY
-        val triggerTime = (SystemClock.elapsedRealtime() + repeatInterval)
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, repeatInterval, pendingIntent)
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package kr.co.iotree.todolist.activity
 
+import android.app.AlarmManager
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -15,6 +16,7 @@ class TimeManageActivity : AppCompatActivity() {
     val viewModel: TimeListViewModel by viewModels()
     lateinit var binding: ActivityTimeManageBinding
     lateinit var adapter: TimeAdapter
+    private lateinit var alarmManager: AlarmManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +24,10 @@ class TimeManageActivity : AppCompatActivity() {
         binding = ActivityTimeManageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         setOnClickListener()
 
-        adapter = TimeAdapter(viewModel)
+        adapter = TimeAdapter(viewModel, alarmManager)
         binding.timeRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.timeRecyclerView.itemAnimator = null
         binding.timeRecyclerView.adapter = adapter
@@ -49,7 +52,7 @@ class TimeManageActivity : AppCompatActivity() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addTime.setOnClickListener {
-            TimePickerDialog(viewModel).show(supportFragmentManager, TimePickerDialog.TAG)
+            TimePickerDialog(viewModel, alarmManager).show(supportFragmentManager, TimePickerDialog.TAG)
         }
     }
 }

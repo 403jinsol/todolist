@@ -8,5 +8,5 @@ data class TimeAlarm(
     @PrimaryKey val timeAlarmId: Long?,
     val allTime:Int,
     val hour: Int,
-    val minute: Int
+    val minute: String
 )
