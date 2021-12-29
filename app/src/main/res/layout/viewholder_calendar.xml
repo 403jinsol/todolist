@@ -89,7 +89,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/calendarContainer"
+        android:id="@+id/calendarContainerMonday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_ver_margin"
@@ -97,7 +97,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/day1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,7 +106,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -117,7 +115,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -127,7 +124,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -137,7 +133,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -147,7 +142,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -157,12 +151,84 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/day7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/sunday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calendarContainerSunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_ver_margin"
+        android:layout_marginBottom="@dimen/todo_small_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/sunday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/monday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/tuesday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/wednesday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/thursday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/friday"
+            android:textSize="@dimen/calendar_date_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/saturday"
             android:textSize="@dimen/calendar_date_font_size"
             android:textStyle="bold" />
 

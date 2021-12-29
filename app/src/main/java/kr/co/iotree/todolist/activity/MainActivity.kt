@@ -11,10 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.amitshekhar.DebugDB
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
 import kr.co.iotree.todolist.adapter.MainAdapter
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
+import kr.co.iotree.todolist.util.PrefUtil
+import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     val viewModel: CalendarViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: MainAdapter
+    var startSunday = pref.getPrefBool(START_SUNDAY, false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, StorageActivity::class.java))
         }
 
+        DebugDB.getAddressLog()
         setViewModel()
         setDrawerMenu()
     }
@@ -47,6 +53,11 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.END))
             binding.drawerLayout.closeDrawer(GravityCompat.END)
+
+        if (startSunday != pref.getPrefBool(START_SUNDAY, false)) {
+            startSunday = pref.getPrefBool(START_SUNDAY, false)
+            adapter.notifyItemChanged(1)
+        }
 
         viewModel.allTodo.observe(this) {
             adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
@@ -57,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setViewModel(){
+    private fun setViewModel() {
         viewModel.date.observe(this) {
             viewModel.changeCompleteCount(viewModel.year.value!!, viewModel.month.value!!)
         }
@@ -92,6 +103,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.timeManage.setOnClickListener { startActivity(Intent(this, TimeManageActivity::class.java)) }
+
+        binding.setting.setOnClickListener { startActivity(Intent(this, SettingActivity::class.java)) }
 
         setFlexbox()
     }

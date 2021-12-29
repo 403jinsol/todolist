@@ -1,12 +1,15 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.annotation.SuppressLint
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
 import kr.co.iotree.todolist.adapter.CalendarAdapter
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.util.*
+import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
@@ -15,7 +18,16 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private
     @SuppressLint("SetTextI18n")
     fun bindData(viewModel: CalendarViewModel, isMonth: Boolean) {
 
+        if (pref.getPrefBool(START_SUNDAY, false)) {
+            binding.calendarContainerSunday.visibility = View.VISIBLE
+            binding.calendarContainerMonday.visibility = View.GONE
+        } else {
+            binding.calendarContainerSunday.visibility = View.GONE
+            binding.calendarContainerMonday.visibility = View.VISIBLE
+        }
+
         binding.yearMonth.text = "${viewModel.year.value}년 ${viewModel.month.value}월"
+
         calendarAdapter = CalendarAdapter(viewModel)
 
         binding.completeCount.text = viewModel.completeCount.value.toString()

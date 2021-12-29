@@ -17,14 +17,14 @@ interface TodoDao {
     @Query("UPDATE Todo SET complete = :complete WHERE todoId = :todoId")
     fun updateComplete(complete: Boolean, todoId: Long?)
 
-    @Query("UPDATE Todo SET date = 0, storage = :storage WHERE todoId = :todoId")
+    @Query("UPDATE Todo SET storage = :storage WHERE todoId = :todoId")
     fun updateStorage(storage: Boolean, todoId: Long?)
 
     @Query("UPDATE Todo SET date = :date WHERE todoId = :todoId")
     fun updateDate(date: Int, todoId: Long?)
 
     @Query("UPDATE Todo SET content = :content WHERE todoId = :todoId")
-    fun updateContent(content:String, todoId: Long?)
+    fun updateContent(content: String, todoId: Long?)
 
     @Query("SELECT * FROM Todo WHERE todoId = :todoId")
     fun getTodo(todoId: Long?): Todo

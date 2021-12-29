@@ -22,4 +22,6 @@
     <color name="quit2">#319639</color>
     <color name="quit3">#e2618d</color>
     <color name="toast_background">#E91C1C1C</color>
+    <color name="switch_track_off">#FFE5E5E5</color>
+    <color name="switch_track_on">#FF333333</color>
 </resources>

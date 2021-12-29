@@ -1,9 +1,10 @@
 package kr.co.iotree.todolist.util
 
 import android.content.Context
-import android.os.Build
+import android.util.Log
 import android.util.TypedValue
-import android.widget.ImageView
+import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -78,11 +79,11 @@ fun getNextWeek(year: Int, month: Int, date: Int): String {
  * 내일로 이동
  * String yyyyMMd 반환하니까 getYearMonth()로 잘라서 쓰기
  */
-fun getNextDay(time:Int): String {
+fun getNextDay(time: Int): String {
     val df = SimpleDateFormat("yyyyMMd", Locale.getDefault())
 
-    val year = time.toString().substring(0,4).toInt()
-    val month = time.toString().substring(4,6).toInt()
+    val year = time.toString().substring(0, 4).toInt()
+    val month = time.toString().substring(4, 6).toInt()
     val date = time.toString().substring(6).toInt()
 
     val cal = Calendar.getInstance()
@@ -120,11 +121,15 @@ fun getFirstDayOfTheWeek(year: Int, month: Int): Int {
  */
 fun getDayOfTheWeek(year: Int, month: Int, date: Int): Int {
     val cal = Calendar.getInstance()
+    Log.d("☆☆☆☆☆☆☆", "getDayOfTheWeek: ${pref.getPrefBool(START_SUNDAY, false)}")
     cal.set(year, month - 1, date)
-    return if (cal[Calendar.DAY_OF_WEEK] == 1)
-        6
-    else
-        cal[Calendar.DAY_OF_WEEK] - 2
+    return if (pref.getPrefBool(START_SUNDAY, false)) {
+        if (cal[Calendar.DAY_OF_WEEK] == 1)
+            6
+        else
+            cal[Calendar.DAY_OF_WEEK] - 2
+    } else
+        cal[Calendar.DAY_OF_WEEK]
 }
 
 /**
@@ -184,13 +189,5 @@ fun getMaxDate(year: Int, month: Int): Int {
                 28
         }
         else -> 0
-    }
-}
-
-fun setImageViewColor(imageView: ImageView, context: Context, color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        imageView.setColorFilter(context.getColor(color))
-    } else {
-        imageView.setColorFilter(context.resources.getColor(color))
     }
 }

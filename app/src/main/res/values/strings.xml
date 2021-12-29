@@ -66,7 +66,10 @@
     <string name="complete">완료</string>
 
     <string name="storage">보관함</string>
+
     <string name="toast_storage_complete">보관함에서는 완료할 수 없습니다</string>
+    <string name="setting_calendar_sunday">달력에서 일요일부터 시작</string>
+    <string name="order_complete">완료된 할 일 목록은 뒤로 정렬</string>
 
     <string name="dummy">Lorem ipsum</string>
     <string name="dummyNumber">0</string>

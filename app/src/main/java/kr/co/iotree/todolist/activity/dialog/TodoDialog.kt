@@ -1,5 +1,6 @@
 package kr.co.iotree.todolist.activity.dialog
 
+import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -61,6 +62,15 @@ class TodoDialog(val viewModel: CalendarViewModel) : DialogFragment() {
         binding.edit.setOnClickListener {
             which = EDIT
             dismiss()
+        }
+
+        binding.changeDate.setOnClickListener {
+            val dlg = DatePickerDialog(requireContext())
+            dlg.setOnDateSetListener { _, year, month, dayOfMonth ->
+                viewModel.updateDateTodo("$year${month + 1}$dayOfMonth".toInt(), todo.todoId!!)
+                this.dismiss()
+            }
+            dlg.show()
         }
 
         binding.moveStorage.setOnClickListener {

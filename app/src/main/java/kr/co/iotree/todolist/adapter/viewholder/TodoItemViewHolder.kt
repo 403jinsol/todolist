@@ -12,7 +12,6 @@ import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.dialog.TodoDialog
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
-import kr.co.iotree.todolist.util.setImageViewColor
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private val viewModel: CalendarViewModel) : RecyclerView.ViewHolder(binding.root) {
@@ -25,7 +24,7 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
             binding.todoIcon.setColorFilter(color)
         } else {
             binding.todoIcon.apply {
-                setImageViewColor(this, itemView.context, R.color.todo_icon_default)
+                this.setColorFilter(context.getColor(R.color.todo_icon_default))
             }
         }
 
@@ -37,7 +36,7 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
                 viewModel.completeCount.value = viewModel.completeCount.value!! + 1
             } else {
                 (it as ImageView).apply {
-                    setImageViewColor(this, itemView.context, R.color.todo_icon_default)
+                    this.setColorFilter(context.getColor(R.color.todo_icon_default))
                 }
                 isCompleted = !isCompleted
                 viewModel.updateComplete(false, item.todoId)

@@ -12,17 +12,7 @@ import kr.co.iotree.todolist.viewModel.TimeListViewModel
 class TimeViewHolder(private val binding: ViewholderTimeBinding, private val viewModel: TimeListViewModel, private val alarmManager: AlarmManager) : RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n", "UnspecifiedImmutableFlag")
     fun bindData(alarm: TimeAlarm) {
-        if (alarm.hour >= 12) {
-            if (alarm.hour - 12 == 0)
-                binding.time.text = "오후 ${12}:${alarm.minute}"
-            else
-                binding.time.text = "오후 ${alarm.hour - 12}:${alarm.minute}"
-        } else {
-            if (alarm.hour == 0)
-                binding.time.text = "오전 ${12}:${alarm.minute}"
-            else
-                binding.time.text = "오전 ${alarm.hour}:${alarm.minute}"
-        }
+        binding.time.text = "%s %d:%02d".format(if (alarm.hour < 12) "오전" else "오후", if (alarm.hour < 12) alarm.hour else alarm.hour - 12, alarm.minute)
 
         binding.remove.setOnClickListener {
             viewModel.deleteTime(alarm)

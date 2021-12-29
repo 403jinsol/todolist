@@ -240,6 +240,7 @@
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                android:id="@+id/setting"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/setting"

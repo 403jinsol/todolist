@@ -38,12 +38,9 @@ class StorageDialog(val viewModel: StorageViewModel) : DialogFragment() {
         binding.changeDate.setOnClickListener {
             val dlg = DatePickerDialog(requireContext())
             dlg.setOnDateSetListener { _, year, month, dayOfMonth ->
-                Log.d("☆☆☆☆☆☆☆", "year: $year")
-                Log.d("☆☆☆☆☆☆☆", "month+1: ${month + 1}")
-                Log.d("☆☆☆☆☆☆☆", "dayOfMonth: $dayOfMonth")
-                Log.d("☆☆☆☆☆☆☆", "yearMonth+1dayOfMonth: $year${month + 1}$dayOfMonth")
                 viewModel.updateDateTodo("$year${month + 1}$dayOfMonth".toInt(), todo.todoId!!)
                 viewModel.updateStorageTodo(false, todo.todoId!!)
+                this.dismiss()
             }
             dlg.show()
         }
