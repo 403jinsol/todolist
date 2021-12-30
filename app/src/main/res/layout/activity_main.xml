@@ -100,7 +100,7 @@
                 android:layout_marginVertical="@dimen/big_ver_margin"
                 android:background="@drawable/round"
                 android:minHeight="0dp"
-                android:text="@string/certification"
+                android:text="@string/verify"
                 android:textSize="@dimen/todo_item_font_size" />
 
             <LinearLayout

@@ -54,7 +54,7 @@ class GroupAddActivity : AppCompatActivity() {
         }
 
         setRadioGroupEvent()
-        setOnClickListener()
+        setClickListener()
 
         binding.public3.isChecked = true
     }
@@ -79,7 +79,7 @@ class GroupAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun setOnClickListener() {
+    private fun setClickListener() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addGroup.setOnClickListener {

@@ -1,4 +1,4 @@
-package kr.co.iotree.todolist.BroadCast
+package kr.co.iotree.todolist.broadCast
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -17,13 +17,17 @@ class AlarmReceiver : BroadcastReceiver() {
     lateinit var notificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d(TAG, "Received intent : $intent")
-        notificationManager = context.getSystemService(
-            Context.NOTIFICATION_SERVICE
-        ) as NotificationManager
+        when (intent.action) {
+            else -> {
+                Log.d(TAG, "Received intent : $intent")
+                notificationManager = context.getSystemService(
+                    Context.NOTIFICATION_SERVICE
+                ) as NotificationManager
 
-        createNotificationChannel()
-        deliverNotification(context)
+                createNotificationChannel()
+                deliverNotification(context)
+            }
+        }
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")

@@ -104,26 +104,27 @@ fun getYearMonthDate(time: String, type: String): Int {
 
 /**
  * 매달 1일의 요일 계산
- * 월요일이 0, 일요일이 7
+ * 월요일이 0, 일요일이 6
  */
 fun getFirstDayOfTheWeek(year: Int, month: Int): Int {
     val cal = Calendar.getInstance()
     cal.set(year, month - 1, 1)
-    return if (cal[Calendar.DAY_OF_WEEK] == 1)
-        6
+    return if (!pref.getPrefBool(START_SUNDAY, false))
+        getDayOfTheWeek(year, month, 1)
     else
-        cal[Calendar.DAY_OF_WEEK] - 2
+        getDayOfTheWeek(year, month, 1) - 1
 }
 
 /**
  * 요일 계산
- * 월요일이 0, 일요일이 7
+ * 월요일부터 시작할 때는 월요일이 0, 일요일이 6
+ * 일요일부터 시작할 때는 일요일이 0, 토요일이 6
  */
 fun getDayOfTheWeek(year: Int, month: Int, date: Int): Int {
     val cal = Calendar.getInstance()
     Log.d("☆☆☆☆☆☆☆", "getDayOfTheWeek: ${pref.getPrefBool(START_SUNDAY, false)}")
     cal.set(year, month - 1, date)
-    return if (pref.getPrefBool(START_SUNDAY, false)) {
+    return if (!pref.getPrefBool(START_SUNDAY, false)) {
         if (cal[Calendar.DAY_OF_WEEK] == 1)
             6
         else
@@ -150,7 +151,12 @@ fun getMondayDate(year: Int, month: Int, date: Int): Int {
     } else {
         cal.add(Calendar.DATE, -getDayOfTheWeek(year, month, date))
     }
-    return df.format(cal.time).toInt()
+
+    return if (!pref.getPrefBool(START_SUNDAY, false)) {
+        df.format(cal.time).toInt()
+    } else {
+        df.format(cal.time).toInt() + 1
+    }
 }
 
 /**

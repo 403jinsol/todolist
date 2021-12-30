@@ -19,6 +19,7 @@
         android:paddingVertical="@dimen/todo_group_ver_padding">
 
         <ImageView
+            android:id="@+id/groupIcon"
             android:layout_width="@dimen/todo_group_icon_size"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/todo_small_margin"

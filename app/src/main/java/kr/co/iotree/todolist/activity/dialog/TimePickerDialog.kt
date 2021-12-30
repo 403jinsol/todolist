@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,10 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import android.widget.TimePicker
 import androidx.annotation.IntRange
-import androidx.annotation.RequiresApi
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kr.co.iotree.todolist.broadCast.AlarmReceiver
 import kr.co.iotree.todolist.database.TimeAlarm
 import kr.co.iotree.todolist.databinding.DialogTimePickerBinding
-import kr.co.iotree.todolist.BroadCast.AlarmReceiver
 import kr.co.iotree.todolist.viewModel.TimeListViewModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -58,7 +56,6 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
         return minutesArray.toArray(arrayOf(""))
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DialogTimePickerBinding.inflate(inflater, container, false)
         binding.timePicker.setTimeInterval()

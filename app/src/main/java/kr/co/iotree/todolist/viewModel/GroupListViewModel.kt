@@ -6,7 +6,7 @@ import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.database.TodoDatabase
 
 class GroupListViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
+    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application))
     val proceedGroups = repository.readProceedGroup
     val completeGroups = repository.readCompleteGroup
 }

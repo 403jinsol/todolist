@@ -14,6 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        resConfigs "ko", "en", "ja"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

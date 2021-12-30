@@ -11,7 +11,7 @@ import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.getToday
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application).todoDao(), TodoDatabase.getInstance(application).groupDao())
+    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application))
 
     val allCalendarGroup: LiveData<MutableList<TodoGroup>> = repository.readCalendarGroup
     val allTodo: LiveData<MutableList<Todo>> = repository.readAllTodo

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TodoList</string>
+
+    <string name="month">M</string>
+    <string name="week">W</string>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
+
+    <string name="verify">Verify</string>
+    <string name="group">Goals</string>
+    <string name="time">Reminders</string>
+    <string name="more">More</string>
+    <string name="simple">Routines</string>
+    <string name="notice">Announcements</string>
+    <string name="question">Inquiry</string>
+    <string name="setting">Settings</string>
+    <string name="termsOfUse">Terms of Use</string>
+    <string name="privacyPolicy">Privacy</string>
+    <string name="openSource">Open Source</string>
+    <string name="version">Version</string>
+    <string name="logout">Sign out</string>
+    <string name="management">Manage</string>
+    <string name="check">Confirm</string>
+
+    <string name="edit">Edit</string>
+    <string name="time_alarm">Set Alarm</string>
+    <string name="tomorrow">Do It Tomorrow</string>
+    <string name="replay_tomorrow">Repeat Tomorrow</string>
+    <string name="change_date">Change Date</string>
+    <string name="change_order">Reorder Items</string>
+    <string name="move_storage">Move to Backlog</string>
+    <string name="do_today">Do It Today</string>
+
+    <string name="no_group">You can set your goals to manage your todo items.</string>
+    <string name="no_time">You can be informed of today\&apos;s todo items by setting reminders.</string>
+
+    <string name="title">Title</string>
+    <string name="publicSetting">Privacy</string>
+    <string name="public_str">Public</string>
+    <string name="internal">Selected Followings</string>
+    <string name="private_str">Private</string>
+    <string name="hidden">Hidden</string>
+    <string name="color">Color</string>
+    <string name="normal">General</string>
+    <string name="delete">Delete</string>
+    <string name="progress">Progress</string>
+    <string name="quit">Set as finished</string>
+    <string name="quit1">Achieved the goal!</string>
+    <string name="quit2">The goal was just ended</string>
+    <string name="quit3">I want to stop it</string>
+    <string name="toast_public">You need to sign up to share goal</string>
+    <string name="toast_reason">Please select the reason of finishing the goal</string>
+    <string name="toast_no_name">Please enter the name of the goal</string>
+    <string name="complete_group">Finished goals</string>
+    <string name="complete_dialog_content1">Congratulations on achieving your goal.\n Try finish more goals.</string>
+    <string name="complete_dialog_content2">Great you worked until the end.\n Let\&apos;s move on to another goal.</string>
+    <string name="complete_dialog_content3">We\&apos;re always here to see you achieve goal.\n Keep up the good work.</string>
+
+    <string name="input">Input</string>
+    <string name="complete">Done</string>
+
+    <string name="storage">Backlog</string>
+
+    <string name="toast_storage_complete">Checkbox doesn\&apos;t work in Backlog</string>
+    <string name="setting_calendar_sunday">Start with Sunday in calendar</string>
+    <string name="order_complete">Sort todo items as completion</string>
+    <string name="language">Language</string>
+    <string name="change_theme">Change App Theme</string>
+    <string name="change_font">Change font</string>
+    <string name="system">System</string>
+    <string name="basic">Default</string>
+
+</resources>

@@ -52,4 +52,6 @@
     <dimen name="switch_track_width">15dp</dimen>
     <dimen name="switch_track_height">30dp</dimen>
     <dimen name="switch_track_radius">25dp</dimen>
+    <dimen name="setting_height_size">35dp</dimen>
+    <dimen name="setting_value_font_size">13sp</dimen>
 </resources>
