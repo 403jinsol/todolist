@@ -26,7 +26,7 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private
             binding.calendarContainerMonday.visibility = View.VISIBLE
         }
 
-        if (Storage(itemView.context).getPreferredLocale() == "en") {
+        if (pref.getPrefString(PrefUtil.LOCALE_CODE, LocaleUtil.OPTION_PHONE_LANGUAGE) == "en") {
             val monthArray = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
             binding.yearMonth.text = String.format("%s %d", monthArray[viewModel.month.value!! - 1], viewModel.year.value)
         } else {

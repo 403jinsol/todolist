@@ -1,12 +1,10 @@
 package kr.co.iotree.todolist.activity
 
 import android.os.Bundle
-import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.storage
 import kr.co.iotree.todolist.databinding.ActivitySettingLanguageBinding
 import kr.co.iotree.todolist.util.LocaleUtil
-import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_STRING
+import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_CODE
 
 class SettingLanguageActivity : BaseActivity() {
     private lateinit var binding: ActivitySettingLanguageBinding
@@ -29,15 +27,7 @@ class SettingLanguageActivity : BaseActivity() {
     }
 
     private fun updateAppLocale(locale: String) {
-        val localeString = when (locale) {
-            "en" -> resources.getString(R.string.systemEng)
-            "ko" -> resources.getString(R.string.systemKor)
-            "ja" -> resources.getString(R.string.systemJap)
-            else -> LocaleUtil.OPTION_PHONE_LANGUAGE
-        }
-
-        storage.setPreferredLocale(locale)
-        pref.setPrefString(LOCALE_STRING, localeString)
+        pref.setPrefString(LOCALE_CODE, locale)
         LocaleUtil.applyLocalizedContext(this, locale)
         onBackPressed()
     }

@@ -4,21 +4,18 @@ import android.app.Application
 import android.content.Context
 import kr.co.iotree.todolist.util.LocaleUtil
 import kr.co.iotree.todolist.util.PrefUtil
-import kr.co.iotree.todolist.util.Storage
 
 class PrefActivity : Application() {
     override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(LocaleUtil.getLocalizedContext(base, Storage(base).getPreferredLocale()))
+        super.attachBaseContext(LocaleUtil.getLocalizedContext(base, PrefUtil(base).getPrefString(PrefUtil.LOCALE_CODE, LocaleUtil.OPTION_PHONE_LANGUAGE)))
     }
 
     override fun onCreate() {
         pref = PrefUtil(applicationContext)
-        storage = Storage(applicationContext)
         super.onCreate()
     }
 
     companion object {
         lateinit var pref: PrefUtil
-        lateinit var storage: Storage
     }
 }

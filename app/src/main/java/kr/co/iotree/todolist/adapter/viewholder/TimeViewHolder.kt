@@ -6,15 +6,17 @@ import android.app.PendingIntent
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
+import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
 import kr.co.iotree.todolist.database.TimeAlarm
 import kr.co.iotree.todolist.databinding.ViewholderTimeBinding
-import kr.co.iotree.todolist.util.Storage
+import kr.co.iotree.todolist.util.LocaleUtil
+import kr.co.iotree.todolist.util.PrefUtil
 import kr.co.iotree.todolist.viewModel.TimeListViewModel
 
 class TimeViewHolder(private val binding: ViewholderTimeBinding, private val viewModel: TimeListViewModel, private val alarmManager: AlarmManager) : RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n", "UnspecifiedImmutableFlag")
     fun bindData(alarm: TimeAlarm) {
-        if (Storage(itemView.context).getPreferredLocale() == "en")
+        if (pref.getPrefString(PrefUtil.LOCALE_CODE, LocaleUtil.OPTION_PHONE_LANGUAGE) == "en")
             binding.time.text = "%d:%02d %s".format(
                 if (alarm.hour < 12) alarm.hour else alarm.hour - 12, alarm.minute,
                 if (alarm.hour < 12) itemView.context.resources.getString(R.string.am) else itemView.context.resources.getString(R.string.pm)

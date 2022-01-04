@@ -25,8 +25,6 @@ class PrefUtil(context: Context) {
     companion object {
         const val START_SUNDAY = "startSunday"
         const val ORDER_COMPLETE = "startSunday"
-        const val MODE_MONTH = "modeMonth"
-        const val LOCALE_STRING = "localeString"
         const val LOCALE_CODE = "localeCode"
     }
 }
