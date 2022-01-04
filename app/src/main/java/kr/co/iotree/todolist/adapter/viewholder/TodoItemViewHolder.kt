@@ -46,7 +46,6 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
         }
 
         binding.moreIcon.setOnClickListener {
-            Log.d("☆☆☆☆☆☆☆☆", "${item.date}")
             val bundle = Bundle().apply {
                 putLong("todoId", item.todoId!!)
             }

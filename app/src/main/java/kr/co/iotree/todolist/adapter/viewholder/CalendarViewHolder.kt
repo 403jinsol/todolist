@@ -26,7 +26,12 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private
             binding.calendarContainerMonday.visibility = View.VISIBLE
         }
 
-        binding.yearMonth.text = "${viewModel.year.value}년 ${viewModel.month.value}월"
+        if (Storage(itemView.context).getPreferredLocale() == "en") {
+            val monthArray = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+            binding.yearMonth.text = String.format("%s %d", monthArray[viewModel.month.value!! - 1], viewModel.year.value)
+        } else {
+            binding.yearMonth.text = String.format(itemView.context.resources.getString(R.string.calendar_text), viewModel.year.value, viewModel.month.value)
+        }
 
         calendarAdapter = CalendarAdapter(viewModel)
 
@@ -64,11 +69,11 @@ class CalendarViewHolder(private val binding: ViewholderCalendarBinding, private
         binding.monthWeekContainer.setOnClickListener {
             if (isMonth) {
                 binding.arrow.setImageResource(R.drawable.ic_calender_down)
-                binding.monthWeek.text = "주"
+                binding.monthWeek.text = itemView.context.resources.getText(R.string.week)
                 viewModel.isMonth.value = !isMonth
             } else {
                 binding.arrow.setImageResource(R.drawable.ic_calender_up)
-                binding.monthWeek.text = "월"
+                binding.monthWeek.text = itemView.context.resources.getText(R.string.month)
                 viewModel.isMonth.value = !isMonth
             }
         }

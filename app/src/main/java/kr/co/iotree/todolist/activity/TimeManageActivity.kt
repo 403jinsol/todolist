@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.activity.dialog.TimePickerDialog
@@ -12,7 +11,7 @@ import kr.co.iotree.todolist.adapter.TimeAdapter
 import kr.co.iotree.todolist.databinding.ActivityTimeManageBinding
 import kr.co.iotree.todolist.viewModel.TimeListViewModel
 
-class TimeManageActivity : AppCompatActivity() {
+class TimeManageActivity : BaseActivity() {
     val viewModel: TimeListViewModel by viewModels()
     lateinit var binding: ActivityTimeManageBinding
     lateinit var adapter: TimeAdapter

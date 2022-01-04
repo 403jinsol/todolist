@@ -122,7 +122,6 @@ fun getFirstDayOfTheWeek(year: Int, month: Int): Int {
  */
 fun getDayOfTheWeek(year: Int, month: Int, date: Int): Int {
     val cal = Calendar.getInstance()
-    Log.d("☆☆☆☆☆☆☆", "getDayOfTheWeek: ${pref.getPrefBool(START_SUNDAY, false)}")
     cal.set(year, month - 1, date)
     return if (!pref.getPrefBool(START_SUNDAY, false)) {
         if (cal[Calendar.DAY_OF_WEEK] == 1)

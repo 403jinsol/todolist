@@ -18,15 +18,16 @@ class PrefUtil(context: Context) {
         prefs.edit().putString(key, value).apply()
     }
 
-    fun getPrefString(key: String, defValue: String): String? {
-        return prefs.getString(key, defValue)
+    fun getPrefString(key: String, defValue: String): String {
+        return prefs.getString(key, defValue)!!
     }
 
     companion object {
         const val START_SUNDAY = "startSunday"
         const val ORDER_COMPLETE = "startSunday"
         const val MODE_MONTH = "modeMonth"
-        const val LOCALE = "locale"
+        const val LOCALE_STRING = "localeString"
+        const val LOCALE_CODE = "localeCode"
     }
 }
 

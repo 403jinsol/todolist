@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.dialog.CompleteDialog
@@ -15,7 +14,7 @@ import kr.co.iotree.todolist.adapter.ColorAdapter
 import kr.co.iotree.todolist.databinding.ActivityGroupEditBinding
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 
-class GroupEditActivity : AppCompatActivity() {
+class GroupEditActivity : BaseActivity() {
     lateinit var binding: ActivityGroupEditBinding
     lateinit var adapter: ColorAdapter
     val viewModel by viewModels<GroupInfoViewModel> {

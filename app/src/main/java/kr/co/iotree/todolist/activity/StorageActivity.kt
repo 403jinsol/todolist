@@ -3,14 +3,13 @@ package kr.co.iotree.todolist.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.adapter.StorageGroupAdapter
 import kr.co.iotree.todolist.databinding.ActivityStorageBinding
 import kr.co.iotree.todolist.viewModel.StorageViewModel
 
-class StorageActivity : AppCompatActivity() {
+class StorageActivity : BaseActivity() {
     val viewModel: StorageViewModel by viewModels()
     lateinit var binding: ActivityStorageBinding
     lateinit var adapter: StorageGroupAdapter

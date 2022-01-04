@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.adapter.ColorAdapter
@@ -15,7 +14,7 @@ import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ActivityGroupAddBinding
 import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 
-class GroupAddActivity : AppCompatActivity() {
+class GroupAddActivity : BaseActivity() {
     val viewModel by viewModels<GroupInfoViewModel> {
         GroupInfoViewModel.Factory(application, intent.getLongExtra("groupId", -1))
     }

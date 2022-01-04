@@ -58,11 +58,12 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DialogTimePickerBinding.inflate(inflater, container, false)
-        binding.timePicker.setTimeInterval()
+//        binding.timePicker.setTimeInterval()
 
         binding.complete.setOnClickListener {
             val hour = binding.timePicker.hour
-            val minute = binding.timePicker.getDisplayedMinute()
+            val minute = binding.timePicker.minute
+//            val minute = binding.timePicker.getDisplayedMinute()
             val alarmCode = "%d%02d".format(hour, minute).toInt()
 
             viewModel.addTime(TimeAlarm(null, alarmCode, hour, minute))

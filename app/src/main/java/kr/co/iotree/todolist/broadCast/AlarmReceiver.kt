@@ -11,6 +11,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.MainActivity
+import kr.co.iotree.todolist.database.TodoDatabase
+import kr.co.iotree.todolist.util.getToday
 
 class AlarmReceiver : BroadcastReceiver() {
 
@@ -39,11 +41,18 @@ class AlarmReceiver : BroadcastReceiver() {
             contentIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
+        val db = TodoDatabase.getInstance(context)
+        val contentText = if (db.todoDao().getCompleteTodo(getToday("yyyyMMd"), false).size > 0) {
+            db.todoDao().getCompleteTodo(getToday("yyyyMMd"), false)[0].content
+        } else {
+            context.resources.getString(R.string.no_todo_notification)
+        }
+
         val builder =
             NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_clover)
-                .setContentTitle("Alert")
-                .setContentText("This is repeating alarm")
+                .setContentTitle("TodoList")
+                .setContentText(contentText)
                 .setContentIntent(contentPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
@@ -56,22 +65,21 @@ class AlarmReceiver : BroadcastReceiver() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 PRIMARY_CHANNEL_ID,
-                "Stand up notification",
+                NOTIFICATION_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
             notificationChannel.description = "AlarmManager Tests"
-            notificationManager.createNotificationChannel(
-                notificationChannel
-            )
+            notificationManager.createNotificationChannel(notificationChannel)
         }
     }
 
     companion object {
         const val TAG = "AlarmReceiver"
         const val NOTIFICATION_ID = 0
+        const val NOTIFICATION_NAME = "Stand up notification"
         const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
     }
 }

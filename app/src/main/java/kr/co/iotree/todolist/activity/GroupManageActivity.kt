@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.adapter.GroupAdapter
 import kr.co.iotree.todolist.databinding.ActivityGroupManageBinding
 import kr.co.iotree.todolist.viewModel.GroupListViewModel
 
-class GroupManageActivity : AppCompatActivity() {
+class GroupManageActivity : BaseActivity() {
     val viewModel: GroupListViewModel by viewModels()
     lateinit var binding: ActivityGroupManageBinding
     private lateinit var proceedAdapter: GroupAdapter

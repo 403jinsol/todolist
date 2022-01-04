@@ -67,4 +67,8 @@
     <string name="change_font">フォント変更</string>
     <string name="system">システム</string>
     <string name="basic">基本</string>
+    <string name="calendar_text">%d年 %d月</string>
+    <string name="no_todo_notification">今日は日程がありません。</string>
+    <string name="am">午前</string>
+    <string name="pm">午後</string>
 </resources>

@@ -75,5 +75,9 @@
     <string name="change_font">Change font</string>
     <string name="system">System</string>
     <string name="basic">Default</string>
+    <string name="calendar_text">eng</string>
+    <string name="no_todo_notification">There\'s nothing to do today.</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
 
 </resources>

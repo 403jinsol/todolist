@@ -1,19 +1,15 @@
 package kr.co.iotree.todolist.activity
 
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.ConfigurationCompat
+import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefActivity.Companion.storage
 import kr.co.iotree.todolist.databinding.ActivitySettingLanguageBinding
-import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE
-import java.util.*
+import kr.co.iotree.todolist.util.LocaleUtil
+import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_STRING
 
-class SettingLanguageActivity : AppCompatActivity() {
+class SettingLanguageActivity : BaseActivity() {
     private lateinit var binding: ActivitySettingLanguageBinding
-    private lateinit var configuration: Configuration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,29 +17,29 @@ class SettingLanguageActivity : AppCompatActivity() {
         binding = ActivitySettingLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        configuration = resources.configuration
-
         binding.back.setOnClickListener { onBackPressed() }
 
-        binding.systemContainer.setOnClickListener {
-            setLanguageCode(ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0).language)
-        }
+        binding.systemContainer.setOnClickListener { updateAppLocale(LocaleUtil.OPTION_PHONE_LANGUAGE) }
 
-        binding.engContainer.setOnClickListener {
-            setLanguageCode("en")
-        }
+        binding.engContainer.setOnClickListener { updateAppLocale("en") }
 
-        binding.japContainer.setOnClickListener { setLanguageCode("ja") }
+        binding.korContainer.setOnClickListener { updateAppLocale("ko") }
+
+        binding.japContainer.setOnClickListener { updateAppLocale("ja") }
     }
 
-    private fun setLanguageCode(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
+    private fun updateAppLocale(locale: String) {
+        val localeString = when (locale) {
+            "en" -> resources.getString(R.string.systemEng)
+            "ko" -> resources.getString(R.string.systemKor)
+            "ja" -> resources.getString(R.string.systemJap)
+            else -> LocaleUtil.OPTION_PHONE_LANGUAGE
+        }
 
-        val config = Configuration()
-        config.setLocale(locale)
-        baseContext.resources.updateConfiguration(config, resources.displayMetrics)
-
-        pref.setPrefString(LOCALE, lang)
+        storage.setPreferredLocale(locale)
+        pref.setPrefString(LOCALE_STRING, localeString)
+        LocaleUtil.applyLocalizedContext(this, locale)
+        onBackPressed()
     }
+
 }

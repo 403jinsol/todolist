@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,16 +16,16 @@ import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
 import kr.co.iotree.todolist.adapter.MainAdapter
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
-import kr.co.iotree.todolist.util.PrefUtil
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.dpToPx
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : BaseActivity() {
     val viewModel: CalendarViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: MainAdapter
-    var startSunday = pref.getPrefBool(START_SUNDAY, false)
+    private var startSunday = pref.getPrefBool(START_SUNDAY, false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
