@@ -1,9 +1,8 @@
 package kr.co.iotree.todolist.util
 
 import android.content.Context
-import android.util.Log
 import android.util.TypedValue
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import java.text.SimpleDateFormat
 import java.util.*

@@ -3,7 +3,7 @@ package kr.co.iotree.todolist.activity
 import android.content.Intent
 import android.os.Bundle
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.databinding.ActivitySettingBinding
 import kr.co.iotree.todolist.util.LocaleUtil.Companion.OPTION_PHONE_LANGUAGE
 import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_CODE

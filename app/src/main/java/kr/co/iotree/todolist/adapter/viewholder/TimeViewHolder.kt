@@ -6,7 +6,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.database.TimeAlarm
 import kr.co.iotree.todolist.databinding.ViewholderTimeBinding
 import kr.co.iotree.todolist.util.LocaleUtil

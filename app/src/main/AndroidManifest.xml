@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoList"
-        android:name=".activity.PrefActivity">
+        android:name=".activity.PrefApplication">
         <receiver
             android:name=".broadCast.AlarmReceiver"
             android:enabled="true"

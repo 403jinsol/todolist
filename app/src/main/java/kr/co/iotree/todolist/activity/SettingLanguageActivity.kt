@@ -1,7 +1,7 @@
 package kr.co.iotree.todolist.activity
 
 import android.os.Bundle
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.databinding.ActivitySettingLanguageBinding
 import kr.co.iotree.todolist.util.LocaleUtil
 import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_CODE

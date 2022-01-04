@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amitshekhar.DebugDB
 import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.activity.PrefActivity.Companion.pref
+import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.adapter.MainAdapter
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
