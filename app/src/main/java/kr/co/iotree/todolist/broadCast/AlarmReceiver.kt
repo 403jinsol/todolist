@@ -1,35 +1,29 @@
 package kr.co.iotree.todolist.broadCast
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.MainActivity
 import kr.co.iotree.todolist.database.TodoDatabase
+import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.util.getToday
 
 class AlarmReceiver : BroadcastReceiver() {
-
     lateinit var notificationManager: NotificationManager
 
-    override fun onReceive(context: Context, intent: Intent) {
-        when (intent.action) {
-            else -> {
-                Log.d(TAG, "Received intent : $intent")
-                notificationManager = context.getSystemService(
-                    Context.NOTIFICATION_SERVICE
-                ) as NotificationManager
-
-                createNotificationChannel()
-                deliverNotification(context)
-            }
-        }
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
+    override fun onReceive(context: Context, intent: Intent) { //Broadcast 수신되면 자동으로 호출
+        notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        createNotificationChannel()
+        deliverNotification(context)
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
@@ -42,8 +36,11 @@ class AlarmReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
         val db = TodoDatabase.getInstance(context)
-        val contentText = if (db.todoDao().getCompleteTodo(getToday("yyyyMMd"), false).size > 0) {
-            db.todoDao().getCompleteTodo(getToday("yyyyMMd"), false)[0].content
+        val repository = TodoGroupRepository.getInstance(context)
+        val list = repository.getAllDayTodo(getToday("yyyyMMd"))
+        Log.d("☆", "deliverNotification: ${getToday("yyyyMMd")}")
+        val contentText = if (list.size > 0) {
+            list[0].content
         } else {
             context.resources.getString(R.string.no_todo_notification)
         }
@@ -68,16 +65,12 @@ class AlarmReceiver : BroadcastReceiver() {
                 NOTIFICATION_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             )
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.RED
-            notificationChannel.enableVibration(true)
             notificationChannel.description = "AlarmManager Tests"
             notificationManager.createNotificationChannel(notificationChannel)
         }
     }
 
     companion object {
-        const val TAG = "AlarmReceiver"
         const val NOTIFICATION_ID = 0
         const val NOTIFICATION_NAME = "Stand up notification"
         const val PRIMARY_CHANNEL_ID = "primary_notification_channel"

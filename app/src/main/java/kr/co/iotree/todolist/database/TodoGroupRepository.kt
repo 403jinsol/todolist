@@ -1,8 +1,22 @@
 package kr.co.iotree.todolist.database
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 
-class TodoGroupRepository(val database:TodoDatabase) {
+class TodoGroupRepository private constructor(val database: TodoDatabase) {
+    companion object {
+        @Volatile
+        private var INSTANCE: TodoGroupRepository? = null
+
+        fun getInstance(context: Context): TodoGroupRepository {
+            return INSTANCE ?: synchronized(this) {
+                val instance = TodoGroupRepository(TodoDatabase.getInstance(context))
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+
     val groupDao = database.groupDao()
     val todoDao = database.todoDao()
 

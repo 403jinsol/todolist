@@ -3,6 +3,7 @@ package kr.co.iotree.todolist.activity
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
@@ -15,9 +16,12 @@ import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.adapter.MainAdapter
+import kr.co.iotree.todolist.database.TodoDatabase
+import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.dpToPx
+import kr.co.iotree.todolist.util.getToday
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 
@@ -42,6 +46,13 @@ class MainActivity : BaseActivity() {
         binding.storage.setOnClickListener {
             startActivity(Intent(this, StorageActivity::class.java))
         }
+
+        val repository = TodoGroupRepository.getInstance(this)
+        val list = repository.todoDao.getAllDayTodo(getToday("yyyyMd"))
+        Log.d("☆", "onCreate: ${list.size}")
+        Log.d("☆", "onCreate: viewmodel hash: ${viewModel.sfas()}")
+        Log.d("☆", "onCreate: repo hash${repository.hashCode()}")
+        Log.d("☆", "onCreate: gettoday: ${getToday("yyyyMd")}")
 
         DebugDB.getAddressLog()
         setViewModel()

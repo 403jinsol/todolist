@@ -6,15 +6,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.database.Todo
-import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.getToday
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository(TodoDatabase.getInstance(application))
+    private val repository = TodoGroupRepository.getInstance(application)
 
     val allCalendarGroup: LiveData<MutableList<TodoGroup>> = repository.readCalendarGroup
     val allTodo: LiveData<MutableList<Todo>> = repository.readAllTodo
+
+    fun sfas():Int{
+        return repository.hashCode()
+    }
 
     var year = MutableLiveData<Int>().also {
         it.value = getToday("yyyy")
