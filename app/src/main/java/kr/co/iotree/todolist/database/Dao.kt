@@ -80,9 +80,6 @@ interface TimeAlarmDao {
     @Delete
     fun delete(timeAlarm: TimeAlarm)
 
-    @Query("UPDATE TimeAlarm SET allTime = :allTime, hour = :hour, minute = :minute WHERE timeAlarmId = :timeAlarmId")
-    fun updateTimeAlarm(timeAlarmId: Long?, allTime: Int, hour: Int, minute: Int)
-
     @Query("SELECT * FROM TimeAlarm WHERE timeAlarmId = :timeAlarmId")
     fun getTimeAlarm(timeAlarmId: Long?): TimeAlarm?
 
