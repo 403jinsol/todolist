@@ -28,6 +28,8 @@
     <dimen name="menu_group_font_size">12sp</dimen>
     <dimen name="menu_group_margin">6dp</dimen>
 
+    <dimen name="time_font_size">12sp</dimen>
+
     <!-- 그룹 추가 부분 -->
     <dimen name="group_add_title_font_size">13sp</dimen>
     <dimen name="radio_button_drawable_margin">8dp</dimen>

@@ -74,10 +74,11 @@
     <string name="change_theme">Change App Theme</string>
     <string name="change_font">Change font</string>
     <string name="system">System</string>
-    <string name="basic">Default</string>
+    <string name="defalut">Default</string>
     <string name="calendar_text">eng</string>
-    <string name="no_todo_notification">There\'s nothing to do today.</string>
+    <string name="notification_no_todo">There\'s nothing to do today.</string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
+    <string name="notification_today">Today\'s schedule</string>
 
 </resources>

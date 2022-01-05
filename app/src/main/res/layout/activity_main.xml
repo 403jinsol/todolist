@@ -6,7 +6,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    tools:ignore="ContentDescription">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -138,7 +139,7 @@
                 android:background="@color/todo_group_background" />
 
             <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/flexBox"
+                android:id="@+id/groupFlexBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/big_ver_margin"
@@ -177,6 +178,13 @@
                 android:layout_height="1dp"
                 android:layout_marginVertical="@dimen/big_ver_margin"
                 android:background="@color/todo_group_background" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/timeFlexBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/big_ver_margin"
+                app:flexWrap="wrap" />
 
             <LinearLayout
                 android:layout_width="match_parent"

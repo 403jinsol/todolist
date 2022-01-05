@@ -41,7 +41,8 @@
 
     <string name="no_group">목표를 추가하여 할 일을 그룹별로 관리할 수 있습니다.</string>
     <string name="no_time">알림을 설정하면 오늘의 할 일에 대한 알림을 받아보실 수 있습니다.</string>
-    <string name="no_todo_notification">오늘의 할일이 없습니다.</string>
+    <string name="notification_no_todo">오늘의 할일이 없습니다.</string>
+    <string name="notification_today">오늘의 일정</string>
 
     <string name="title">제목</string>
     <string name="publicSetting">공개설정</string>
@@ -71,7 +72,6 @@
     <string name="pm">오후</string>
 
     <string name="storage">보관함</string>
-
     <string name="toast_storage_complete">보관함에서는 완료할 수 없습니다</string>
     <string name="setting_calendar_sunday">달력에서 일요일부터 시작</string>
     <string name="order_complete">완료된 할 일 목록은 뒤로 정렬</string>
@@ -79,7 +79,7 @@
     <string name="change_theme">앱 테마 변경하기</string>
     <string name="change_font">글꼴 변경하기</string>
     <string name="system">시스템</string>
-    <string name="basic">기본</string>
+    <string name="defalut">기본</string>
 
     <string name="systemDefault" translatable="false">System</string>
     <string name="systemEng" translatable="false">English</string>

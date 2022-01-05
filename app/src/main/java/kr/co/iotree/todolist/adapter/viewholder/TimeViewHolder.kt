@@ -14,15 +14,15 @@ import kr.co.iotree.todolist.util.PrefUtil
 import kr.co.iotree.todolist.viewModel.TimeListViewModel
 
 class TimeViewHolder(private val binding: ViewholderTimeBinding, private val viewModel: TimeListViewModel, private val alarmManager: AlarmManager) : RecyclerView.ViewHolder(binding.root) {
-    @SuppressLint("SetTextI18n", "UnspecifiedImmutableFlag")
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun bindData(alarm: TimeAlarm) {
         if (pref.getPrefString(PrefUtil.LOCALE_CODE, LocaleUtil.OPTION_PHONE_LANGUAGE) == "en")
-            binding.time.text = "%d:%02d %s".format(
+            binding.time.text = String.format("%d:%02d %s",
                 if (alarm.hour < 12) alarm.hour else alarm.hour - 12, alarm.minute,
                 if (alarm.hour < 12) itemView.context.resources.getString(R.string.am) else itemView.context.resources.getString(R.string.pm)
             )
         else
-            binding.time.text = "%s %d:%02d".format(
+            binding.time.text = String.format("%s %d:%02d",
                 if (alarm.hour < 12) itemView.context.resources.getString(R.string.am) else itemView.context.resources.getString(R.string.pm),
                 if (alarm.hour < 12) alarm.hour else alarm.hour - 12, alarm.minute
             )

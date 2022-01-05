@@ -1,9 +1,9 @@
 package kr.co.iotree.todolist.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
@@ -16,12 +16,11 @@ import com.google.android.flexbox.FlexboxLayout
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.adapter.MainAdapter
-import kr.co.iotree.todolist.database.TodoDatabase
-import kr.co.iotree.todolist.database.TodoGroupRepository
 import kr.co.iotree.todolist.databinding.ActivityMainBinding
+import kr.co.iotree.todolist.util.LocaleUtil
+import kr.co.iotree.todolist.util.PrefUtil
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.dpToPx
-import kr.co.iotree.todolist.util.getToday
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
 
@@ -46,13 +45,6 @@ class MainActivity : BaseActivity() {
         binding.storage.setOnClickListener {
             startActivity(Intent(this, StorageActivity::class.java))
         }
-
-        val repository = TodoGroupRepository.getInstance(this)
-        val list = repository.todoDao.getAllDayTodo(getToday("yyyyMd"))
-        Log.d("☆", "onCreate: ${list.size}")
-        Log.d("☆", "onCreate: viewmodel hash: ${viewModel.sfas()}")
-        Log.d("☆", "onCreate: repo hash${repository.hashCode()}")
-        Log.d("☆", "onCreate: gettoday: ${getToday("yyyyMd")}")
 
         DebugDB.getAddressLog()
         setViewModel()
@@ -98,7 +90,11 @@ class MainActivity : BaseActivity() {
 
         viewModel.allCalendarGroup.observe(this) {
             adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
-            setFlexbox()
+            setGroupFlexbox()
+        }
+
+        viewModel.allTime.observe(this) {
+            setTimeFlexbox()
         }
     }
 
@@ -120,13 +116,18 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setFlexbox() {
-        val list = viewModel.allCalendarGroup.value
+        setGroupFlexbox()
+        setTimeFlexbox()
+    }
+
+    private fun setGroupFlexbox() {
+        val groupList = viewModel.allCalendarGroup.value
         val groupTitleViews = arrayListOf<TextView>()
 
-        binding.flexBox.removeAllViews()
+        binding.groupFlexBox.removeAllViews()
 
         //flexbox 그룹 추가
-        for (group in list.orEmpty()) {
+        for (group in groupList.orEmpty()) {
             val textView = TextView(this)
             textView.text = group.title
             textView.gravity = Gravity.CENTER
@@ -139,12 +140,51 @@ class MainActivity : BaseActivity() {
             groupTitleViews.add(textView)
         }
 
-        @Suppress("UNCHECKED_CAST")
-        val temp = groupTitleViews.clone() as ArrayList<TextView> //wordViews 복사
+        addTextView(groupTitleViews, binding.groupFlexBox)
+    }
 
-        for (i in 0 until groupTitleViews.size) {
+    private fun setTimeFlexbox() {
+        val timeList = viewModel.allTime.value
+        val timeViews = arrayListOf<TextView>()
+
+        binding.timeFlexBox.removeAllViews()
+
+        //flexbox 시간 추가
+        for (time in timeList.orEmpty()) {
+            val timeText = if (pref.getPrefString(PrefUtil.LOCALE_CODE, LocaleUtil.OPTION_PHONE_LANGUAGE) == "en") String.format(
+                "%d:%02d %s",
+                if (time.hour < 12) time.hour else time.hour - 12, time.minute,
+                if (time.hour < 12) resources.getString(R.string.am) else resources.getString(R.string.pm)
+            )
+            else
+                String.format(
+                    "%s %d:%02d",
+                    if (time.hour < 12) resources.getString(R.string.am) else resources.getString(R.string.pm),
+                    if (time.hour < 12) time.hour else time.hour - 12, time.minute
+                )
+
+            val textView = TextView(this)
+            textView.text = timeText
+            textView.gravity = Gravity.CENTER
+            textView.setTextColor(Color.BLACK)
+            textView.setPadding(dpToPx(this, 10.0f).toInt(), 0, dpToPx(this, 10.0f).toInt(), dpToPx(this, 1.0f).toInt())
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.menu_group_font_size))
+            textView.setTypeface(null, Typeface.BOLD)
+            textView.setBackgroundResource(R.drawable.round)
+
+            timeViews.add(textView)
+        }
+
+        addTextView(timeViews, binding.timeFlexBox)
+    }
+
+    private fun addTextView(arrayList: ArrayList<TextView>, flexbox: FlexboxLayout) {
+        @Suppress("UNCHECKED_CAST")
+        val temp = arrayList.clone() as ArrayList<TextView> //wordViews 복사
+
+        for (i in 0 until arrayList.size) {
             val view = temp[i]
-            binding.flexBox.addView(view) //textView 레이아웃에 추가
+            flexbox.addView(view) //textView 레이아웃에 추가
 
             val lp = view.layoutParams as FlexboxLayout.LayoutParams
             lp.height = dpToPx(this, 30.0f).toInt()

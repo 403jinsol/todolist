@@ -31,6 +31,14 @@ class LocaleUtil {
             }
         }
 
+        fun localizedContext(baseContext: Context): Context {
+            val baseLocale = getLocaleFromConfiguration(baseContext.resources.configuration) // config에서 locale 가져옴
+            Locale.setDefault(baseLocale)
+            val config = getLocalizedConfiguration(baseLocale)
+            baseContext.createConfigurationContext(config) // config와 일치하도록 새 context 반환
+            return baseContext
+        }
+
         /**
          * activity에서 locale 변경했을 때 실행
          */
@@ -40,7 +48,7 @@ class LocaleUtil {
             Locale.setDefault(currentLocale) //기본 로케일 설정
             if (!baseLocale.toString().equals(currentLocale.toString(), ignoreCase = true)) { // ignoreCase: 대소문자 무시
                 val config = getLocalizedConfiguration(currentLocale)
-                baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics) // 기존 로케일과 바꿀 로케일이 다르면 업데이트
+                baseContext.createConfigurationContext(config) // 기존 로케일과 바꿀 로케일이 다르면 업데이트
             }
         }
 

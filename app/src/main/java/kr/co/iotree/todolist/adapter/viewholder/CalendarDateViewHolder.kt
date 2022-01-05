@@ -1,6 +1,7 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,8 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
         }
 
         if (adapterPosition < dayOfWeek) { // 1일 시작하기 전이면 안보이게
-            binding.dateIcon.visibility = View.INVISIBLE
-            binding.text.visibility = View.INVISIBLE
+            binding.dateContainer.visibility = View.INVISIBLE
+            binding.dateContainer.isEnabled = false
         } else {
             binding.text.text = (adapterPosition - dayOfWeek + 1).toString()
             binding.dateIcon.tag = binding.text.text
@@ -73,19 +74,22 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
     }
 
     private fun setIconNumber() {
-        val allTodo = viewModel.getAllDayTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
-        val allCompleteTodo = viewModel.getAllDayCompleteTodo("${viewModel.year.value}${viewModel.month.value}${binding.text.text}".toInt())
+        if (binding.text.text.isNotEmpty()) {
+            val day = binding.text.text.toString().toInt()
+            val allTodo = viewModel.getAllDayTodo(String.format("%04d%02d%02d", viewModel.year.value, viewModel.month.value, day).toInt())
+            val allCompleteTodo = viewModel.getAllDayCompleteTodo(String.format("%04d%02d%02d", viewModel.year.value, viewModel.month.value, day).toInt())
 
-        binding.number.text = ((allTodo.size) - (allCompleteTodo.size)).toString()
+            binding.number.text = ((allTodo.size) - (allCompleteTodo.size)).toString()
 
-        if (allTodo.size == 0) {
-            binding.number.visibility = View.INVISIBLE
-        }
+            if (allTodo.size == 0) {
+                binding.number.visibility = View.INVISIBLE
+            }
 
-        if (allTodo.size != 0 && (allTodo.size - allCompleteTodo.size) == 0) {
-            binding.dateIcon.setColorFilter(viewModel.getGroup(allTodo[0].groupId!!).color)
-            binding.number.visibility = View.INVISIBLE
-            binding.checkIcon.visibility = View.VISIBLE
+            if (allTodo.size != 0 && (allTodo.size - allCompleteTodo.size) == 0) {
+                binding.dateIcon.setColorFilter(viewModel.getGroup(allTodo[0].groupId!!).color)
+                binding.number.visibility = View.INVISIBLE
+                binding.checkIcon.visibility = View.VISIBLE
+            }
         }
     }
 }

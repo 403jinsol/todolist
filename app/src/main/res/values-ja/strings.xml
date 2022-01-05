@@ -66,9 +66,10 @@
     <string name="change_theme">アプリのテーマ変更</string>
     <string name="change_font">フォント変更</string>
     <string name="system">システム</string>
-    <string name="basic">基本</string>
+    <string name="defalut">基本</string>
     <string name="calendar_text">%d年 %d月</string>
-    <string name="no_todo_notification">今日は日程がありません。</string>
+    <string name="notification_no_todo">今日はスケジュールがありません。</string>
     <string name="am">午前</string>
     <string name="pm">午後</string>
+    <string name="notification_today">今日のスケジュール</string>
 </resources>

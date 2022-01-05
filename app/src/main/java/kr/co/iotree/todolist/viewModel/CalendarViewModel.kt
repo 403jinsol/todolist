@@ -4,20 +4,17 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.database.TodoGroupRepository
-import kr.co.iotree.todolist.database.Todo
-import kr.co.iotree.todolist.database.TodoGroup
+import kr.co.iotree.todolist.database.*
 import kr.co.iotree.todolist.util.getToday
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository.getInstance(application)
+    private val todoRepository = TodoGroupRepository.getInstance(application)
+    private val timeRepository = TimeRepository.getInstance(application)
 
-    val allCalendarGroup: LiveData<MutableList<TodoGroup>> = repository.readCalendarGroup
-    val allTodo: LiveData<MutableList<Todo>> = repository.readAllTodo
-
-    fun sfas():Int{
-        return repository.hashCode()
-    }
+    val allCalendarGroup: LiveData<MutableList<TodoGroup>> = todoRepository.readCalendarGroup
+    val allTodo: LiveData<MutableList<Todo>> = todoRepository.readAllTodo
+    val groupTodo = MutableLiveData<MutableList<Todo>>()
+    val allTime: LiveData<MutableList<TimeAlarm>> = timeRepository.readAllTimeAlarm
 
     var year = MutableLiveData<Int>().also {
         it.value = getToday("yyyy")
@@ -36,57 +33,56 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     }
 
     val completeCount = MutableLiveData<Int>().also {
-        it.value = repository.todoDao.getAllCompleteTodo("${year.value!!}${month.value!!}1".toInt(), "${year.value!!}${month.value!!}31".toInt(), true).size
-    }
-
-    val groupTodo = MutableLiveData<MutableList<Todo>>()
-
-    fun getGroupTodo(groupId: Long?) {
-        groupTodo.value = repository.todoDao.getCalendarTodo(groupId, "${year.value!!}${month.value!!}${date.value}".toInt(), false)
-    }
-
-    fun changeCompleteCount(year: Int, month: Int) {
-        completeCount.value = repository.todoDao.getAllCompleteTodo("$year${month}1".toInt(), "$year${month}31".toInt(), true).size
-    }
-
-    fun updateComplete(complete: Boolean, todoId: Long?) = viewModelScope.launch(Dispatchers.IO) {
-        repository.updateComplete(complete, todoId)
-    }
-
-    fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        repository.addTodo(todo)
-    }
-
-    fun deleteTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteTodo(todo)
-    }
-
-    fun getAllDayTodo(date: Int): MutableList<Todo> {
-        return repository.getAllDayTodo(date)
-    }
-
-    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
-        return repository.getAllDayCompleteTodo(date)
+        it.value = todoRepository.todoDao.getAllCompleteTodo(String.format("%04d%02d01", year.value, month.value).toInt(), String.format("%04d%02d31", year.value, month.value).toInt(), true).size
     }
 
     fun getGroup(groupId: Long): TodoGroup {
-        return repository.getGroup(groupId)
+        return todoRepository.getGroup(groupId)
     }
 
     fun getTodo(todoID: Long): Todo {
-        return repository.getTodo(todoID)
+        return todoRepository.getTodo(todoID)
+    }
+
+    fun getGroupTodo(groupId: Long?) {
+        groupTodo.value = todoRepository.todoDao.getCalendarTodo(groupId, String.format("%04d%02d%02d", year.value, month.value, date.value).toInt(), false)
+    }
+
+    fun changeCompleteCount(year: Int, month: Int) {
+        completeCount.value = todoRepository.todoDao.getAllCompleteTodo(String.format("%04d%02d1", year, month).toInt(), String.format("%04d%02d31", year, month).toInt(), true).size
+    }
+
+    fun updateComplete(complete: Boolean, todoId: Long?) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.updateComplete(complete, todoId)
+    }
+
+    fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.addTodo(todo)
+    }
+
+    fun deleteTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.deleteTodo(todo)
+    }
+
+    fun getAllDayTodo(date: Int): MutableList<Todo> {
+        return todoRepository.getAllDayTodo(date)
+    }
+
+    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
+        return todoRepository.getAllDayCompleteTodo(date)
+    }
+
+    // dialog 기능에서 사용
+    fun updateContentTodo(content: String, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.updateContentTodo(content, todoID)
     }
 
     fun updateDateTodo(date: Int, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
-        repository.updateDateTodo(date, todoID)
+        todoRepository.updateDateTodo(date, todoID)
     }
 
     fun updateStorageTodo(storage: Boolean, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
-        repository.updateStorageTodo(storage, todoID)
-    }
-
-    fun updateContentTodo(content: String, todoID: Long) = viewModelScope.launch(Dispatchers.IO) {
-        repository.updateContentTodo(content, todoID)
+        todoRepository.updateStorageTodo(storage, todoID)
     }
 
 }
