@@ -19,7 +19,7 @@ import kr.co.iotree.todolist.viewModel.TimeListViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManager: AlarmManager) : BottomSheetDialogFragment() {
+class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManager: AlarmManager, private val alarmId: Long?) : BottomSheetDialogFragment() {
     lateinit var binding: DialogTimePickerBinding
 
     private fun TimePicker.setTimeInterval(
@@ -68,14 +68,27 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
 
             viewModel.addTime(TimeAlarm(null, alarmCode, hour, minute))
 
-            setAlarm(hour, minute, alarmCode)
+            if (alarmId == null) {
+                setAlarm(alarmCode, hour, minute)
+            } else {
+                editAlarm(alarmId, alarmCode, hour, minute)
+            }
             dismiss()
         }
         return binding.root
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun setAlarm(hour: Int, minute: Int, alarmCode: Int) {
+    private fun editAlarm(alarmId: Long, alarmCode: Int, hour: Int, minute: Int) {
+
+        val intent = Intent(requireContext(), AlarmManager::class.java)
+        alarmManager.cancel(PendingIntent.getBroadcast(requireContext(), viewModel.getTime(alarmId)!!.allTime, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+        viewModel.deleteTime(viewModel.getTime(alarmId)!!)
+        setAlarm(alarmCode, hour, minute)
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun setAlarm(alarmCode: Int, hour: Int, minute: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute)

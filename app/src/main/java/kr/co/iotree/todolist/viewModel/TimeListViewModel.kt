@@ -17,4 +17,12 @@ class TimeListViewModel(application: Application) : AndroidViewModel(application
     fun deleteTime(timeAlarm: TimeAlarm) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteTimeAlarm(timeAlarm)
     }
+
+    fun updateTime(timeAlarmId: Long?, allTime: Int, hour: Int, minute: Int) = viewModelScope.launch(Dispatchers.IO){
+        repository.updateTimeAlarm(timeAlarmId, allTime, hour, minute)
+    }
+
+    fun getTime(timeAlarmId: Long?): TimeAlarm?{
+        return repository.getTimeAlarm(timeAlarmId)
+    }
 }

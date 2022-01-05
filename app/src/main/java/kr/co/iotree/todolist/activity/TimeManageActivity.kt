@@ -26,7 +26,7 @@ class TimeManageActivity : BaseActivity() {
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         setOnClickListener()
 
-        adapter = TimeAdapter(viewModel, alarmManager)
+        adapter = TimeAdapter(viewModel, alarmManager, supportFragmentManager)
         binding.timeRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.timeRecyclerView.itemAnimator = null
         binding.timeRecyclerView.adapter = adapter
@@ -51,7 +51,7 @@ class TimeManageActivity : BaseActivity() {
         binding.back.setOnClickListener { onBackPressed() }
 
         binding.addTime.setOnClickListener {
-            TimePickerDialog(viewModel, alarmManager).show(supportFragmentManager, TimePickerDialog.TAG)
+            TimePickerDialog(viewModel, alarmManager, null).show(supportFragmentManager, TimePickerDialog.TAG)
         }
     }
 }

@@ -59,9 +59,9 @@ class AlarmReceiver : BroadcastReceiver() {
             var bigText = ""
             for (i in list) {
                 bigText += if (i == list.last())
-                    i.content
+                    " - ${i.content}"
                 else
-                    "${i.content}\n"
+                    " - ${i.content}\n"
             }
             bigTextStyle.bigText(bigText)
 
