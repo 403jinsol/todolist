@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.util.LocaleUtil
 import kr.co.iotree.todolist.util.LocaleUtil.Companion.OPTION_PHONE_LANGUAGE
-import kr.co.iotree.todolist.util.PrefUtil
 import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_CODE
 
 open class BaseActivity : AppCompatActivity() {

@@ -11,15 +11,11 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.MainActivity
-import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
 import kr.co.iotree.todolist.database.TodoGroupRepository
-import kr.co.iotree.todolist.util.LocaleUtil
-import kr.co.iotree.todolist.util.LocaleUtil.Companion.OPTION_PHONE_LANGUAGE
-import kr.co.iotree.todolist.util.PrefUtil.Companion.LOCALE_CODE
 import kr.co.iotree.todolist.util.getToday
 
 class AlarmReceiver : BroadcastReceiver() {
-    lateinit var notificationManager: NotificationManager
+    private lateinit var notificationManager: NotificationManager
 
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")

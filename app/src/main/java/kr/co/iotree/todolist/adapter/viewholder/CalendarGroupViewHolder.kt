@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
 import kr.co.iotree.todolist.database.Todo
-import kr.co.iotree.todolist.database.TodoDatabase
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.viewModel.CalendarViewModel

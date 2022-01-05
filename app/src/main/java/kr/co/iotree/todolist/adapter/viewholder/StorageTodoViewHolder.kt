@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.dialog.StorageDialog
-import kr.co.iotree.todolist.activity.dialog.TodoDialog
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.databinding.ViewholderTodoItemBinding
 import kr.co.iotree.todolist.viewModel.StorageViewModel

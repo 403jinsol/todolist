@@ -1,7 +1,6 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
