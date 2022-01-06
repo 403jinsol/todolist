@@ -14,7 +14,7 @@ class LocaleUtil {
         const val OPTION_PHONE_LANGUAGE = "SystemDefaultLocale"
 
         /**
-         * PrefApplication에서 실행
+         * BaseApplication에서 실행
          * prefLocaleCode: pref에 저장된 locale 코드
          * config 적용된 새 context 반환
          */

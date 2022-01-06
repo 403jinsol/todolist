@@ -38,7 +38,7 @@
     <string name="do_today">Do It Today</string>
 
     <string name="no_group">You can set your goals to manage your todo items.</string>
-    <string name="no_time">You can be informed of today\&apos;s todo items by setting reminders.</string>
+    <string name="no_time">You can be informed of today\'s todo items by setting reminders.</string>
 
     <string name="title">Title</string>
     <string name="publicSetting">Privacy</string>
@@ -59,26 +59,31 @@
     <string name="toast_no_name">Please enter the name of the goal</string>
     <string name="complete_group">Finished goals</string>
     <string name="complete_dialog_content1">Congratulations on achieving your goal.\n Try finish more goals.</string>
-    <string name="complete_dialog_content2">Great you worked until the end.\n Let\&apos;s move on to another goal.</string>
-    <string name="complete_dialog_content3">We\&apos;re always here to see you achieve goal.\n Keep up the good work.</string>
+    <string name="complete_dialog_content2">Great you worked until the end.\n Let\'s move on to another goal.</string>
+    <string name="complete_dialog_content3">We\'re always here to see you achieve goal.\n Keep up the good work.</string>
 
     <string name="input">Input</string>
     <string name="complete">Done</string>
 
     <string name="storage">Backlog</string>
 
-    <string name="toast_storage_complete">Checkbox doesn\&apos;t work in Backlog</string>
+    <string name="toast_storage_complete">Checkbox doesn\'t work in Backlog</string>
     <string name="setting_calendar_sunday">Start with Sunday in calendar</string>
     <string name="order_complete">Sort todo items as completion</string>
     <string name="language">Language</string>
     <string name="change_theme">Change App Theme</string>
     <string name="change_font">Change font</string>
     <string name="system">System</string>
-    <string name="defalut">Default</string>
+    <string name="default_string">Default</string>
     <string name="calendar_text">eng</string>
     <string name="notification_no_todo">There\'s nothing to do today.</string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
     <string name="notification_today">Today\'s schedule</string>
+    <string name="inquiry_guide">Check out frequent inquiries</string>
+    <string name="inquiry_question1">1. How can I share my items to others?</string>
+    <string name="inquiry_answer1">todo items\' visibility settings can be set through the goal\'s disclosure settings. Please check the goal management page.</string>
+    <string name="inquiry_question2">2. Apple Watch is not synchronized with the app</string>
+    <string name="inquiry_answer2">Apple Watches sometimes have poor connectivity between devices in the early stages of interworking. But reinstalling the app or restarting the watch may solve the problem. Once connected, the list will be updated stably. Please let me know if it doesn\'t work out afterwards. Thank you.</string>
 
 </resources>

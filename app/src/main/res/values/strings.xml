@@ -79,7 +79,7 @@
     <string name="change_theme">앱 테마 변경하기</string>
     <string name="change_font">글꼴 변경하기</string>
     <string name="system">시스템</string>
-    <string name="defalut">기본</string>
+    <string name="default_string">기본</string>
 
     <string name="inquiry_guide">사용자들이 자주 묻는 질문을 확인하세요.</string>
     <string name="inquiry_question1">1. 다른 사용자들에게 할 일 공개가 되지 않아요</string>

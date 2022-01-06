@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kr.co.iotree.todolist.R
-import kr.co.iotree.todolist.activity.PrefApplication.Companion.pref
+import kr.co.iotree.todolist.activity.BaseApplication.Companion.pref
 import kr.co.iotree.todolist.adapter.CalendarAdapter
 import kr.co.iotree.todolist.databinding.ViewholderCalendarBinding
 import kr.co.iotree.todolist.util.*
