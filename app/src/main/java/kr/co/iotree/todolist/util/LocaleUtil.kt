@@ -16,7 +16,7 @@ class LocaleUtil {
         /**
          * BaseApplication에서 실행
          * prefLocaleCode: pref에 저장된 locale 코드
-         * config 적용된 새 context 반환
+         * locale -> config 적용된 새 context 반환
          */
         fun getLocalizedContext(baseContext: Context, prefLocaleCode: String): Context {
             val currentLocale = getLocaleFromPrefCode(prefLocaleCode)

@@ -25,6 +25,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
+        binding.groupIcon.setColorFilter(group.color)
 
         viewModel.getGroupTodo(group.groupId)
         val list = viewModel.groupTodo.value!!
