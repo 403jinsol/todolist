@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/big_ver_margin"
         android:text="@string/dummy"
-        android:textColor="@color/black"
+        android:textColor="@color/blackWhite"
         android:textSize="@dimen/complete_dialog_title_font_size"
         android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/edit"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/time_alarm"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tomorrow"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/change_date"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/move_storage"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/todo_dialog_content_font_size" />
 
         </LinearLayout>

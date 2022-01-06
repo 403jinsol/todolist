@@ -6,6 +6,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/whiteBlack"
     tools:context=".activity.MainActivity"
     tools:ignore="ContentDescription">
 
@@ -27,7 +28,7 @@
                 android:layout_marginEnd="@dimen/default_hor_margin"
                 android:scaleType="center"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/black" />
+                app:tint="@color/blackWhite" />
 
             <ImageView
                 android:id="@+id/storage"
@@ -37,7 +38,7 @@
                 android:layout_marginEnd="@dimen/default_ver_margin"
                 android:scaleType="center"
                 android:src="@drawable/ic_storage"
-                app:tint="@color/black" />
+                app:tint="@color/blackWhite" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -53,14 +54,14 @@
                 android:layout_height="30dp"
                 android:layout_margin="@dimen/todo_small_margin"
                 android:src="@drawable/ic_user"
-                app:tint="@color/black" />
+                app:tint="@color/blackWhite" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="@dimen/todo_small_margin"
                 android:src="@drawable/ic_add"
-                app:tint="@color/black" />
+                app:tint="@color/blackWhite" />
 
         </LinearLayout>
 
@@ -75,7 +76,7 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@color/white"
+        android:background="@color/dialog_background"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/default_hor_margin"
         android:paddingTop="30dp"
@@ -91,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/big_ver_margin"
                 android:text="@string/me"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/user_name_font_size"
                 android:textStyle="bold" />
 
@@ -116,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/group"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -157,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/time"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -198,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/simple"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -224,7 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/more"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size"
                 android:textStyle="bold" />
 
@@ -238,7 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/notice"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
@@ -246,7 +247,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/inquiry"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
@@ -254,35 +255,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/setting"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/termsOfUse"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/privacyPolicy"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/openSource"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/version"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
@@ -290,7 +291,7 @@
                 android:layout_height="@dimen/menu_textview_size"
                 android:layout_marginBottom="@dimen/big_ver_margin"
                 android:text="@string/logout"
-                android:textColor="@color/black"
+                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
         </LinearLayout>

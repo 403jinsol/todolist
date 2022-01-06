@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -7,7 +8,8 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/dialog_hor_padding"
-    android:paddingVertical="@dimen/big_ver_margin">
+    android:paddingVertical="@dimen/big_ver_margin"
+    tools:ignore="ContentDescription">
 
     <ImageView
         android:id="@+id/completeIcon"
@@ -23,7 +25,7 @@
         android:layout_marginVertical="@dimen/default_ver_margin"
         android:gravity="center"
         android:text="@string/quit1"
-        android:textColor="@color/black"
+        android:textColor="@color/blackWhite"
         android:textSize="@dimen/complete_dialog_title_font_size"
         android:textStyle="bold" />
 

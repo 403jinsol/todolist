@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dateContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/calendar_date_ver_margin"
     android:layout_weight="1"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -36,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/dummyNumber"
-            android:textColor="@color/black" />
+            android:textColor="@color/blackWhite" />
 
     </FrameLayout>
 
@@ -52,7 +54,7 @@
         android:id="@+id/underline"
         android:layout_width="10dp"
         android:layout_height="1dp"
-        android:background="@color/black"
+        android:background="@color/blackWhite"
         android:visibility="invisible" />
 
 </LinearLayout>

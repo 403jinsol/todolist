@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_ver_margin"
         android:text="@string/me"
-        android:textColor="@color/black"
+        android:textColor="@color/blackWhite"
         android:textSize="@dimen/user_name_font_size"
         android:textStyle="bold" />
 

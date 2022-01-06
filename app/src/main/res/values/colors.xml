@@ -10,18 +10,27 @@
 
     <!-- custom color -->
     <color name="default_color">#FFF0F0F0</color>
-    <color name="todo_group_background">#FFF5F5F5</color>
-    <color name="todo_group_stroke">#FFEAEAEA</color>
+    <color name="todo_group_background_light">#FFF5F5F5</color>
+    <color name="todo_group_stroke_light">#FFEAEAEA</color>
     <color name="dialog_button_background">#FFF9F9F9</color>
-    <color name="calendar_icon_default">#FFD9DDDF</color>
+    <color name="calendar_icon_light">#FFD9DDDF</color>
     <color name="calendar_font_default">#FFA5A5A5</color>
-    <color name="todo_icon_default">#FFD9DDDF</color>
+    <color name="todo_icon_light">#FFD9DDDF</color>
     <color name="text_default">#000000</color>
     <color name="red">#EC0909</color>
     <color name="quit1">#4c7ec3</color>
     <color name="quit2">#319639</color>
     <color name="quit3">#e2618d</color>
     <color name="toast_background">#E91C1C1C</color>
-    <color name="switch_track_off">#FFE5E5E5</color>
-    <color name="switch_track_on">#FF333333</color>
+    <color name="switch_track_on_light">#FFE5E5E5</color>
+    <color name="switch_track_off_light">#FF333333</color>
+
+    <!-- dark theme color -->
+    <color name="calendar_icon_dark">#FF515151</color>
+    <color name="todo_group_background_dark">#FF424242</color>
+    <color name="todo_group_stroke_dark">#535353</color>
+    <color name="dialog_background_dark">#222222</color>
+    <color name="todo_icon_dark">#FF515151</color>
+    <color name="switch_track_on_dark">#989898</color>
+    <color name="switch_track_off_dark">#FF515151</color>
 </resources>

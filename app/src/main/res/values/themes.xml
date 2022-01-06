@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.TodoList" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/default_color</item>
-        <item name="colorPrimaryVariant">@color/default_color</item>
+        <item name="colorPrimary">#F5F5F5</item>
+        <item name="colorPrimaryVariant">#40000000</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,6 +13,18 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <color name="blackWhite">@color/black</color>
+    <color name="whiteBlack">@color/white</color>
+    <color name="dialog_background">@color/white</color>
+
+    <color name="calendar_icon_default">@color/calendar_icon_light</color>
+    <color name="todo_group_background">@color/todo_group_background_light</color>
+    <color name="todo_group_stroke">@color/todo_group_stroke_light</color>
+    <color name="todo_icon_default">@color/todo_icon_light</color>
+
+    <color name="switch_track_on">@color/switch_track_on_light</color>
+    <color name="switch_track_off">@color/switch_track_off_light</color>
 
     <style name="underline">
         <item name="android:layout_width">match_parent</item>

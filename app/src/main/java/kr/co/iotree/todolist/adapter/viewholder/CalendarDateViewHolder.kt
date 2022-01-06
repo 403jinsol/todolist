@@ -22,7 +22,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
             binding.dateIcon.tag = binding.text.text
 
             if (binding.dateIcon.tag.toString().toInt() == viewModel.date.value!!) {
-                binding.text.setTextColor(Color.parseColor("#FF000000"))
+                binding.text.setTextColor(itemView.context.resources.getColor(R.color.blackWhite, null))
                 binding.underline.visibility = View.VISIBLE
             }
         }
