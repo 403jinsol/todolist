@@ -85,5 +85,15 @@
     <string name="inquiry_answer1">todo items\' visibility settings can be set through the goal\'s disclosure settings. Please check the goal management page.</string>
     <string name="inquiry_question2">2. Apple Watch is not synchronized with the app</string>
     <string name="inquiry_answer2">Apple Watches sometimes have poor connectivity between devices in the early stages of interworking. But reinstalling the app or restarting the watch may solve the problem. Once connected, the list will be updated stably. Please let me know if it doesn\'t work out afterwards. Thank you.</string>
+    <string name="inquiry_question3">3. Widgets do not appear in the list on the iPhone</string>
+    <string name="inquiry_answer3">Widgets are sometimes not visible in the list due to OS problems. In this case, you can restart the machine or run the app a few times before you can check it out again. Please try and let me know if it doesn\'t work out.</string>
+    <string name="inquiry_question4">4. How can I cancel followings? / How do I delete my follower?</string>
+    <string name="inquiry_answer4">Press the + button at the top to go to Followings / Followers List, then tap the button … on the right then you can remove the following or follower.</string>
+    <string name="inquiry_question5">5. No simultaneous access.</string>
+    <string name="inquiry_answer5">It allows accesses from one tablet, one cell phone, and infinite PCs per account. If this is not the case, please contact us.</string>
+    <string name="inquiry_question6">6. Can I delete my Like?</string>
+    <string name="inquiry_answer6">As soon as you click Like, the todo item writer gets a notification. When the todo item writer finds the like was only a mistake, They may be disappointed so I didn\'t put cancelling Likes. Please kindly understand this.</string>
+    <string name="inquiry_no_answer">Is your issue not in the list?</string>
+    <string name="inquiry_direct">Directly ask Developer</string>
 
 </resources>

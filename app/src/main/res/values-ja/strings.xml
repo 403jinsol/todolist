@@ -72,4 +72,19 @@
     <string name="am">午前</string>
     <string name="pm">午後</string>
     <string name="notification_today">今日のスケジュール</string>
+    <string name="inquiry_guide">よくある質問をご確認下さい</string>
+    <string name="inquiry_question1">1. 他のユーザーにリストを公開できません</string>
+    <string name="inquiry_answer1">公有(公開)は目標の公有(公開)で設定できます。目標の管理のページから全体公開、一部公開に設定して他のユーザーに目標公有できます。目標管理ページをご確認下さい</string>
+    <string name="inquiry_question2">2. Apple Watch連動ができません</string>
+    <string name="inquiry_answer2">Apple Watchは連動初期、連結がスムースではない場合がござい待ます。アプリを削除してから再ダウンロードしたり、ウォッチを再起動したら解決できます。１回連動が完了したら安定的にアップデートが行われます。解決ができなかった場合はお手数ですが直接お問い合わせください。</string>
+    <string name="inquiry_question3">3. iPhoneウィジェットにリストか見えません</string>
+    <string name="inquiry_answer3">OSの問題でリストが見えなくなる場合がございます。アプリを再起動してください。</string>
+    <string name="inquiry_question4">4. フォロー解除／フォロワー削除はどうずればいいですか？</string>
+    <string name="inquiry_answer4">上端の＋ボタンからフォロワ／フォロー中リストに入って右の…ボタンで削除(解除)できます。</string>
+    <string name="inquiry_question5">5. 複数の機械からの同時起動できません</string>
+    <string name="inquiry_answer5">１つのアカウント付きタブレット１台、スマホ１台、PCの無制限接近を許可しております。違う問題がある場合にはお手数ですが直接お問い合わせください</string>
+    <string name="inquiry_question6">6. いいね！をキャンセルできますか？</string>
+    <string name="inquiry_answer6">いいね！を押したら作成者にアラームでお知らせいたします。作成者がアプリ内で確認した時いいね！がなかったら作成者のユーザーさんが失望するかもしれないと思いまして現在いいね！をキャンセルする機能はサービスしておりません</string>
+    <string name="inquiry_no_answer">解決できませんでしたか？</string>
+    <string name="inquiry_direct">製作者に直接お問い合わせ</string>
 </resources>

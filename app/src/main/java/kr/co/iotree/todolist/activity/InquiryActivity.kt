@@ -11,5 +11,7 @@ class InquiryActivity : BaseActivity() {
 
         binding = ActivityInquiryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.back.setOnClickListener { onBackPressed() }
     }
 }
