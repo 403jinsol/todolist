@@ -76,7 +76,7 @@ class CalendarDateViewHolder(private val binding: ViewholderCalendarDateBinding,
         if (binding.text.text.isNotEmpty()) {
             val day = binding.text.text.toString().toInt()
             val allTodo = viewModel.getAllDayTodo(String.format("%04d%02d%02d", viewModel.year.value, viewModel.month.value, day).toInt())
-            val allCompleteTodo = viewModel.getAllDayCompleteTodo(String.format("%04d%02d%02d", viewModel.year.value, viewModel.month.value, day).toInt())
+            val allCompleteTodo = viewModel.getAllDayCompleteTodo(String.format("%04d%02d%02d", viewModel.year.value, viewModel.month.value, day).toInt(), true)
 
             binding.number.text = ((allTodo.size) - (allCompleteTodo.size)).toString()
 

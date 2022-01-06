@@ -17,7 +17,6 @@ import kr.co.iotree.todolist.util.getToday
 class AlarmReceiver : BroadcastReceiver() {
     private lateinit var notificationManager: NotificationManager
 
-
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) { //Broadcast 수신되면 자동으로 호출
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -36,7 +35,7 @@ class AlarmReceiver : BroadcastReceiver() {
         )
 
         val repository = TodoGroupRepository.getInstance(context)
-        val list = repository.getAllDayTodo(getToday("yyyyMMdd"))
+        val list = repository.getAllDayCompleteTodo(getToday("yyyyMMdd"), false)
 
         if (list.size <= 0) {
             val builder =

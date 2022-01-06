@@ -104,9 +104,9 @@ class MainActivity : BaseActivity() {
                 binding.drawerLayout.openDrawer(GravityCompat.END)
         }
 
-        binding.groupManage.setOnClickListener {
-            startActivity(Intent(this@MainActivity, GroupManageActivity::class.java))
-        }
+        binding.groupManage.setOnClickListener { startActivity(Intent(this, GroupManageActivity::class.java)) }
+
+        binding.inquiry.setOnClickListener { startActivity(Intent(this, InquiryActivity::class.java)) }
 
         binding.timeManage.setOnClickListener { startActivity(Intent(this, TimeManageActivity::class.java)) }
 

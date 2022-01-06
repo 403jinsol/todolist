@@ -3,13 +3,13 @@
     package="kr.co.iotree.todolist">
 
     <application
+        android:name=".activity.PrefApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TodoList"
-        android:name=".activity.PrefApplication">
+        android:theme="@style/Theme.TodoList">
         <receiver
             android:name=".broadCast.AlarmReceiver"
             android:enabled="true"
@@ -35,7 +35,8 @@
         <activity android:name=".activity.StorageActivity" />
         <activity android:name=".activity.TimeManageActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.SettingLanguageActivity"/>
+        <activity android:name=".activity.SettingLanguageActivity" />
+        <activity android:name=".activity.InquiryActivity" />
 
     </application>
 

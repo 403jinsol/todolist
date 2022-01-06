@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_hor_margin">15dp</dimen>
+    <dimen name="big_hor_margin">25dp</dimen>
     <dimen name="default_ver_margin">8dp</dimen>
     <dimen name="big_ver_margin">15dp</dimen>
 
@@ -29,6 +30,8 @@
     <dimen name="menu_group_margin">6dp</dimen>
 
     <dimen name="time_font_size">12sp</dimen>
+
+    <dimen name="inquiry_question_font_size">15sp</dimen>
 
     <!-- 그룹 추가 부분 -->
     <dimen name="group_add_title_font_size">13sp</dimen>

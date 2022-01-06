@@ -11,7 +11,7 @@ import java.util.*
 
 class LocaleUtil {
     companion object {
-        const val OPTION_PHONE_LANGUAGE = "System"
+        const val OPTION_PHONE_LANGUAGE = "SystemDefaultLocale"
 
         /**
          * PrefApplication에서 실행
@@ -50,7 +50,7 @@ class LocaleUtil {
          */
         private fun getLocaleFromPrefCode(prefCode: String): Locale {
             val localeCode = if (prefCode != OPTION_PHONE_LANGUAGE) {
-                prefCode //기본 설정값이 아니면 prefCode 그대로
+                prefCode //기본 설정값이 아니면 입력한 prefCode 그대로
             } else {
                 ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0).language //시스템 로케일 가져옴
             }
@@ -63,7 +63,7 @@ class LocaleUtil {
          */
         private fun getLocaleFromConfiguration(configuration: Configuration): Locale {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                configuration.locales.get(0)
+                configuration.locales.get(0) // locale 목록 0번째
             } else {
                 configuration.locale
             }

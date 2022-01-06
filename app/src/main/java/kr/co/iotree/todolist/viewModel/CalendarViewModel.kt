@@ -68,8 +68,8 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
         return todoRepository.getAllDayTodo(date)
     }
 
-    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
-        return todoRepository.getAllDayCompleteTodo(date)
+    fun getAllDayCompleteTodo(date: Int, complete: Boolean): MutableList<Todo> {
+        return todoRepository.getAllDayCompleteTodo(date, complete)
     }
 
     // dialog 기능에서 사용

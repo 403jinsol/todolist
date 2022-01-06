@@ -74,8 +74,8 @@ class TodoGroupRepository(val database: TodoDatabase) {
         return todoDao.getAllDayTodo(date)
     }
 
-    fun getAllDayCompleteTodo(date: Int): MutableList<Todo> {
-        return todoDao.getCompleteTodo(date, true)
+    fun getAllDayCompleteTodo(date: Int, complete: Boolean): MutableList<Todo> {
+        return todoDao.getCompleteTodo(date, complete)
     }
 
     fun getGroupStorageTodo(groupId: Long): MutableList<Todo> {

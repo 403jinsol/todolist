@@ -64,14 +64,12 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
             val hour = binding.timePicker.hour
             val minute = binding.timePicker.minute
 //            val minute = binding.timePicker.getDisplayedMinute()
-            val alarmCode = "%d%02d".format(hour, minute).toInt()
-
-            viewModel.addTime(TimeAlarm(null, alarmCode, hour, minute))
+            val allTime = "%d%02d".format(hour, minute).toInt()
 
             if (alarmId == null) {
-                setAlarm(alarmCode, hour, minute)
+                setAlarm(allTime, hour, minute)
             } else {
-                editAlarm(alarmId, alarmCode, hour, minute)
+                editAlarm(alarmId, allTime, hour, minute)
             }
             dismiss()
         }
@@ -79,16 +77,16 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun editAlarm(alarmId: Long, alarmCode: Int, hour: Int, minute: Int) {
+    private fun editAlarm(alarmId: Long, allTime: Int, hour: Int, minute: Int) {
 
         val intent = Intent(requireContext(), AlarmManager::class.java)
         alarmManager.cancel(PendingIntent.getBroadcast(requireContext(), viewModel.getTime(alarmId)!!.allTime, intent, PendingIntent.FLAG_UPDATE_CURRENT))
         viewModel.deleteTime(viewModel.getTime(alarmId)!!)
-        setAlarm(alarmCode, hour, minute)
+        setAlarm(allTime, hour, minute)
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun setAlarm(alarmCode: Int, hour: Int, minute: Int) {
+    private fun setAlarm(allTime: Int, hour: Int, minute: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute)
@@ -96,8 +94,10 @@ class TimePickerDialog(val viewModel: TimeListViewModel, private val alarmManage
         calendar.set(Calendar.MILLISECOND, 0)
 
         val intent = Intent(requireContext(), AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), alarmCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), allTime, intent, PendingIntent.FLAG_UPDATE_CURRENT) // BroadcastReceiver를 시작하는 intent
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent) // RTC_WAKEUP: 지정된 시간에 펜딩 인텐트를 작동시키기 위해 디바이스를 깨움
+
+        viewModel.addTime(TimeAlarm(null, allTime, hour, minute))
     }
 
     companion object {

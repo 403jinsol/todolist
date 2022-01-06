@@ -241,9 +241,10 @@
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                android:id="@+id/inquiry"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
-                android:text="@string/question"
+                android:text="@string/inquiry"
                 android:textColor="@color/black"
                 android:textSize="@dimen/menu_small_font_size" />
 

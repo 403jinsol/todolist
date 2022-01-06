@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
@@ -17,6 +18,7 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
     private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
     fun bindData(item: Todo, color: Int, supportFragmentManager: FragmentManager) {
+
         var isCompleted = item.complete
 
         if (isCompleted) {
@@ -75,7 +77,7 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
                     viewModel.updateContentTodo(v.text.toString(), item.todoId!!)
                     return@setOnEditorActionListener true
                 } else {
-                    imm.hideSoftInputFromWindow(binding.todoText.windowToken, 0)
+                    Toast.makeText(itemView.context, itemView.context.resources.getText(R.string.toast_no_name), Toast.LENGTH_SHORT).show()
                 }
             }
             return@setOnEditorActionListener false

@@ -14,10 +14,32 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="underline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/todo_group_background</item>
+    </style>
+
     <style name="settingSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:track">@drawable/switch_track_selector</item>
         <item name="android:thumb">@drawable/switch_thumb_on</item>
+    </style>
+
+    <style name="inquiryQuestion">
+        <item name="android:layout_marginBottom">@dimen/todo_small_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/inquiry_question_font_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="inquiryAnswer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginStart">@dimen/default_hor_margin</item>
     </style>
 </resources>
