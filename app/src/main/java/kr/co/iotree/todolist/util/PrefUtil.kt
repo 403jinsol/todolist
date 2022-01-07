@@ -26,6 +26,8 @@ class PrefUtil(context: Context) {
         const val START_SUNDAY = "startSunday"
         const val ORDER_COMPLETE = "startSunday"
         const val LOCALE_CODE = "localeCode"
+        const val APP_THEME = "appTheme"
+        const val SYSTEM_THEME = "systemTheme"
     }
 }
 

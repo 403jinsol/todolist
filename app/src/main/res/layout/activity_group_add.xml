@@ -26,24 +26,20 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/default_hor_margin"
             android:text="@string/group"
-            android:textColor="@color/blackWhite"
             android:textSize="@dimen/toolbar_font_size"
             android:textStyle="bold" />
 
 
         <TextView
             android:id="@+id/addGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="@dimen/default_hor_margin"
             android:text="@string/check"
-            android:textColor="@color/blackWhite"
             android:textSize="@dimen/toolbar_font_size"
             android:textStyle="bold" />
 
@@ -78,7 +74,7 @@
                 android:backgroundTint="@color/blackWhite"
                 android:inputType="text"
                 android:paddingBottom="@dimen/big_ver_margin"
-                android:textColor="@color/blackWhite"
+
                 android:textSize="@dimen/group_title_font_size"
                 android:textStyle="bold">
 

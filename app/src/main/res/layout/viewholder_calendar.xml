@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_ver_margin"
             android:text="@string/dummy"
-            android:textColor="@color/blackWhite"
+
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/todo_small_margin"
                 android:text="@string/month"
-                android:textColor="@color/blackWhite"
+
                 android:textSize="11sp"
                 android:textStyle="bold" />
 

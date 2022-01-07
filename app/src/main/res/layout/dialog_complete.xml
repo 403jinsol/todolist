@@ -20,19 +20,16 @@
 
     <TextView
         android:id="@+id/dlgTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_default"
         android:layout_marginVertical="@dimen/default_ver_margin"
         android:gravity="center"
         android:text="@string/quit1"
-        android:textColor="@color/blackWhite"
         android:textSize="@dimen/complete_dialog_title_font_size"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dlgContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_default"
         android:gravity="center"
         android:text="@string/complete_dialog_content1"
         android:textSize="@dimen/complete_dialog_content_font_size" />
@@ -44,6 +41,7 @@
         android:layout_marginTop="@dimen/big_ver_margin"
         android:background="@drawable/round"
         android:stateListAnimator="@null"
-        android:text="@string/check" />
+        android:text="@string/check"
+        android:textColor="@color/blackWhite" />
 
 </LinearLayout>

@@ -77,6 +77,9 @@
     <string name="order_complete">완료된 할 일 목록은 뒤로 정렬</string>
     <string name="language">언어</string>
     <string name="change_theme">앱 테마 변경하기</string>
+    <string name="theme">테마</string>
+    <string name="light">라이트</string>
+    <string name="dark">다크</string>
     <string name="change_font">글꼴 변경하기</string>
     <string name="system">시스템</string>
     <string name="default_string">기본</string>

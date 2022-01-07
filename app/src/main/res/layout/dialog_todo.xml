@@ -13,11 +13,9 @@
 
     <TextView
         android:id="@+id/dlg_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_default"
         android:layout_marginVertical="@dimen/big_ver_margin"
         android:text="@string/dummy"
-        android:textColor="@color/blackWhite"
         android:textSize="@dimen/complete_dialog_title_font_size"
         android:textStyle="bold" />
 
@@ -46,12 +44,8 @@
                 android:src="@drawable/ic_edit" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edit"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/edit" />
 
         </LinearLayout>
 
@@ -72,12 +66,8 @@
                 android:src="@drawable/ic_time" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_alarm"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/time_alarm" />
 
         </LinearLayout>
 
@@ -100,12 +90,8 @@
 
             <TextView
                 android:id="@+id/tomorrowText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tomorrow"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/tomorrow" />
 
         </LinearLayout>
 
@@ -126,12 +112,8 @@
                 android:src="@drawable/ic_change_date" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/change_date"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/change_date" />
 
         </LinearLayout>
 
@@ -141,9 +123,9 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/big_ver_margin"
+        android:baselineAligned="false"
         android:orientation="horizontal"
-        android:weightSum="4"
-        android:baselineAligned="false">
+        android:weightSum="4">
 
         <LinearLayout
             android:id="@+id/moveStorage"
@@ -162,12 +144,8 @@
                 android:src="@drawable/ic_move_storage" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/move_storage"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/move_storage" />
 
         </LinearLayout>
 
@@ -188,12 +166,8 @@
                 android:src="@drawable/ic_delete" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:textAlignment="center"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/delete" />
 
         </LinearLayout>
 

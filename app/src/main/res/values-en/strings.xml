@@ -95,5 +95,8 @@
     <string name="inquiry_answer6">As soon as you click Like, the todo item writer gets a notification. When the todo item writer finds the like was only a mistake, They may be disappointed so I didn\'t put cancelling Likes. Please kindly understand this.</string>
     <string name="inquiry_no_answer">Is your issue not in the list?</string>
     <string name="inquiry_direct">Directly ask Developer</string>
+    <string name="theme">Theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
 
 </resources>

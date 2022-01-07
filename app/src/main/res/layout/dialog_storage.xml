@@ -13,11 +13,9 @@
 
     <TextView
         android:id="@+id/dlg_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_default"
         android:layout_marginVertical="@dimen/big_ver_margin"
         android:text="@string/dummy"
-        android:textColor="@color/blackWhite"
         android:textSize="@dimen/complete_dialog_title_font_size"
         android:textStyle="bold" />
 
@@ -46,11 +44,8 @@
                 android:src="@drawable/ic_edit" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edit"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/edit" />
 
         </LinearLayout>
 
@@ -71,11 +66,8 @@
                 android:src="@drawable/ic_do_today" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_alarm"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/time_alarm" />
 
         </LinearLayout>
 
@@ -96,11 +88,8 @@
                 android:src="@drawable/ic_change_date" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/change_date"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/change_date" />
 
         </LinearLayout>
 
@@ -122,11 +111,8 @@
 
             <TextView
                 android:id="@+id/tomorrowText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:textColor="@color/blackWhite"
-                android:textSize="@dimen/todo_dialog_content_font_size" />
+                style="@style/text_todo_dialog"
+                android:text="@string/delete" />
 
         </LinearLayout>
 

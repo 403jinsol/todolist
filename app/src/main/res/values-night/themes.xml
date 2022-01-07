@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TodoList" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.TodoList.Dark" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#3D3D3D</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -10,19 +10,45 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="text_default">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text_todo_dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/todo_dialog_content_font_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <color name="blackWhite">@color/white</color>
-    <color name="whiteBlack">@color/black</color>
     <color name="dialog_background">@color/dialog_background_dark</color>
+    <color name="whiteBlack">@color/black</color>
+
+    <color name="switch_track_on">@color/switch_track_on_dark</color>
+    <color name="switch_track_off">@color/switch_track_off_dark</color>
 
     <color name="calendar_icon_default">@color/calendar_icon_dark</color>
     <color name="todo_group_background">@color/todo_group_background_dark</color>
     <color name="todo_group_stroke">@color/todo_group_stroke_dark</color>
     <color name="todo_icon_default">@color/todo_icon_dark</color>
 
-    <color name="switch_track_on">@color/switch_track_on_dark</color>
-    <color name="switch_track_off">@color/switch_track_off_dark</color>
+    <style name="background">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="dialogBackground">
+        <item name="android:background">@color/dialog_background</item>
+    </style>
+
+    <style name="textBlackWhite">
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

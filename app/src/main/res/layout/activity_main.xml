@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
+    style="@style/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/whiteBlack"
     tools:context=".activity.MainActivity"
     tools:ignore="ContentDescription">
 
@@ -88,11 +88,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/big_ver_margin"
                 android:text="@string/me"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/user_name_font_size"
                 android:textStyle="bold" />
 
@@ -113,11 +113,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    style="@style/text_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/group"
-                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
                     android:gravity="end"
                     android:paddingHorizontal="@dimen/todo_small_margin"
                     android:text="@string/management"
-                    android:textColor="#0288D1"
+                    android:textColor="@color/manage_text"
                     android:textSize="@dimen/menu_setting_font_size" />
 
             </LinearLayout>
@@ -154,11 +154,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    style="@style/text_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/time"
-                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -170,7 +170,7 @@
                     android:gravity="end"
                     android:paddingHorizontal="@dimen/todo_small_margin"
                     android:text="@string/management"
-                    android:textColor="#0288D1"
+                    android:textColor="@color/manage_text"
                     android:textSize="@dimen/menu_setting_font_size" />
 
             </LinearLayout>
@@ -195,11 +195,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    style="@style/text_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/simple"
-                    android:textColor="@color/blackWhite"
                     android:textSize="@dimen/menu_font_size"
                     android:textStyle="bold" />
 
@@ -210,7 +210,7 @@
                     android:gravity="end"
                     android:paddingHorizontal="@dimen/todo_small_margin"
                     android:text="@string/management"
-                    android:textColor="#0288D1"
+                    android:textColor="@color/manage_text"
                     android:textSize="@dimen/menu_setting_font_size" />
 
             </LinearLayout>
@@ -222,10 +222,10 @@
                 android:background="@color/todo_group_background" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/more"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size"
                 android:textStyle="bold" />
 
@@ -236,62 +236,62 @@
                 android:background="@color/todo_group_background" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/notice"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:id="@+id/inquiry"
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/inquiry"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
                 android:id="@+id/setting"
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/setting"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/termsOfUse"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/privacyPolicy"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/openSource"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:text="@string/version"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
             <TextView
+                style="@style/text_default"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_textview_size"
                 android:layout_marginBottom="@dimen/big_ver_margin"
                 android:text="@string/logout"
-                android:textColor="@color/blackWhite"
                 android:textSize="@dimen/menu_small_font_size" />
 
         </LinearLayout>

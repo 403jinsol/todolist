@@ -87,4 +87,7 @@
     <string name="inquiry_answer6">いいね！を押したら作成者にアラームでお知らせいたします。作成者がアプリ内で確認した時いいね！がなかったら作成者のユーザーさんが失望するかもしれないと思いまして現在いいね！をキャンセルする機能はサービスしておりません</string>
     <string name="inquiry_no_answer">解決できませんでしたか？</string>
     <string name="inquiry_direct">製作者に直接お問い合わせ</string>
+    <string name="theme">テーマ</string>
+    <string name="light">ライト</string>
+    <string name="dark">ダーク</string>
 </resources>

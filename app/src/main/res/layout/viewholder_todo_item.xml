@@ -28,7 +28,7 @@
         android:importantForAutofill="no"
         android:inputType="text"
         android:text="@string/dummy"
-        android:textColor="@color/blackWhite"
+
         android:textSize="@dimen/todo_item_font_size"
         tools:ignore="LabelFor" />
 

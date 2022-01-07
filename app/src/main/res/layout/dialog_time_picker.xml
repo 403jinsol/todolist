@@ -14,7 +14,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="@dimen/default_ver_margin"
         android:text="@string/complete"
-        android:textColor="@color/blackWhite" />
+         />
 
     <TimePicker
         android:id="@+id/timePicker"
