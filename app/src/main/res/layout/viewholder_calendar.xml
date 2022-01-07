@@ -20,11 +20,9 @@
 
         <TextView
             android:id="@+id/yearMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:layout_marginEnd="@dimen/default_ver_margin"
             android:text="@string/dummy"
-
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -37,8 +35,7 @@
 
         <TextView
             android:id="@+id/completeCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:text="@string/dummyNumber"
             android:textSize="12sp" />
 
@@ -73,11 +70,9 @@
 
             <TextView
                 android:id="@+id/monthWeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/text_default"
                 android:layout_marginStart="@dimen/todo_small_margin"
                 android:text="@string/month"
-
                 android:textSize="11sp"
                 android:textStyle="bold" />
 

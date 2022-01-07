@@ -166,7 +166,7 @@ class MainActivity : BaseActivity() {
             val textView = TextView(this)
             textView.text = timeText
             textView.gravity = Gravity.CENTER
-            textView.setTextColor(Color.BLACK)
+            textView.setTextColor(resources.getColor(R.color.blackWhite, null))
             textView.setPadding(dpToPx(this, 10.0f).toInt(), 0, dpToPx(this, 10.0f).toInt(), dpToPx(this, 1.0f).toInt())
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.menu_group_font_size))
             textView.setTypeface(null, Typeface.BOLD)

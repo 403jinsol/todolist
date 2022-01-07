@@ -25,12 +25,10 @@
             app:tint="@color/blackWhite" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/default_hor_margin"
             android:text="@string/theme"
-
             android:textSize="@dimen/toolbar_font_size"
             android:textStyle="bold" />
 
@@ -46,10 +44,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/system"
-             />
+            style="@style/text_default"
+            android:text="@string/system" />
 
     </LinearLayout>
 
@@ -68,10 +64,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/light"
-             />
+            style="@style/text_default"
+            android:text="@string/light" />
 
     </LinearLayout>
 
@@ -90,10 +84,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dark"
-             />
+            style="@style/text_default"
+            android:text="@string/dark" />
 
     </LinearLayout>
 
