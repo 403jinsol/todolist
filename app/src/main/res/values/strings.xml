@@ -84,6 +84,10 @@
     <string name="system">시스템</string>
     <string name="default_string">기본</string>
 
+    <string name="start_date">시작 날짜</string>
+    <string name="end_date">종료 날짜</string>
+    <string name="day">요일</string>
+
     <string name="inquiry_guide">사용자들이 자주 묻는 질문을 확인하세요.</string>
     <string name="inquiry_question1">1. 다른 사용자들에게 할 일 공개가 되지 않아요</string>
     <string name="inquiry_answer1">할 일 공개 설정은 목표의 공개설정을 통해 지정하실 수 있으며 목표 관리 페이지에서 전체 공개 또는 일부 공개를 사용하여 다른 분들에게 할 일을 공개할 수 있습니다. 목표 관리 페이지에서 확인 부탁드립니다.</string>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_ver_margin"
+    android:orientation="horizontal"
+    tools:ignore="ContentDescription">
+
+    <ImageView
+        android:id="@+id/todoIcon"
+        android:layout_width="@dimen/todo_item_size"
+        android:layout_height="@dimen/todo_item_size"
+        android:layout_marginEnd="@dimen/default_ver_margin"
+        android:src="@drawable/ic_clover"
+        app:tint="@color/todo_icon_default" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/todoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:enabled="false"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@string/dummy"
+                android:textColor="@color/blackWhite"
+                android:textSize="@dimen/todo_item_font_size"
+                tools:ignore="LabelFor" />
+
+            <ImageView
+                android:id="@+id/moreIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_todo_more" />
+
+        </LinearLayout>
+
+        <View style="@style/underline" />
+
+        <LinearLayout
+            android:id="@+id/startDateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_default"
+                android:text="@string/start_date" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/startDate"
+                style="@style/text_default"
+                android:text="@string/dummy" />
+
+        </LinearLayout>
+
+        <View style="@style/underline"
+            android:layout_marginVertical="@dimen/big_ver_margin"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_default"
+                android:text="@string/end_date" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/endDate"
+                style="@style/text_default"
+                android:text="@string/dummy" />
+
+        </LinearLayout>
+
+        <View style="@style/underline"
+            android:layout_marginVertical="@dimen/big_ver_margin"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_default"
+                android:text="@string/day" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/text_default"
+                android:text="@string/dummy" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

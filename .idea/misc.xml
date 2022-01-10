@@ -9,6 +9,7 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle_check.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_circle_line.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_edit.xml" value="0.5572916666666666" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.3375" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_quit2.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable-anydpi/ic_quit3.xml" value="0.3380208333333333" />
@@ -38,9 +39,11 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group_manage.xml" value="0.48250460405156537" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_inquiry.xml" value="0.3576158940397351" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_main.xml" value="0.3476027397260274" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_routine.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting.xml" value="0.26458333333333334" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting_language.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting_theme.xml" value="0.321875" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_simple.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_storage.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_test.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_time_alram.xml" value="0.31302083333333336" />
@@ -60,6 +63,9 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_calendar_date.xml" value="0.75" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_color.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_group.xml" value="0.29739583333333336" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_routine.xml" value="0.5411458333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_routine_group.xml" value="0.5411458333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_routine_item.xml" value="0.3234375" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_time.xml" value="0.32395833333333335" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_todo.xml" value="0.31296296296296294" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/viewholder_todo_edit.xml" value="0.5411458333333333" />

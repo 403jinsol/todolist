@@ -10,11 +10,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.util.GroupColor
 
-@Database(entities = [Todo::class, TodoGroup::class, TimeAlarm::class], version = 1)
+@Database(entities = [Todo::class, TodoGroup::class, TimeAlarm::class, Routine::class], version = 1)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
     abstract fun groupDao(): GroupDao
     abstract fun timeAlarmDao(): TimeAlarmDao
+    abstract fun routineDao(): RoutineDao
 
     companion object {
         @Volatile

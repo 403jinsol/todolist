@@ -28,7 +28,7 @@
         <TextView
             style="@style/text_toolbar_title"
             android:layout_gravity="center"
-            android:text="@string/storage" />
+            android:text="@string/simple" />
 
         <ImageView
             android:id="@+id/addGroup"
@@ -43,7 +43,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/storageRecyclerView"
+        android:id="@+id/routineRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

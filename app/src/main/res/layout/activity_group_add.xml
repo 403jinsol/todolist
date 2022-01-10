@@ -24,24 +24,18 @@
             android:src="@drawable/ic_calender_prev"
             app:tint="@color/blackWhite" />
 
-
         <TextView
-            style="@style/text_default"
+            style="@style/text_toolbar_title"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/default_hor_margin"
-            android:text="@string/group"
-            android:textSize="@dimen/toolbar_font_size"
-            android:textStyle="bold" />
-
+            android:text="@string/group" />
 
         <TextView
             android:id="@+id/addGroup"
-            style="@style/text_default"
+            style="@style/text_toolbar_title"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="@dimen/default_hor_margin"
-            android:text="@string/check"
-            android:textSize="@dimen/toolbar_font_size"
-            android:textStyle="bold" />
+            android:text="@string/check" />
 
     </androidx.appcompat.widget.Toolbar>
 

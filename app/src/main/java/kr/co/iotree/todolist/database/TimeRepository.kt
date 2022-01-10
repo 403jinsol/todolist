@@ -26,7 +26,7 @@ class TimeRepository(private val timeAlarmDao: TimeAlarmDao) {
         timeAlarmDao.delete(timeAlarm)
     }
 
-    fun getTimeAlarm(timeAlarmId: Long?):TimeAlarm?{
+    fun getTimeAlarm(timeAlarmId: Long):TimeAlarm{
         return timeAlarmDao.getTimeAlarm(timeAlarmId)
     }
 }

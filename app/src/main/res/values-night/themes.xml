@@ -14,18 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="text_default">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white</item>
+    <style name="background">
+        <item name="android:background">@color/black</item>
     </style>
 
-    <style name="text_todo_dialog">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/todo_dialog_content_font_size</item>
-        <item name="android:textAlignment">center</item>
+    <style name="dialogBackground">
+        <item name="android:background">@color/dialog_background_dark</item>
     </style>
 
     <color name="blackWhite">@color/white</color>
@@ -39,16 +33,4 @@
     <color name="todo_group_background">@color/todo_group_background_dark</color>
     <color name="todo_group_stroke">@color/todo_group_stroke_dark</color>
     <color name="todo_icon_default">@color/todo_icon_dark</color>
-
-    <style name="background">
-        <item name="android:background">@color/black</item>
-    </style>
-
-    <style name="dialogBackground">
-        <item name="android:background">@color/dialog_background</item>
-    </style>
-
-    <style name="textBlackWhite">
-        <item name="android:textColor">@color/white</item>
-    </style>
 </resources>

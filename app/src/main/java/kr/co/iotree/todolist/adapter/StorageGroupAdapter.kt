@@ -9,7 +9,6 @@ import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
 import kr.co.iotree.todolist.viewModel.StorageViewModel
 
 class StorageGroupAdapter(private val viewModel: StorageViewModel, private var supportFragmentManager: FragmentManager) : RecyclerView.Adapter<StorageGroupViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StorageGroupViewHolder {
         return StorageGroupViewHolder(ViewholderTodoGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
     }

@@ -10,6 +10,6 @@
 
     <stroke
         android:width="@dimen/switch_thumb_line_size"
-        android:color="@color/switch_track_off" />
+        android:color="@color/switch_track_on" />
 
 </shape>

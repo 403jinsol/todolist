@@ -103,6 +103,7 @@
                 android:layout_marginVertical="@dimen/big_ver_margin"
                 android:background="@drawable/round"
                 android:minHeight="0dp"
+                android:textColor="@color/blackWhite"
                 android:text="@string/verify"
                 android:textSize="@dimen/todo_item_font_size" />
 
@@ -204,6 +205,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/simpleManage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

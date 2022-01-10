@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TimeAlarm(
-    @PrimaryKey val timeAlarmId: Long?,
+    @PrimaryKey(autoGenerate = true) val timeAlarmId: Long?,
     val allTime: Int,
     val hour: Int,
     val minute: Int

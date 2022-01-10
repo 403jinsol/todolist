@@ -1,9 +1,9 @@
 package kr.co.iotree.todolist.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
@@ -105,6 +105,8 @@ class MainActivity : BaseActivity() {
         }
 
         binding.groupManage.setOnClickListener { startActivity(Intent(this, GroupManageActivity::class.java)) }
+
+        binding.simpleManage.setOnClickListener { startActivity(Intent(this, RoutineActivity::class.java )) }
 
         binding.inquiry.setOnClickListener { startActivity(Intent(this, InquiryActivity::class.java)) }
 

@@ -18,7 +18,7 @@ class TimeListViewModel(application: Application) : AndroidViewModel(application
         repository.deleteTimeAlarm(timeAlarm)
     }
 
-    fun getTime(timeAlarmId: Long?): TimeAlarm?{
+    fun getTime(timeAlarmId: Long): TimeAlarm {
         return repository.getTimeAlarm(timeAlarmId)
     }
 }

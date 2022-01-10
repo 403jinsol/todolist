@@ -33,14 +33,14 @@ class TodoItemViewHolder(private val binding: ViewholderTodoItemBinding, private
             if (!isCompleted) {
                 (it as ImageView).setColorFilter(color)
                 isCompleted = !isCompleted
-                viewModel.updateComplete(true, item.todoId)
+                viewModel.updateComplete(true, item.todoId!!)
                 viewModel.completeCount.value = viewModel.completeCount.value!! + 1
             } else {
                 (it as ImageView).apply {
                     this.setColorFilter(context.getColor(R.color.todo_icon_default))
                 }
                 isCompleted = !isCompleted
-                viewModel.updateComplete(false, item.todoId)
+                viewModel.updateComplete(false, item.todoId!!)
                 viewModel.completeCount.value = viewModel.completeCount.value!! - 1
             }
             viewModel.date.value = viewModel.date.value

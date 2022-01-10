@@ -19,43 +19,43 @@ class GroupInfoViewModel(application: Application, groupId: Long?) : AndroidView
     }
 
     val groupId = if (groupId != -1L)
-        repository.groupDao.getGroup(groupId)!!.groupId
+        repository.groupDao.getGroup(groupId!!).groupId
     else
         null
 
-    val group = repository.groupDao.getGroup(groupId)
+    val group = repository.groupDao.getGroup(groupId!!)
 
     var title = MutableLiveData<String>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId)!!.title
+            it.value = repository.groupDao.getGroup(groupId!!).title
         else
             it.value = ""
     }
 
     var color = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId)!!.color
+            it.value = repository.groupDao.getGroup(groupId!!).color
         else
             it.value = GroupColor.BLACK.color
     }
 
     var groupPublic = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId)!!.groupPublic
+            it.value = repository.groupDao.getGroup(groupId!!).groupPublic
         else
             it.value = 3
     }
 
     var complete = MutableLiveData<Boolean>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId)!!.complete
+            it.value = repository.groupDao.getGroup(groupId!!).complete
         else
             it.value = false
     }
 
     var reason = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId)!!.reason
+            it.value = repository.groupDao.getGroup(groupId!!).reason
         else
             it.value = 0
     }

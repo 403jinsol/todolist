@@ -44,7 +44,7 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
         return todoRepository.getTodo(todoID)
     }
 
-    fun getGroupTodo(groupId: Long?) {
+    fun getGroupTodo(groupId: Long) {
         groupTodo.value = todoRepository.todoDao.getCalendarTodo(groupId, String.format("%04d%02d%02d", year.value, month.value, date.value).toInt(), false)
     }
 
@@ -52,7 +52,7 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
         completeCount.value = todoRepository.todoDao.getAllCompleteTodo(String.format("%04d%02d1", year, month).toInt(), String.format("%04d%02d31", year, month).toInt(), true).size
     }
 
-    fun updateComplete(complete: Boolean, todoId: Long?) = viewModelScope.launch(Dispatchers.IO) {
+    fun updateComplete(complete: Boolean, todoId: Long) = viewModelScope.launch(Dispatchers.IO) {
         todoRepository.updateComplete(complete, todoId)
     }
 

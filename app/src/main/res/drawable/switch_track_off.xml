@@ -8,6 +8,6 @@
         android:width="@dimen/switch_track_width"
         android:height="@dimen/switch_track_height"/>
 
-    <solid android:color="@color/switch_track_on" />
+    <solid android:color="@color/switch_track_off" />
 
 </shape>

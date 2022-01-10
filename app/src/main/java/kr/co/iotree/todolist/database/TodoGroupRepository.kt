@@ -47,7 +47,7 @@ class TodoGroupRepository(val database: TodoDatabase) {
     }
 
     fun getGroup(groupId: Long): TodoGroup {
-        return groupDao.getGroup(groupId)!!
+        return groupDao.getGroup(groupId)
     }
 
     fun getTodo(todoId: Long): Todo {
@@ -66,7 +66,7 @@ class TodoGroupRepository(val database: TodoDatabase) {
         todoDao.updateContent(content, todoId)
     }
 
-    fun updateComplete(complete: Boolean, todoId: Long?) {
+    fun updateComplete(complete: Boolean, todoId: Long) {
         todoDao.updateComplete(complete, todoId)
     }
 

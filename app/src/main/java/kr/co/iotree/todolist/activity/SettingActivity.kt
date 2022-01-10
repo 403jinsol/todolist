@@ -25,6 +25,23 @@ class SettingActivity : BaseActivity() {
 
         binding.calendarSwitch.isChecked = pref.getPrefBool(START_SUNDAY, false)
 
+        binding.orderSwitch.isChecked = pref.getPrefBool(ORDER_COMPLETE, false)
+
+        binding.languageContainer.setOnClickListener { startActivity(Intent(this, SettingLanguageActivity::class.java)) }
+
+        binding.themeContainer.setOnClickListener { startActivity(Intent(this, SettingThemeActivity::class.java)) }
+
+        setValueText()
+        setSwitchCheck()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setSwitchCheck()
+        setValueText()
+    }
+
+    private fun setSwitchCheck() {
         binding.calendarSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 pref.setPrefBool(START_SUNDAY, true)
@@ -32,36 +49,21 @@ class SettingActivity : BaseActivity() {
                 pref.setPrefBool(START_SUNDAY, false)
         }
 
-        binding.orderSwitch.isChecked = pref.getPrefBool(ORDER_COMPLETE, false)
-
         binding.orderSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 pref.setPrefBool(ORDER_COMPLETE, true)
             else
                 pref.setPrefBool(ORDER_COMPLETE, false)
         }
+    }
 
-        binding.languageContainer.setOnClickListener { startActivity(Intent(this, SettingLanguageActivity::class.java)) }
-
+    private fun setValueText() {
         binding.languageValue.text = when (pref.getPrefString(LOCALE_CODE, OPTION_PHONE_LANGUAGE)) {
             "en" -> resources.getString(R.string.systemEng)
             "ko" -> resources.getString(R.string.systemKor)
             "ja" -> resources.getString(R.string.systemJap)
             else -> resources.getString(R.string.system)
         }
-
-        binding.themeContainer.setOnClickListener { startActivity(Intent(this, SettingThemeActivity::class.java)) }
-
-        binding.themeValue.text = when (pref.getPrefString(APP_THEME, SYSTEM_THEME)) {
-            SYSTEM_THEME -> resources.getString(R.string.system)
-            "light" -> resources.getString(R.string.light)
-            "dark" -> resources.getString(R.string.dark)
-            else -> resources.getString(R.string.system)
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         binding.themeValue.text = when (pref.getPrefString(APP_THEME, SYSTEM_THEME)) {
             SYSTEM_THEME -> resources.getString(R.string.system)

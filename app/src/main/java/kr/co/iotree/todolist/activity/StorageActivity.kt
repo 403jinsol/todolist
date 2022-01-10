@@ -26,12 +26,12 @@ class StorageActivity : BaseActivity() {
         }
 
         adapter = StorageGroupAdapter(viewModel, supportFragmentManager)
-        binding.storageRecyclerView.layoutManager = LinearLayoutManager(this@StorageActivity, RecyclerView.VERTICAL, false)
+        binding.storageRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.storageRecyclerView.itemAnimator = null
         binding.storageRecyclerView.adapter = adapter
 
         viewModel.storageGroup.observe(this) {
-            adapter.notifyItemRangeChanged(0, viewModel.storageGroup.value!!.size)
+            adapter.notifyItemRangeChanged(0, it.size)
         }
 
         viewModel.storageTodo.observe(this) {

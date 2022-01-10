@@ -44,7 +44,7 @@ open class BaseActivity : AppCompatActivity() {
         val currentTheme = pref.getPrefString(APP_THEME, SYSTEM_THEME)
 
         if (oldPrefLocaleCode != currentLocaleCode || oldPrefTheme != currentTheme) {
-            recreate() //로케일이 변경되면 업데이트 위해 액티비티 다시 시작
+            recreate() //설정이 변경되면 업데이트 위해 액티비티 다시 시작
             oldPrefLocaleCode = currentLocaleCode
             oldPrefTheme = currentTheme
         }

@@ -22,8 +22,8 @@
     <color name="quit2">#319639</color>
     <color name="quit3">#e2618d</color>
     <color name="toast_background">#E91C1C1C</color>
-    <color name="switch_track_on_light">#FFE5E5E5</color>
-    <color name="switch_track_off_light">#FF333333</color>
+    <color name="switch_track_on_light">#FF333333</color>
+    <color name="switch_track_off_light">#FFE5E5E5</color>
 
     <!-- dark theme color -->
     <color name="calendar_icon_dark">#FF515151</color>

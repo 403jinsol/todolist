@@ -15,28 +15,28 @@ interface TodoDao {
     fun delete(todo: Todo)
 
     @Query("UPDATE Todo SET complete = :complete WHERE todoId = :todoId")
-    fun updateComplete(complete: Boolean, todoId: Long?)
+    fun updateComplete(complete: Boolean, todoId: Long)
 
     @Query("UPDATE Todo SET storage = :storage WHERE todoId = :todoId")
-    fun updateStorage(storage: Boolean, todoId: Long?)
+    fun updateStorage(storage: Boolean, todoId: Long)
 
     @Query("UPDATE Todo SET date = :date WHERE todoId = :todoId")
     fun updateDate(date: Int, todoId: Long?)
 
     @Query("UPDATE Todo SET content = :content WHERE todoId = :todoId")
-    fun updateContent(content: String, todoId: Long?)
+    fun updateContent(content: String, todoId: Long)
 
     @Query("SELECT * FROM Todo WHERE todoId = :todoId")
-    fun getTodo(todoId: Long?): Todo
+    fun getTodo(todoId: Long): Todo
 
     @Query("SELECT * FROM Todo")
     fun getAllTodo(): LiveData<MutableList<Todo>>
 
     @Query("SELECT * FROM Todo WHERE group_id = :groupId AND date = :date AND storage = :storage")
-    fun getCalendarTodo(groupId: Long?, date: Int, storage: Boolean): MutableList<Todo>
+    fun getCalendarTodo(groupId: Long, date: Int, storage: Boolean): MutableList<Todo>
 
     @Query("SELECT * FROM Todo WHERE group_id = :groupId AND storage = :storage")
-    fun getGroupStorageTodo(groupId: Long?, storage: Boolean): MutableList<Todo>
+    fun getGroupStorageTodo(groupId: Long, storage: Boolean): MutableList<Todo>
 
     @Query("SELECT * FROM Todo where date = :date")
     fun getAllDayTodo(date: Int): MutableList<Todo>
@@ -60,10 +60,10 @@ interface GroupDao {
     fun delete(group: TodoGroup)
 
     @Query("UPDATE TodoGroup SET title = :title, groupPublic = :groupPublic, color = :color, complete = :complete, reason = :reason WHERE group_id = :groupId")
-    fun update(groupId: Long?, title: String, groupPublic: Int, color: Int, complete: Boolean, reason: Int)
+    fun update(groupId: Long, title: String, groupPublic: Int, color: Int, complete: Boolean, reason: Int)
 
     @Query("SELECT * FROM TodoGroup WHERE group_id = :groupId")
-    fun getGroup(groupId: Long?): TodoGroup?
+    fun getGroup(groupId: Long): TodoGroup
 
     @Query("SELECT * FROM TodoGroup WHERE complete = :complete")
     fun getAllGroup(complete: Boolean): LiveData<MutableList<TodoGroup>>
@@ -81,8 +81,26 @@ interface TimeAlarmDao {
     fun delete(timeAlarm: TimeAlarm)
 
     @Query("SELECT * FROM TimeAlarm WHERE timeAlarmId = :timeAlarmId")
-    fun getTimeAlarm(timeAlarmId: Long?): TimeAlarm?
+    fun getTimeAlarm(timeAlarmId: Long): TimeAlarm
 
     @Query("SELECT * FROM TimeAlarm ORDER BY allTime ASC")
     fun getAllTimeAlarm(): LiveData<MutableList<TimeAlarm>>
+}
+
+@Dao
+interface RoutineDao {
+    @Insert
+    fun insert(routine: Routine)
+
+    @Delete
+    fun delete(routine: Routine)
+
+    @Query("SELECT * FROM Routine")
+    fun getAllRoutine(): LiveData<MutableList<Routine>>
+
+    @Query("SELECT * FROM Routine WHERE routineId = :routineId")
+    fun getRoutine(routineId: Long): Routine
+
+    @Query("SELECT * FROM Routine WHERE group_id = :groupId")
+    fun getGroupRoutine(groupId: Long): LiveData<MutableList<Routine>>
 }

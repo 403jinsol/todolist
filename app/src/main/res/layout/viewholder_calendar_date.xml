@@ -34,11 +34,9 @@
 
         <TextView
             android:id="@+id/number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_default"
             android:layout_gravity="center"
-            android:text="@string/dummyNumber"
-             />
+            android:text="@string/dummyNumber" />
 
     </FrameLayout>
 

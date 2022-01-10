@@ -14,38 +14,34 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="text_default">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="text_todo_dialog">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/todo_dialog_content_font_size</item>
-        <item name="android:textAlignment">center</item>
-    </style>
-
-    <color name="blackWhite">@color/black</color>
-    <color name="dialog_background">@color/white</color>
-
-    <color name="calendar_icon_default">@color/calendar_icon_light</color>
-    <color name="todo_group_background">@color/todo_group_background_light</color>
-    <color name="todo_group_stroke">@color/todo_group_stroke_light</color>
-    <color name="todo_icon_default">@color/todo_icon_light</color>
-    <color name="whiteBlack">@color/white</color>
-
-    <color name="switch_track_on">@color/switch_track_on_light</color>
-    <color name="switch_track_off">@color/switch_track_off_light</color>
-
     <style name="background">
         <item name="android:background">@color/white</item>
     </style>
 
     <style name="dialogBackground">
         <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="text_default">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blackWhite</item>
+    </style>
+
+    <style name="text_toolbar_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blackWhite</item>
+        <item name="android:textSize">@dimen/toolbar_font_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_todo_dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blackWhite</item>
+        <item name="android:textSize">@dimen/todo_dialog_content_font_size</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="underline">
@@ -57,8 +53,7 @@
     <style name="settingSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:track">@drawable/switch_track_selector</item>
-        <item name="android:thumb">@drawable/switch_thumb_on</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
     </style>
 
     <style name="inquiryQuestion">
@@ -76,4 +71,16 @@
         <item name="android:textColor">@color/blackWhite</item>
         <item name="android:layout_marginStart">@dimen/default_hor_margin</item>
     </style>
+
+    <color name="blackWhite">@color/black</color>
+    <color name="whiteBlack">@color/white</color>
+    <color name="dialog_background">@color/white</color>
+
+    <color name="calendar_icon_default">@color/calendar_icon_light</color>
+    <color name="todo_group_background">@color/todo_group_background_light</color>
+    <color name="todo_group_stroke">@color/todo_group_stroke_light</color>
+    <color name="todo_icon_default">@color/todo_icon_light</color>
+
+    <color name="switch_track_on">@color/switch_track_on_light</color>
+    <color name="switch_track_off">@color/switch_track_off_light</color>
 </resources>
