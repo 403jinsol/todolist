@@ -78,15 +78,14 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/todoText"
+                    android:id="@+id/routineText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:enabled="false"
                     android:importantForAutofill="no"
                     android:inputType="text"
-                    android:text="@string/dummy"
+                    android:text=""
                     android:textColor="@color/blackWhite"
                     android:textSize="@dimen/todo_item_font_size" />
 
@@ -99,7 +98,9 @@
 
             </LinearLayout>
 
-            <View style="@style/underline" />
+            <View
+                style="@style/underline"
+                android:layout_marginVertical="@dimen/big_ver_margin" />
 
             <LinearLayout
                 android:id="@+id/startDateContainer"

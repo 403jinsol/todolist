@@ -102,5 +102,11 @@ interface RoutineDao {
     fun getRoutine(routineId: Long): Routine
 
     @Query("SELECT * FROM Routine WHERE group_id = :groupId")
-    fun getGroupRoutine(groupId: Long): LiveData<MutableList<Routine>>
+    fun getGroupRoutine(groupId: Long): MutableList<Routine>
+
+    @Query("UPDATE routine SET startDate = :startDate WHERE routineId = :routineId")
+    fun updateStartDate(startDate: Int, routineId: Long)
+
+    @Query("UPDATE routine SET endDate = :endDate WHERE routineId = :routineId")
+    fun updateEndDate(endDate: Int, routineId: Long)
 }

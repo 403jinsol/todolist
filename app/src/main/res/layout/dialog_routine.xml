@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/round_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/dialog_hor_padding"
+    android:paddingVertical="@dimen/big_ver_margin">
+
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="@dimen/complete_dialog_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_ver_margin"
+        android:background="@drawable/round"
+        android:stateListAnimator="@null"
+        android:text="@string/edit"
+        android:textColor="@color/blackWhite" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="@dimen/complete_dialog_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_ver_margin"
+        android:background="@drawable/round"
+        android:stateListAnimator="@null"
+        android:text="@string/delete"
+        android:textColor="@color/blackWhite" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="@dimen/complete_dialog_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_ver_margin"
+        android:background="@drawable/round"
+        android:stateListAnimator="@null"
+        android:text="@string/cancel"
+        android:textColor="@color/blackWhite" />
+
+</LinearLayout>

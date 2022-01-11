@@ -17,9 +17,8 @@ class StorageDialog(val viewModel: StorageViewModel) : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!requireArguments().isEmpty) {
+        if (!requireArguments().isEmpty)
             todo = viewModel.getTodo(requireArguments().getLong("todoId", 0))
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

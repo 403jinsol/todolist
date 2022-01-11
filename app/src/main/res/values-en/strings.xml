@@ -101,5 +101,6 @@
     <string name="start_date">From</string>
     <string name="end_date">To</string>
     <string name="day">Days</string>
+    <string name="cancel">cancel</string>
 
 </resources>

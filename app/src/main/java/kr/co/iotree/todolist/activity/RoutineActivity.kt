@@ -1,8 +1,6 @@
 package kr.co.iotree.todolist.activity
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +30,10 @@ class RoutineActivity : BaseActivity() {
 
         viewModel.allGroup.observe(this) {
             adapter.notifyItemRangeChanged(0, it.size)
-            Toast.makeText(this, it[0].title, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.allRoutine.observe(this) {
+            adapter.notifyItemRangeChanged(0, it.size)
         }
     }
 }

@@ -25,6 +25,7 @@ class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, pr
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
+        binding.groupIcon.setColorFilter(group.color)
 
         adapter = StorageTodoAdapter(viewModel, list, supportFragmentManager)
         binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)

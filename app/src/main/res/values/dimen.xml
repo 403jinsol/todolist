@@ -42,6 +42,8 @@
     <dimen name="color_icon_outline_size">40dp</dimen>
     <dimen name="toast_hor_padding">70dp</dimen>
 
+    <dimen name="routine_font_size">13sp</dimen>
+
     <!-- 다이얼로그 -->
     <dimen name="dialog_hor_padding">20dp</dimen>
     <dimen name="complete_dialog_btn_size">250dp</dimen>

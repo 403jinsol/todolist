@@ -18,8 +18,8 @@ import androidx.room.PrimaryKey
 data class Routine(
     @PrimaryKey(autoGenerate = true) val routineId: Long?,
     val content: String,
-    val startDay: Int,
-    val endDay: Int,
+    val startDate: Int,
+    val endDate: Int,
     val sunday: Boolean,
     val monday: Boolean,
     val tuesday: Boolean,

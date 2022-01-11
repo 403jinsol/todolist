@@ -17,6 +17,7 @@ import kr.co.iotree.todolist.viewModel.GroupInfoViewModel
 class GroupEditActivity : BaseActivity() {
     lateinit var binding: ActivityGroupEditBinding
     lateinit var adapter: ColorAdapter
+
     val viewModel by viewModels<GroupInfoViewModel> {
         GroupInfoViewModel.Factory(application, intent.getLongExtra("groupId", -1))
     }
@@ -31,7 +32,7 @@ class GroupEditActivity : BaseActivity() {
 
         setViewModel()
 
-        binding.groupTitle.setText(viewModel.group!!.title)
+        binding.groupTitle.setText(viewModel.group.title)
         binding.groupTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 viewModel.title.value = binding.groupTitle.text.toString()

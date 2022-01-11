@@ -1,7 +1,6 @@
 package kr.co.iotree.todolist.database
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 
 class RoutineRepository(private val dao: RoutineDao) {
     companion object {
@@ -31,7 +30,15 @@ class RoutineRepository(private val dao: RoutineDao) {
         return dao.getRoutine(routineId)
     }
 
-    fun getGroupRoutine(groupId: Long): LiveData<MutableList<Routine>> {
+    fun getGroupRoutine(groupId: Long): MutableList<Routine> {
         return dao.getGroupRoutine(groupId)
+    }
+
+    fun updateStartDate(startDate: Int, routineId: Long) {
+        dao.updateStartDate(startDate, routineId)
+    }
+
+    fun updateEndDate(endDate: Int, routineId: Long) {
+        dao.updateEndDate(endDate, routineId)
     }
 }
