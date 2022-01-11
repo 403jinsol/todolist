@@ -2,6 +2,9 @@ package kr.co.iotree.todolist.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.database.RoutineRepository
 import kr.co.iotree.todolist.database.TodoGroupRepository
@@ -16,23 +19,27 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
         return repository.getRoutine(routineId)
     }
 
-    fun getGroupRoutine(groupId: Long): MutableList<Routine> {
+    fun getGroupRoutine(groupId: Long): List<Routine> {
         return repository.getGroupRoutine(groupId)
     }
 
-    fun addRoutine(routine: Routine) {
+    fun addRoutine(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
         repository.addRoutine(routine)
     }
 
-    fun deleteRoutine(routine: Routine) {
+    fun deleteRoutine(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteRoutine(routine)
     }
 
-    fun updateStartDate(startDate: Int, routineId: Long) {
+    fun updateStartDate(startDate: Int, routineId: Long) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateStartDate(startDate, routineId)
     }
 
-    fun updateEndDate(endDate: Int, routineId: Long) {
+    fun updateEndDate(endDate: Int, routineId: Long) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateEndDate(endDate, routineId)
+    }
+
+    fun updateDay(mon: Boolean, tue: Boolean, wed: Boolean, thu: Boolean, fri: Boolean, sat: Boolean, sun: Boolean, routineId: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateDay(mon, tue, wed, thu, fri, sat, sun, routineId)
     }
 }

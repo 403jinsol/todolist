@@ -102,5 +102,14 @@
     <string name="end_date">To</string>
     <string name="day">Days</string>
     <string name="cancel">cancel</string>
+    <string name="no_routine">Here you can register your todo items you want to do repeatedly.</string>
+    <string name="monday_long">Monday</string>
+    <string name="tuesday_long">Tuesday</string>
+    <string name="wednesday_long">Wednesday</string>
+    <string name="thursday_long">Thursday</string>
+    <string name="friday_long">Friday</string>
+    <string name="saturday_long">Saturday</string>
+    <string name="sunday_long">Sunday</string>
+    <string name="everyday">Everyday</string>
 
 </resources>

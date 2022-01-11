@@ -94,4 +94,13 @@
     <string name="end_date">終了日</string>
     <string name="day">日付</string>
     <string name="cancel">" キャンセル"</string>
+    <string name="no_routine">よく入力する項目はここに曜日、期間ごとに整えて入力できます。目標ボタンを押して追加できます。</string>
+    <string name="monday_long">月曜日</string>
+    <string name="tuesday_long">火曜日</string>
+    <string name="wednesday_long">水曜日</string>
+    <string name="thursday_long">木曜日</string>
+    <string name="friday_long">金曜日</string>
+    <string name="saturday_long">土曜日</string>
+    <string name="sunday_long">日曜日</string>
+    <string name="everyday">毎日</string>
 </resources>

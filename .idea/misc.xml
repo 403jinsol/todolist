@@ -33,6 +33,7 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/switch_track_off.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/switch_track_on.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/drawable/switch_track_selector.xml" value="0.28072916666666664" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_day.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group.xml" value="0.3255208333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group_add.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_group_edit.xml" value="0.481421647819063" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_inquiry.xml" value="0.3576158940397351" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_main.xml" value="0.3476027397260274" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_routine.xml" value="0.5411458333333333" />
+        <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_routine_day.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting.xml" value="0.26458333333333334" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting_language.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/jshong/AndroidStudioProjects/TodoList/app/src/main/res/layout/activity_setting_theme.xml" value="0.321875" />

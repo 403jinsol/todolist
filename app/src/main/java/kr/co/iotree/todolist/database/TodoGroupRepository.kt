@@ -20,11 +20,11 @@ class TodoGroupRepository(val database: TodoDatabase) {
     val groupDao = database.groupDao()
     val todoDao = database.todoDao()
 
-    val readCalendarGroup: LiveData<MutableList<TodoGroup>> = groupDao.getCalenderGroup(false)
-    val readProceedGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(false)
-    val readCompleteGroup: LiveData<MutableList<TodoGroup>> = groupDao.getAllGroup(true)
-    val readAllTodo: LiveData<MutableList<Todo>> = todoDao.getAllTodo()
-    val readAllStorageTodo: LiveData<MutableList<Todo>> = todoDao.getAllStorageTodo(true)
+    val readCalendarGroup: LiveData<List<TodoGroup>> = groupDao.getCalenderGroup(false)
+    val readProceedGroup: LiveData<List<TodoGroup>> = groupDao.getAllGroup(false)
+    val readCompleteGroup: LiveData<List<TodoGroup>> = groupDao.getAllGroup(true)
+    val readAllTodo: LiveData<List<Todo>> = todoDao.getAllTodo()
+    val readAllStorageTodo: LiveData<List<Todo>> = todoDao.getAllStorageTodo(true)
 
     fun addGroup(group: TodoGroup) {
         groupDao.insert(group)
@@ -70,15 +70,15 @@ class TodoGroupRepository(val database: TodoDatabase) {
         todoDao.updateComplete(complete, todoId)
     }
 
-    fun getAllDayTodo(date: Int): MutableList<Todo> {
+    fun getAllDayTodo(date: Int): List<Todo> {
         return todoDao.getAllDayTodo(date)
     }
 
-    fun getAllDayCompleteTodo(date: Int, complete: Boolean): MutableList<Todo> {
+    fun getAllDayCompleteTodo(date: Int, complete: Boolean): List<Todo> {
         return todoDao.getCompleteTodo(date, complete)
     }
 
-    fun getGroupStorageTodo(groupId: Long): MutableList<Todo> {
+    fun getGroupStorageTodo(groupId: Long): List<Todo> {
         return todoDao.getGroupStorageTodo(groupId, true)
     }
 }

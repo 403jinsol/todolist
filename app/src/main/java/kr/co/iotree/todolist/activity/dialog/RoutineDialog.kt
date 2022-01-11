@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.databinding.DialogRoutineBinding
 import kr.co.iotree.todolist.viewModel.RoutineViewModel
@@ -19,7 +21,9 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
         super.onCreate(savedInstanceState)
 
         if (!requireArguments().isEmpty) {
-            routine = viewModel.getRoutine(requireArguments().getLong("routineId", 0))
+            viewModel.viewModelScope.launch {
+                routine = viewModel.getRoutine(requireArguments().getLong("routineId", 0))
+            }
             type = requireArguments().getString("type", "content")
         }
     }
@@ -46,7 +50,7 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
                 "start" -> {
                     val dlg = DatePickerDialog(requireContext())
                     dlg.setOnDateSetListener { _, year, month, dayOfMonth ->
-                        viewModel.updateStartDate(String.format("%04d%02d%02d", year, month + 1, dayOfMonth).toInt(), routine.routineId!!)
+                        viewModel.updateStartDate(String.format("%d%02d%02d", year, month + 1, dayOfMonth).toInt(), routine.routineId!!)
                         this.dismiss()
                     }
                     dlg.show()
@@ -54,7 +58,7 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
                 "end" -> {
                     val dlg = DatePickerDialog(requireContext())
                     dlg.setOnDateSetListener { _, year, month, dayOfMonth ->
-                        viewModel.updateEndDate(String.format("%04d%02d%02d", year, month + 1, dayOfMonth).toInt(), routine.routineId!!)
+                        viewModel.updateEndDate(String.format("%d%02d%02d", year, month + 1, dayOfMonth).toInt(), routine.routineId!!)
                         this.dismiss()
                     }
                     dlg.show()

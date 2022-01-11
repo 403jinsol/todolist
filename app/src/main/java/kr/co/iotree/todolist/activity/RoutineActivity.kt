@@ -1,6 +1,8 @@
 package kr.co.iotree.todolist.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,7 @@ class RoutineActivity : BaseActivity() {
     lateinit var binding: ActivityRoutineBinding
     lateinit var adapter: RoutineGroupAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,10 +33,21 @@ class RoutineActivity : BaseActivity() {
 
         viewModel.allGroup.observe(this) {
             adapter.notifyItemRangeChanged(0, it.size)
+            setVisibility()
         }
 
         viewModel.allRoutine.observe(this) {
-            adapter.notifyItemRangeChanged(0, it.size)
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun setVisibility() {
+        if (viewModel.allGroup.value?.size == 0 || viewModel.allGroup.value == null) {
+            binding.routineRecyclerView.visibility = View.GONE
+            binding.noRoutine.visibility = View.VISIBLE
+        } else {
+            binding.routineRecyclerView.visibility = View.VISIBLE
+            binding.noRoutine.visibility = View.GONE
         }
     }
 }

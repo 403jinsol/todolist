@@ -52,7 +52,7 @@
 
         <View
             style="@style/underline"
-            android:layout_marginVertical="@dimen/big_ver_margin" />
+            android:layout_marginVertical="@dimen/default_ver_margin" />
 
         <LinearLayout
             android:id="@+id/startDateContainer"
@@ -80,7 +80,7 @@
 
         <View
             style="@style/underline"
-            android:layout_marginVertical="@dimen/big_ver_margin" />
+            android:layout_marginVertical="@dimen/default_ver_margin" />
 
         <LinearLayout
             android:id="@+id/endDateContainer"
@@ -108,9 +108,10 @@
 
         <View
             style="@style/underline"
-            android:layout_marginVertical="@dimen/big_ver_margin" />
+            android:layout_marginVertical="@dimen/default_ver_margin" />
 
         <LinearLayout
+            android:id="@+id/dayContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -126,7 +127,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/day"
                 style="@style/text_default"
                 android:text="@string/dummy"
                 android:textSize="@dimen/routine_font_size" />
@@ -135,7 +136,7 @@
 
         <View
             style="@style/underline"
-            android:layout_marginVertical="@dimen/big_ver_margin" />
+            android:layout_marginVertical="@dimen/default_ver_margin" />
 
     </LinearLayout>
 

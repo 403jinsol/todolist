@@ -8,7 +8,7 @@ import kr.co.iotree.todolist.database.*
 
 class TimeListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = TimeRepository.getInstance(application)
-    val allTimes = repository.readAllTimeAlarm
+    val allTimes: LiveData<List<TimeAlarm>> = repository.readAllTimeAlarm
 
     fun addTime(timeAlarm: TimeAlarm) = viewModelScope.launch(Dispatchers.IO) {
         repository.addTimeAlarm(timeAlarm)

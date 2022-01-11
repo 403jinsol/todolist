@@ -18,11 +18,11 @@ class RoutineRepository(private val dao: RoutineDao) {
 
     val readAllTimeAlarm = dao.getAllRoutine()
 
-    fun addRoutine(routine: Routine) {
+    suspend fun addRoutine(routine: Routine) {
         dao.insert(routine)
     }
 
-    fun deleteRoutine(routine: Routine) {
+    suspend fun deleteRoutine(routine: Routine) {
         dao.delete(routine)
     }
 
@@ -30,15 +30,19 @@ class RoutineRepository(private val dao: RoutineDao) {
         return dao.getRoutine(routineId)
     }
 
-    fun getGroupRoutine(groupId: Long): MutableList<Routine> {
+    fun getGroupRoutine(groupId: Long): List<Routine> {
         return dao.getGroupRoutine(groupId)
     }
 
-    fun updateStartDate(startDate: Int, routineId: Long) {
+    suspend fun updateStartDate(startDate: Int, routineId: Long) {
         dao.updateStartDate(startDate, routineId)
     }
 
-    fun updateEndDate(endDate: Int, routineId: Long) {
+    suspend fun updateEndDate(endDate: Int, routineId: Long) {
         dao.updateEndDate(endDate, routineId)
+    }
+
+    suspend fun updateDay(mon: Boolean, tue: Boolean, wed: Boolean, thu: Boolean, fri: Boolean, sat: Boolean, sun: Boolean, routineId: Long){
+        dao.updateDay(mon, tue, wed, thu, fri, sat, sun, routineId)
     }
 }

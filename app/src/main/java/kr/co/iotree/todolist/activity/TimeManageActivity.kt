@@ -31,9 +31,10 @@ class TimeManageActivity : BaseActivity() {
         binding.timeRecyclerView.itemAnimator = null
         binding.timeRecyclerView.adapter = adapter
 
+        setVisibility()
+
         viewModel.allTimes.observe(this) {
             adapter.notifyItemRangeChanged(0, it.size)
-            setVisibility()
         }
     }
 

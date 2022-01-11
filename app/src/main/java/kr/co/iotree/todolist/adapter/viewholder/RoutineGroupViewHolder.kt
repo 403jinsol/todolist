@@ -32,7 +32,7 @@ class RoutineGroupViewHolder(private val binding: ViewholderRoutineGroupBinding,
         binding.container.setOnClickListener {
             if (binding.editContainer.visibility == View.VISIBLE) {
                 binding.editContainer.visibility = View.GONE
-                val routine = Routine(null, binding.routineText.text.toString(), 0, 0, true, true, true, true, true, true, true, group.groupId)
+                val routine = Routine(null, binding.routineText.text.toString(), 0, 0, false, false, false, false, false, false, false, group.groupId)
                 viewModel.addRoutine(routine)
                 binding.routineText.text = null
                 imm.hideSoftInputFromWindow(binding.routineText.windowToken, 0) //키보드 안보이게

@@ -21,7 +21,7 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
     lateinit var adapter: CalendarGroupAdapter
 
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
-        val todoDate = String.format("%04d%02d%02d", year, month, date).toInt()
+        val todoDate = String.format("%d%02d%02d", year, month, date).toInt()
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)

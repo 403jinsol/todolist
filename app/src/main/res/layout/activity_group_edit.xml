@@ -177,12 +177,14 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
+                    style="@style/text_default"
+                    android:text="@string/quit"
+                    android:textSize="15sp" />
+
+                <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/quit"
-
-                    android:textSize="15sp" />
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/quitBtn"

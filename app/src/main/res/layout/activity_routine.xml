@@ -42,6 +42,13 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/noRoutine"
+        style="@style/text_default"
+        android:layout_marginHorizontal="@dimen/default_hor_margin"
+        android:text="@string/no_routine"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineRecyclerView"
         android:layout_width="match_parent"

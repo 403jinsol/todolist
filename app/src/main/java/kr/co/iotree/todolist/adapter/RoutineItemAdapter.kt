@@ -9,7 +9,7 @@ import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.databinding.ViewholderRoutineItemBinding
 import kr.co.iotree.todolist.viewModel.RoutineViewModel
 
-class RoutineItemAdapter(private val viewModel: RoutineViewModel, private val list: MutableList<Routine>, private val supportFragmentManager: FragmentManager) :
+class RoutineItemAdapter(private val viewModel: RoutineViewModel, private val list: List<Routine>, private val supportFragmentManager: FragmentManager) :
     RecyclerView.Adapter<RoutineItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineItemViewHolder {
         return RoutineItemViewHolder(ViewholderRoutineItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)

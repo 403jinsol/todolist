@@ -24,7 +24,7 @@ class StorageViewModel(application: Application) : AndroidViewModel(application)
         return repository.getTodo(todoID)
     }
 
-    fun getGroupStorageTodo(groupID: Long): MutableList<Todo> {
+    fun getGroupStorageTodo(groupID: Long): List<Todo> {
         return repository.getGroupStorageTodo(groupID)
     }
 
