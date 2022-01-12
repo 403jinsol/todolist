@@ -104,6 +104,33 @@ interface RoutineDao {
     @Query("SELECT * FROM Routine WHERE group_id = :groupId")
     fun getGroupRoutine(groupId: Long): List<Routine>
 
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND monday = :monday AND group_id = :groupId")
+    fun getGroupMondayRoutine(groupId: Long, date: Int, monday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND tuesday = :tuesday AND group_id = :groupId")
+    fun getGroupTuesdayRoutine(groupId: Long, date: Int, tuesday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND wednesday = :wednesday AND group_id = :groupId")
+    fun getGroupWednesdayRoutine(groupId: Long, date: Int, wednesday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND thursday = :thursday AND group_id = :groupId")
+    fun getGroupThursdayRoutine(groupId: Long, date: Int, thursday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND friday = :friday AND group_id = :groupId")
+    fun getGroupFridayRoutine(groupId: Long, date: Int, friday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND saturday = :saturday AND group_id = :groupId")
+    fun getGroupSaturdayRoutine(groupId: Long, date: Int, saturday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE startDate <= :date AND endDate >= :date AND sunday = :sunday AND group_id = :groupId")
+    fun getGroupSundayRoutine(groupId: Long, date: Int, sunday: Boolean): List<Routine>
+
+    @Query("SELECT * FROM Routine WHERE group_id = :groupId")
+    fun getAllGroupRoutine(groupId: Long): List<Routine>
+
+    @Query("UPDATE routine SET content = :content WHERE routineId = :routineId")
+    fun updateContent(content: String, routineId: Long)
+
     @Query("UPDATE routine SET startDate = :startDate WHERE routineId = :routineId")
     fun updateStartDate(startDate: Int, routineId: Long)
 

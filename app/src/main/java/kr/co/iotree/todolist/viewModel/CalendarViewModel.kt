@@ -1,19 +1,25 @@
 package kr.co.iotree.todolist.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.database.*
+import kr.co.iotree.todolist.util.getDayOfTheWeek
 import kr.co.iotree.todolist.util.getToday
+import java.lang.RuntimeException
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val todoRepository = TodoGroupRepository.getInstance(application)
+    private val todoRepository = TodoRepository.getInstance(application)
+    private val groupRepository = GroupRepository.getInstance(application)
     private val timeRepository = TimeRepository.getInstance(application)
+    private val routineRepository = RoutineRepository.getInstance(application)
 
-    val allCalendarGroup: LiveData<List<TodoGroup>> = todoRepository.readCalendarGroup
+    val allCalendarGroup: LiveData<List<TodoGroup>> = groupRepository.readCalendarGroup
     val allTodo: LiveData<List<Todo>> = todoRepository.readAllTodo
     val groupTodo = MutableLiveData<List<Todo>>()
+    val groupRoutine = MutableLiveData<List<Routine>>()
     val allTime: LiveData<List<TimeAlarm>> = timeRepository.readAllTimeAlarm
 
     var year = MutableLiveData<Int>().also {
@@ -33,11 +39,11 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     }
 
     val completeCount = MutableLiveData<Int>().also {
-        it.value = todoRepository.todoDao.getAllCompleteTodo(String.format("%d%02d01", year.value, month.value).toInt(), String.format("%d%02d31", year.value, month.value).toInt(), true).size
+        it.value = todoRepository.getAllCompleteTodo(String.format("%d%02d01", year.value, month.value).toInt(), String.format("%d%02d31", year.value, month.value).toInt(), true).size
     }
 
     fun getGroup(groupId: Long): TodoGroup {
-        return todoRepository.getGroup(groupId)
+        return groupRepository.getGroup(groupId)
     }
 
     fun getTodo(todoID: Long): Todo {
@@ -45,11 +51,24 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getGroupTodo(groupId: Long) {
-        groupTodo.value = todoRepository.todoDao.getCalendarTodo(groupId, String.format("%d%02d%02d", year.value, month.value, date.value).toInt(), false)
+        groupTodo.value = todoRepository.getCalendarTodo(groupId, String.format("%d%02d%02d", year.value, month.value, date.value).toInt(), false)
+    }
+
+    fun getGroupRoutine(groupId: Long, year: Int, month: Int, date: Int) {
+        groupRoutine.value = when (getDayOfTheWeek(year, month, date)) {
+            0 -> routineRepository.getGroupMondayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            1 -> routineRepository.getGroupTuesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            2 -> routineRepository.getGroupWednesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            3 -> routineRepository.getGroupThursdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            4 -> routineRepository.getGroupFridayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            5 -> routineRepository.getGroupSaturdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            6 -> routineRepository.getGroupSundayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+            else -> throw RuntimeException("Invalid date")
+        }
     }
 
     fun changeCompleteCount(year: Int, month: Int) {
-        completeCount.value = todoRepository.todoDao.getAllCompleteTodo(String.format("%d%02d1", year, month).toInt(), String.format("%d%02d31", year, month).toInt(), true).size
+        completeCount.value = todoRepository.getAllCompleteTodo(String.format("%d%02d01", year, month).toInt(), String.format("%d%02d31", year, month).toInt(), true).size
     }
 
     fun updateComplete(complete: Boolean, todoId: Long) = viewModelScope.launch(Dispatchers.IO) {

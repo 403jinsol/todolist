@@ -12,13 +12,13 @@ class RoutineDayActivity : BaseActivity() {
     private lateinit var binding: ActivityRoutineDayBinding
     lateinit var routine: Routine
 
-    var mon = false
-    var tue = false
-    var wed = false
-    var thu = false
-    var fri = false
-    var sat = false
-    var sun = false
+    private var mon = false
+    private var tue = false
+    private var wed = false
+    private var thu = false
+    private var fri = false
+    private var sat = false
+    private var sun = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,42 +70,42 @@ class RoutineDayActivity : BaseActivity() {
                 binding.mondayBtn.setImageResource(R.drawable.ic_radio_checked)
             mon = !mon
         }
-        binding.tuesdayBtn.setOnClickListener {
+        binding.tuesdayContainer.setOnClickListener {
             if (tue)
                 binding.tuesdayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else
                 binding.tuesdayBtn.setImageResource(R.drawable.ic_radio_checked)
             tue = !tue
         }
-        binding.wednesdayBtn.setOnClickListener {
+        binding.wednesdayContainer.setOnClickListener {
             if (wed)
                 binding.wednesdayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else
                 binding.wednesdayBtn.setImageResource(R.drawable.ic_radio_checked)
             wed = !wed
         }
-        binding.thursdayBtn.setOnClickListener {
+        binding.thursdayContainer.setOnClickListener {
             if (thu)
                 binding.thursdayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else
                 binding.thursdayBtn.setImageResource(R.drawable.ic_radio_checked)
             thu = !thu
         }
-        binding.fridayBtn.setOnClickListener {
+        binding.fridayContainer.setOnClickListener {
             if (fri)
                 binding.fridayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else
                 binding.fridayBtn.setImageResource(R.drawable.ic_radio_checked)
             fri = !fri
         }
-        binding.saturdayBtn.setOnClickListener {
+        binding.saturdayContainer.setOnClickListener {
             if (sat)
                 binding.saturdayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else
                 binding.saturdayBtn.setImageResource(R.drawable.ic_radio_checked)
             sat = !sat
         }
-        binding.sundayBtn.setOnClickListener {
+        binding.sundayContainer.setOnClickListener {
             if (sun)
                 binding.sundayBtn.setImageResource(R.drawable.ic_radio_uncheck)
             else

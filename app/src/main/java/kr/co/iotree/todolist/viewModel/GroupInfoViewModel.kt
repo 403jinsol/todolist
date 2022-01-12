@@ -4,12 +4,12 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.database.TodoGroupRepository
+import kr.co.iotree.todolist.database.GroupRepository
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.util.GroupColor
 
 class GroupInfoViewModel(application: Application, groupId: Long?) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository.getInstance(application)
+    private val repository = GroupRepository.getInstance(application)
 
     @Suppress("UNCHECKED_CAST")
     class Factory(private val application: Application, private val groupId: Long?) : ViewModelProvider.Factory {
@@ -19,43 +19,43 @@ class GroupInfoViewModel(application: Application, groupId: Long?) : AndroidView
     }
 
     val groupId = if (groupId != -1L)
-        repository.groupDao.getGroup(groupId!!).groupId
+        repository.getGroup(groupId!!).groupId
     else
         null
 
-    val group = repository.groupDao.getGroup(groupId!!)
+    val group = repository.getGroup(groupId!!)
 
     var title = MutableLiveData<String>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId!!).title
+            it.value = repository.getGroup(groupId!!).title
         else
             it.value = ""
     }
 
     var color = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId!!).color
+            it.value = repository.getGroup(groupId!!).color
         else
             it.value = GroupColor.BLACK.color
     }
 
     var groupPublic = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId!!).groupPublic
+            it.value = repository.getGroup(groupId!!).groupPublic
         else
             it.value = 3
     }
 
     var complete = MutableLiveData<Boolean>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId!!).complete
+            it.value = repository.getGroup(groupId!!).complete
         else
             it.value = false
     }
 
     var reason = MutableLiveData<Int>().also {
         if (groupId != -1L)
-            it.value = repository.groupDao.getGroup(groupId!!).reason
+            it.value = repository.getGroup(groupId!!).reason
         else
             it.value = 0
     }

@@ -106,7 +106,7 @@ class MainActivity : BaseActivity() {
 
         binding.groupManage.setOnClickListener { startActivity(Intent(this, GroupManageActivity::class.java)) }
 
-        binding.simpleManage.setOnClickListener { startActivity(Intent(this, RoutineActivity::class.java )) }
+        binding.simpleManage.setOnClickListener { startActivity(Intent(this, RoutineActivity::class.java)) }
 
         binding.inquiry.setOnClickListener { startActivity(Intent(this, InquiryActivity::class.java)) }
 

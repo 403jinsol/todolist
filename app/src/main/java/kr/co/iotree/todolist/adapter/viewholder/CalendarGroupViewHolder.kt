@@ -1,6 +1,7 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -9,16 +10,21 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
+import kr.co.iotree.todolist.adapter.CalendarRoutineAdapter
+import kr.co.iotree.todolist.adapter.CalendarTodoAdapter
+import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
+import kr.co.iotree.todolist.util.getDayOfTheWeek
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
+import java.lang.RuntimeException
 
 class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, private val viewModel: CalendarViewModel, private var supportFragmentManager: FragmentManager) :
     RecyclerView.ViewHolder(binding.root) {
     private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    lateinit var adapter: CalendarGroupAdapter
+    private lateinit var todoAdapter: CalendarTodoAdapter
+    private lateinit var routineAdapter: CalendarRoutineAdapter
 
     fun bindData(group: TodoGroup, year: Int, month: Int, date: Int) {
         val todoDate = String.format("%d%02d%02d", year, month, date).toInt()
@@ -28,12 +34,22 @@ class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, p
         binding.groupIcon.setColorFilter(group.color)
 
         viewModel.getGroupTodo(group.groupId!!)
-        val list = viewModel.groupTodo.value!!
+        val todoList = viewModel.groupTodo.value!!
+        viewModel.getGroupRoutine(group.groupId, year, month, date)
+        val routineList = viewModel.groupRoutine.value!!
 
-        adapter = CalendarGroupAdapter(viewModel, list, group.color, supportFragmentManager)
-        binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerview.adapter = adapter
+        todoAdapter = CalendarTodoAdapter(viewModel, todoList, group.color, supportFragmentManager)
+        binding.todoRecyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+        binding.todoRecyclerview.adapter = todoAdapter
 
+        routineAdapter = CalendarRoutineAdapter(viewModel, routineList, group.groupId)
+        binding.routineRecyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+        binding.routineRecyclerview.adapter = routineAdapter
+
+        setOnClickListener(group, todoDate)
+    }
+
+    private fun setOnClickListener(group: TodoGroup, todoDate: Int) {
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
                 val todo = Todo(null, binding.todoEdit.text.toString(), todoDate, complete = false, storage = false, group.groupId)

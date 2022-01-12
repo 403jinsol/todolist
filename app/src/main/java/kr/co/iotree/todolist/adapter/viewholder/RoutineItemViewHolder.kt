@@ -4,19 +4,22 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.RoutineDayActivity
 import kr.co.iotree.todolist.activity.dialog.RoutineDialog
-import kr.co.iotree.todolist.adapter.CalendarGroupAdapter
+import kr.co.iotree.todolist.adapter.CalendarTodoAdapter
 import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.databinding.ViewholderRoutineItemBinding
 import kr.co.iotree.todolist.viewModel.RoutineViewModel
 
 class RoutineItemViewHolder(private val binding: ViewholderRoutineItemBinding, private val viewModel: RoutineViewModel) :
     RecyclerView.ViewHolder(binding.root) {
-    lateinit var adapter: CalendarGroupAdapter
+    lateinit var adapter: CalendarTodoAdapter
+    private val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
     fun bindData(routine: Routine, supportFragmentManager: FragmentManager) {
         binding.content.setText(routine.content)
@@ -35,7 +38,20 @@ class RoutineItemViewHolder(private val binding: ViewholderRoutineItemBinding, p
             val dlg = RoutineDialog(viewModel).apply {
                 arguments = bundle
             }
-            dlg.show(supportFragmentManager, "todoDialog")
+            dlg.set { _, which ->
+                if (which == RoutineDialog.EDIT) {
+                    binding.content.isEnabled = true
+                    binding.content.isFocusableInTouchMode = true
+                    binding.content.requestFocus()
+                    imm.showSoftInput(binding.content, 0)
+                    binding.content.imeOptions = EditorInfo.IME_ACTION_DONE
+
+                    binding.container.setOnClickListener {
+                        viewModel.updateContent(binding.content.text.toString(), routine.routineId!!)
+                        binding.content.isEnabled = false
+                    }
+                }
+            }.show(supportFragmentManager, "todoDialog")
         }
 
         binding.startDateContainer.setOnClickListener {
@@ -55,7 +71,7 @@ class RoutineItemViewHolder(private val binding: ViewholderRoutineItemBinding, p
         }
 
         binding.endDateContainer.setOnClickListener {
-            if (routine.endDate == 0) {
+            if (routine.endDate == Int.MAX_VALUE) {
                 showEndDateDialog(itemView.context, routine)
             } else {
                 val bundle = Bundle().apply {
@@ -103,7 +119,7 @@ class RoutineItemViewHolder(private val binding: ViewholderRoutineItemBinding, p
         else
             binding.startDate.text = String.format("%d. %02d. %02d.", routine.startDate / 10000, routine.startDate % 10000 / 100, routine.startDate % 100)
 
-        if (routine.endDate == 0)
+        if (routine.endDate == Int.MAX_VALUE)
             binding.endDate.text = ""
         else
             binding.endDate.text = String.format("%d. %02d. %02d.", routine.endDate / 10000, routine.endDate % 10000 / 100, routine.endDate % 100)
@@ -125,11 +141,11 @@ class RoutineItemViewHolder(private val binding: ViewholderRoutineItemBinding, p
         var dayText = ""
 
         for (index in dayList.indices) {
-            if (dayList[index])
+            if (!dayList[index])
                 allTrue = false
             if (dayList[index]) {
                 allFalse = false
-                dayText += textList[index]
+                dayText = dayText + textList[index] + " "
             }
 
         }

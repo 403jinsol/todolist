@@ -18,7 +18,7 @@ class RoutineGroupViewHolder(private val binding: ViewholderRoutineGroupBinding,
     lateinit var adapter: RoutineItemAdapter
 
     fun bindData(group: TodoGroup, supportFragmentManager: FragmentManager) {
-        val list = viewModel.getGroupRoutine(group.groupId!!)
+        val list = viewModel.getAllGroupRoutine(group.groupId!!)
 
         binding.title.text = group.title
         binding.title.setTextColor(group.color)
@@ -32,7 +32,17 @@ class RoutineGroupViewHolder(private val binding: ViewholderRoutineGroupBinding,
         binding.container.setOnClickListener {
             if (binding.editContainer.visibility == View.VISIBLE) {
                 binding.editContainer.visibility = View.GONE
-                val routine = Routine(null, binding.routineText.text.toString(), 0, 0, false, false, false, false, false, false, false, group.groupId)
+                val routine = Routine(
+                    null, binding.routineText.text.toString(), 0, Int.MAX_VALUE,
+                    sunday = true,
+                    monday = true,
+                    tuesday = true,
+                    wednesday = true,
+                    thursday = true,
+                    friday = true,
+                    saturday = true,
+                    groupId = group.groupId
+                )
                 viewModel.addRoutine(routine)
                 binding.routineText.text = null
                 imm.hideSoftInputFromWindow(binding.routineText.windowToken, 0) //키보드 안보이게

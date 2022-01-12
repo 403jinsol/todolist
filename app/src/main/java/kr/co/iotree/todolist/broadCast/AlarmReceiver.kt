@@ -11,7 +11,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import kr.co.iotree.todolist.R
 import kr.co.iotree.todolist.activity.MainActivity
-import kr.co.iotree.todolist.database.TodoGroupRepository
+import kr.co.iotree.todolist.database.TodoRepository
 import kr.co.iotree.todolist.util.getToday
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -34,10 +34,10 @@ class AlarmReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val repository = TodoGroupRepository.getInstance(context)
+        val repository = TodoRepository.getInstance(context)
         val list = repository.getAllDayCompleteTodo(getToday("yyyyMMdd"), false)
 
-        if (list.size <= 0) {
+        if (list.isEmpty()) {
             val builder =
                 NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_clover)

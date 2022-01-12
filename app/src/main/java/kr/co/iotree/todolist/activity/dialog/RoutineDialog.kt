@@ -1,6 +1,7 @@
 package kr.co.iotree.todolist.activity.dialog
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
     lateinit var binding: DialogRoutineBinding
     lateinit var routine: Routine
     lateinit var type: String
+    private var clickListener: DialogInterface.OnClickListener? = null
+
+    private var which = Int.MIN_VALUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,11 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
         return binding.root
     }
 
+    fun set(clickListener: DialogInterface.OnClickListener?): RoutineDialog {
+        this.clickListener = clickListener
+        return this
+    }
+
     private fun setOnClickListener() {
         setEditBtn()
         setDeleteBtn()
@@ -44,7 +53,8 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
         binding.editBtn.setOnClickListener {
             when (type) {
                 "content" -> {
-
+                    which = EDIT
+                    dismiss()
                 }
 
                 "start" -> {
@@ -79,11 +89,15 @@ class RoutineDialog(val viewModel: RoutineViewModel) : DialogFragment() {
                     dismiss()
                 }
                 "end" -> {
-                    viewModel.updateEndDate(0, routine.routineId!!)
+                    viewModel.updateEndDate(Int.MAX_VALUE, routine.routineId!!)
                     dismiss()
                 }
 
             }
         }
+    }
+
+    companion object {
+        const val EDIT = 1
     }
 }

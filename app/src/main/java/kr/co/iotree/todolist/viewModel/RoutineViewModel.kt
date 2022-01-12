@@ -5,22 +5,18 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kr.co.iotree.todolist.database.GroupRepository
 import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.database.RoutineRepository
-import kr.co.iotree.todolist.database.TodoGroupRepository
 
 class RoutineViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = RoutineRepository.getInstance(application)
 
     val allRoutine = repository.readAllTimeAlarm
-    val allGroup = TodoGroupRepository.getInstance(application).readProceedGroup
+    val allGroup = GroupRepository.getInstance(application).readProceedGroup
 
     fun getRoutine(routineId: Long): Routine {
         return repository.getRoutine(routineId)
-    }
-
-    fun getGroupRoutine(groupId: Long): List<Routine> {
-        return repository.getGroupRoutine(groupId)
     }
 
     fun addRoutine(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
@@ -29,6 +25,10 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
 
     fun deleteRoutine(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteRoutine(routine)
+    }
+
+    fun updateContent(content: String, routineId: Long) {
+        repository.updateContent(content, routineId)
     }
 
     fun updateStartDate(startDate: Int, routineId: Long) = viewModelScope.launch(Dispatchers.IO) {
@@ -41,5 +41,9 @@ class RoutineViewModel(application: Application) : AndroidViewModel(application)
 
     fun updateDay(mon: Boolean, tue: Boolean, wed: Boolean, thu: Boolean, fri: Boolean, sat: Boolean, sun: Boolean, routineId: Long) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateDay(mon, tue, wed, thu, fri, sat, sun, routineId)
+    }
+
+    fun getAllGroupRoutine(groupId: Long): List<Routine> {
+        return repository.getAllGroupRoutine(groupId)
     }
 }

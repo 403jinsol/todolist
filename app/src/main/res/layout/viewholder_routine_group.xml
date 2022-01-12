@@ -121,7 +121,6 @@
                 <TextView
                     android:id="@+id/startDate"
                     style="@style/text_default"
-                    android:text="@string/dummy"
                     android:textSize="@dimen/routine_font_size" />
 
             </LinearLayout>
@@ -148,7 +147,6 @@
                 <TextView
                     android:id="@+id/endDate"
                     style="@style/text_default"
-                    android:text="@string/dummy"
                     android:textSize="@dimen/routine_font_size" />
 
             </LinearLayout>
@@ -175,7 +173,6 @@
                 <TextView
                     android:id="@+id/date"
                     style="@style/text_default"
-                    android:text="@string/dummy"
                     android:textSize="@dimen/routine_font_size" />
 
             </LinearLayout>

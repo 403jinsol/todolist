@@ -4,12 +4,13 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.iotree.todolist.database.TodoGroupRepository
+import kr.co.iotree.todolist.database.GroupRepository
+import kr.co.iotree.todolist.database.TodoRepository
 import kr.co.iotree.todolist.database.Todo
 
 class StorageViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TodoGroupRepository.getInstance(application)
-    val storageGroup = repository.readCalendarGroup
+    private val repository = TodoRepository.getInstance(application)
+    val storageGroup = GroupRepository.getInstance(application).readCalendarGroup
     val storageTodo = repository.readAllStorageTodo
 
     fun addTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {

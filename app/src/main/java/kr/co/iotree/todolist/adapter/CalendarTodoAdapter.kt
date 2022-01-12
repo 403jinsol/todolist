@@ -9,7 +9,7 @@ import kr.co.iotree.todolist.adapter.viewholder.TodoItemViewHolder
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
 
-class CalendarGroupAdapter(private val viewModel: CalendarViewModel, private val list: List<Todo>, private val color: Int, private var supportFragmentManager: FragmentManager) : RecyclerView.Adapter<TodoItemViewHolder>() {
+class CalendarTodoAdapter(private val viewModel: CalendarViewModel, private val list: List<Todo>, private val color: Int, private var supportFragmentManager: FragmentManager) : RecyclerView.Adapter<TodoItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoItemViewHolder {
         return TodoItemViewHolder(ViewholderTodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)

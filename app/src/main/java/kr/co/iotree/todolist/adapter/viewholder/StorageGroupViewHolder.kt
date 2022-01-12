@@ -28,8 +28,8 @@ class StorageGroupViewHolder(private val binding: ViewholderTodoGroupBinding, pr
         binding.groupIcon.setColorFilter(group.color)
 
         adapter = StorageTodoAdapter(viewModel, list, supportFragmentManager)
-        binding.recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerview.adapter = adapter
+        binding.todoRecyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+        binding.todoRecyclerview.adapter = adapter
 
         binding.container.setOnClickListener { // 빈 공간 클릭
             if (binding.todoEdit.text.isNotEmpty()) { // editText 내용 있으면(입력했으면)
