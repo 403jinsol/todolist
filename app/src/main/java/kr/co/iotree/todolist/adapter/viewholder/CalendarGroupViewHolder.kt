@@ -1,7 +1,6 @@
 package kr.co.iotree.todolist.adapter.viewholder
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -12,13 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.adapter.CalendarRoutineAdapter
 import kr.co.iotree.todolist.adapter.CalendarTodoAdapter
-import kr.co.iotree.todolist.database.Routine
 import kr.co.iotree.todolist.database.Todo
 import kr.co.iotree.todolist.database.TodoGroup
 import kr.co.iotree.todolist.databinding.ViewholderTodoGroupBinding
-import kr.co.iotree.todolist.util.getDayOfTheWeek
 import kr.co.iotree.todolist.viewModel.CalendarViewModel
-import java.lang.RuntimeException
 
 class CalendarGroupViewHolder(private val binding: ViewholderTodoGroupBinding, private val viewModel: CalendarViewModel, private var supportFragmentManager: FragmentManager) :
     RecyclerView.ViewHolder(binding.root) {
