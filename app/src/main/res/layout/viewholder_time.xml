@@ -10,13 +10,11 @@
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_default"
         android:background="@drawable/round"
         android:paddingHorizontal="@dimen/default_hor_margin"
         android:paddingVertical="@dimen/default_ver_margin"
         android:text="@string/dummy"
-
         android:textSize="@dimen/time_font_size"
         android:textStyle="bold" />
 

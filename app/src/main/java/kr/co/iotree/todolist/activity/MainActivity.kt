@@ -60,14 +60,6 @@ class MainActivity : BaseActivity() {
             startSunday = pref.getPrefBool(START_SUNDAY, false)
             adapter.notifyItemChanged(1)
         }
-
-        viewModel.allTodo.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
-        }
-
-        viewModel.allCalendarGroup.observe(this) {
-            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
-        }
     }
 
     private fun setViewModel() {
@@ -96,6 +88,18 @@ class MainActivity : BaseActivity() {
         viewModel.allTime.observe(this) {
             setTimeFlexbox()
         }
+
+        viewModel.allTodo.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
+        }
+
+        viewModel.allCalendarGroup.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
+        }
+
+        viewModel.allRoutine.observe(this) {
+            adapter.notifyItemRangeChanged(2, viewModel.allCalendarGroup.value?.size ?: 0)
+        }
     }
 
     private fun setDrawerMenu() {
@@ -113,13 +117,6 @@ class MainActivity : BaseActivity() {
         binding.timeManage.setOnClickListener { startActivity(Intent(this, TimeManageActivity::class.java)) }
 
         binding.setting.setOnClickListener { startActivity(Intent(this, SettingActivity::class.java)) }
-
-        setFlexbox()
-    }
-
-    private fun setFlexbox() {
-        setGroupFlexbox()
-        setTimeFlexbox()
     }
 
     private fun setGroupFlexbox() {

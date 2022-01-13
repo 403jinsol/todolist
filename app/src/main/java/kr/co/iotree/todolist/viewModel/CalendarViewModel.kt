@@ -18,6 +18,7 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
 
     val allCalendarGroup: LiveData<List<TodoGroup>> = groupRepository.readCalendarGroup
     val allTodo: LiveData<List<Todo>> = todoRepository.readAllTodo
+    val allRoutine: LiveData<List<Routine>> = routineRepository.readAllRoutine
     val groupTodo = MutableLiveData<List<Todo>>()
     val groupRoutine = MutableLiveData<List<Routine>>()
     val allTime: LiveData<List<TimeAlarm>> = timeRepository.readAllTimeAlarm

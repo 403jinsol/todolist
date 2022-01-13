@@ -16,7 +16,7 @@ class RoutineRepository(private val dao: RoutineDao) {
         }
     }
 
-    val readAllTimeAlarm = dao.getAllRoutine()
+    val readAllRoutine = dao.getAllRoutine()
 
     suspend fun addRoutine(routine: Routine) {
         dao.insert(routine)
@@ -58,7 +58,7 @@ class RoutineRepository(private val dao: RoutineDao) {
         return dao.getGroupSundayRoutine(groupId, date, sunday)
     }
 
-    fun updateContent(content: String, routineId: Long){
+    fun updateContent(content: String, routineId: Long) {
         dao.updateContent(content, routineId)
     }
 

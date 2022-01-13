@@ -30,16 +30,6 @@
             android:layout_gravity="center"
             android:text="@string/simple" />
 
-        <ImageView
-            android:id="@+id/addGroup"
-            android:layout_width="@dimen/toolbar_icon_size"
-            android:layout_height="@dimen/toolbar_icon_size"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/default_hor_margin"
-            android:scaleType="center"
-            android:src="@drawable/ic_plus"
-            app:tint="@color/blackWhite" />
-
     </androidx.appcompat.widget.Toolbar>
 
     <TextView

@@ -12,7 +12,7 @@ import kr.co.iotree.todolist.database.RoutineRepository
 class RoutineViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = RoutineRepository.getInstance(application)
 
-    val allRoutine = repository.readAllTimeAlarm
+    val allRoutine = repository.readAllRoutine
     val allGroup = GroupRepository.getInstance(application).readProceedGroup
 
     fun getRoutine(routineId: Long): Routine {
