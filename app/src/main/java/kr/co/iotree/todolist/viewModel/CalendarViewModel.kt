@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kr.co.iotree.todolist.activity.BaseApplication.Companion.pref
 import kr.co.iotree.todolist.database.*
+import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.getDayOfTheWeek
 import kr.co.iotree.todolist.util.getToday
 import java.lang.RuntimeException
@@ -56,15 +58,30 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getGroupRoutine(groupId: Long, year: Int, month: Int, date: Int) {
-        groupRoutine.value = when (getDayOfTheWeek(year, month, date)) {
-            0 -> routineRepository.getGroupMondayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            1 -> routineRepository.getGroupTuesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            2 -> routineRepository.getGroupWednesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            3 -> routineRepository.getGroupThursdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            4 -> routineRepository.getGroupFridayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            5 -> routineRepository.getGroupSaturdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            6 -> routineRepository.getGroupSundayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
-            else -> throw RuntimeException("Invalid date")
+        groupRoutine.value = if (!pref.getPrefBool(START_SUNDAY, false)) {
+            when (getDayOfTheWeek(year, month, date)) {
+                0 -> routineRepository.getGroupMondayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                1 -> routineRepository.getGroupTuesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                2 -> routineRepository.getGroupWednesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                3 -> routineRepository.getGroupThursdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                4 -> routineRepository.getGroupFridayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                5 -> routineRepository.getGroupSaturdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                6 -> routineRepository.getGroupSundayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                else -> throw RuntimeException("Invalid date")
+            }
+        } else {
+            Log.d("☆", "getGroupRoutine: ${String.format("%d%02d%02d", year, month, date)}")
+            Log.d("☆", "getGroupRoutine: ${getDayOfTheWeek(year, month, date)}")
+            when (getDayOfTheWeek(year, month, date)) {
+                2 -> routineRepository.getGroupMondayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                3 -> routineRepository.getGroupTuesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                4 -> routineRepository.getGroupWednesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                5 -> routineRepository.getGroupThursdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                6 -> routineRepository.getGroupFridayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                7 -> routineRepository.getGroupSaturdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                1 -> routineRepository.getGroupSundayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
+                else -> throw RuntimeException("Invalid date")
+            }
         }
     }
 
