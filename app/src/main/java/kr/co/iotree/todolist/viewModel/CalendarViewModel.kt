@@ -70,8 +70,6 @@ class CalendarViewModel(application: Application) : AndroidViewModel(application
                 else -> throw RuntimeException("Invalid date")
             }
         } else {
-            Log.d("☆", "getGroupRoutine: ${String.format("%d%02d%02d", year, month, date)}")
-            Log.d("☆", "getGroupRoutine: ${getDayOfTheWeek(year, month, date)}")
             when (getDayOfTheWeek(year, month, date)) {
                 2 -> routineRepository.getGroupMondayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
                 3 -> routineRepository.getGroupTuesdayRoutine(groupId, String.format("%d%02d%02d", year, month, date).toInt(), true)
