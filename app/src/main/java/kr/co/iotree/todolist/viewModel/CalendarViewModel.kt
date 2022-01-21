@@ -1,8 +1,10 @@
 package kr.co.iotree.todolist.viewModel
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.iotree.todolist.activity.BaseApplication.Companion.pref
@@ -10,7 +12,6 @@ import kr.co.iotree.todolist.database.*
 import kr.co.iotree.todolist.util.PrefUtil.Companion.START_SUNDAY
 import kr.co.iotree.todolist.util.getDayOfTheWeek
 import kr.co.iotree.todolist.util.getToday
-import java.lang.RuntimeException
 
 class CalendarViewModel(application: Application) : AndroidViewModel(application) {
     private val todoRepository = TodoRepository.getInstance(application)
